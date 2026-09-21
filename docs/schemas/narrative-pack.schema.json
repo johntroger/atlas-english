@@ -1,0 +1,192 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://game-english.local/schemas/narrative-pack.schema.json",
+  "title": "Atlas English Narrative Pack",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "packId", "packVersion", "minimumAppVersion", "campaign", "episodes", "missions", "review", "contentHash"],
+  "properties": {
+    "schemaVersion": { "const": 2 },
+    "packId": { "type": "string", "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$" },
+    "packVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "minimumAppVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "campaign": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["campaignId", "titleEn", "titleVi", "sequence", "status"],
+      "properties": {
+        "campaignId": { "type": "string", "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$" },
+        "titleEn": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "titleVi": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "sequence": { "type": "integer", "minimum": 1 },
+        "status": { "enum": ["draft", "preview", "published", "retired"] }
+      }
+    },
+    "prologue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["titleEn", "titleVi", "cards", "handoff"],
+      "properties": {
+        "titleEn": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "titleVi": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "cards": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "items": { "$ref": "#/$defs/localizedCopy" }
+        },
+        "handoff": { "$ref": "#/$defs/localizedCopy" }
+      }
+    },
+    "characters": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$" }
+    },
+    "episodes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["episodeId", "order", "titleEn", "titleVi", "missionIds"],
+        "properties": {
+          "episodeId": { "type": "string", "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$" },
+          "order": { "type": "integer", "minimum": 1 },
+          "titleEn": { "type": "string", "minLength": 1, "maxLength": 100 },
+          "titleVi": { "type": "string", "minLength": 1, "maxLength": 100 },
+          "missionIds": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 5,
+            "uniqueItems": true,
+            "items": { "type": "string", "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$" }
+          }
+        }
+      }
+    },
+    "missions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["missionId", "missionVersion", "episodeId", "order", "titleEn", "titleVi", "ieltsTopics", "primaryObjective", "languageFunctions", "targetLanguage", "activeCharacterIds", "setup", "exerciseSlots", "storyBeat", "checkpointCopy", "skipSummary", "unlock", "reward"],
+        "properties": {
+          "missionId": { "type": "string", "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$" },
+          "missionVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+          "episodeId": { "type": "string", "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$" },
+          "order": { "type": "integer", "minimum": 1 },
+          "titleEn": { "type": "string", "minLength": 1, "maxLength": 100 },
+          "titleVi": { "type": "string", "minLength": 1, "maxLength": 100 },
+          "ieltsTopics": { "type": "array", "minItems": 1, "maxItems": 3, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+          "primaryObjective": { "type": "string", "minLength": 1, "maxLength": 200 },
+          "supportingObjective": { "type": "string", "minLength": 1, "maxLength": 200 },
+          "languageFunctions": { "type": "array", "minItems": 1, "maxItems": 3, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+          "targetLanguage": { "type": "array", "minItems": 1, "maxItems": 12, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+          "transferSkill": { "type": "string", "maxLength": 200 },
+          "activeCharacterIds": { "type": "array", "minItems": 1, "maxItems": 3, "uniqueItems": true, "items": { "type": "string" } },
+          "setup": { "$ref": "#/$defs/localizedCopy" },
+          "exerciseSlots": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 5,
+            "items": { "$ref": "#/$defs/exerciseSlot" }
+          },
+          "storyBeat": { "$ref": "#/$defs/localizedCopy" },
+          "checkpointCopy": { "$ref": "#/$defs/localizedCopy" },
+          "skipSummary": { "$ref": "#/$defs/localizedCopy" },
+          "choices": {
+            "type": "array",
+            "maxItems": 3,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["choiceId", "labelVi", "flag", "convergesBeforeEpisodeEnd"],
+              "properties": {
+                "choiceId": { "type": "string" },
+                "labelVi": { "type": "string", "minLength": 1, "maxLength": 120 },
+                "flag": { "type": "string", "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$" },
+                "convergesBeforeEpisodeEnd": { "const": true }
+              }
+            }
+          },
+          "unlock": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["mode"],
+            "properties": {
+              "mode": { "enum": ["immediate", "after_mission"] },
+              "prerequisiteMissionId": { "type": "string" }
+            },
+            "allOf": [
+              {
+                "if": { "properties": { "mode": { "const": "after_mission" } }, "required": ["mode"] },
+                "then": { "required": ["prerequisiteMissionId"] }
+              }
+            ]
+          },
+          "reward": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["rewardId", "firstCompletionOnly"],
+            "properties": {
+              "rewardId": { "type": "string" },
+              "firstCompletionOnly": { "const": true }
+            }
+          }
+        }
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "languageReviewer", "ieltsReviewer", "narrativeReviewer", "reviewedAt"],
+      "properties": {
+        "status": { "enum": ["draft", "codex_pre_reviewed", "reviewed", "approved"] },
+        "languageReviewer": { "type": "string", "minLength": 1 },
+        "ieltsReviewer": { "type": "string", "minLength": 1 },
+        "narrativeReviewer": { "type": "string", "minLength": 1 },
+        "reviewedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "contentHash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "rollbackPackVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "rollbackTarget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "reason"],
+      "properties": {
+        "mode": { "enum": ["deactivate", "version"] },
+        "packVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+        "reason": { "type": "string", "minLength": 1 }
+      },
+      "allOf": [
+        { "if": { "properties": { "mode": { "const": "version" } }, "required": ["mode"] }, "then": { "required": ["packVersion"] } }
+      ]
+    }
+  },
+  "$defs": {
+    "localizedCopy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["en", "vi"],
+      "properties": {
+        "en": { "type": "string", "minLength": 1, "maxLength": 400 },
+        "vi": { "type": "string", "minLength": 1, "maxLength": 500 }
+      }
+    },
+    "exerciseSlot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["slotId", "slotVersion", "allowedLearningNodeIds", "allowedExerciseTypes", "progressChannel"],
+      "properties": {
+        "slotId": { "type": "string", "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$" },
+        "slotVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+        "allowedLearningNodeIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } },
+        "allowedExerciseTypes": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } },
+        "progressChannel": { "enum": ["mastery", "practice"] }
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "atlas-english",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Atlas English — an IELTS-focused learning game for the web.",
+  "license": "MIT",
+  "engines": {
+    "node": "^24.19.0",
+    "npm": ">=11.17.0 <12"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "format:check": "biome format src tests tools package.json tsconfig.json next.config.ts biome.json",
+    "format:write": "biome format --write src tests tools package.json tsconfig.json next.config.ts biome.json",
+    "lint": "biome lint src tests tools next.config.ts",
+    "boundary:check": "node tools/check-boundaries.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test",
+    "secret:check": "node tools/check-secrets.mjs",
+    "check": "npm run format:check && npm run lint && npm run boundary:check && npm run typecheck && npm test && npm run secret:check && npm run build"
+  },
+  "dependencies": {
+    "next": "16.3.5",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "24.13.6",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@biomejs/biome": "2.5.14",
+    "typescript": "6.0.3"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 2,
+  "packId": "route65.prologue.slice",
+  "packVersion": "0.1.0",
+  "minimumAppVersion": "0.1.0",
+  "campaign": {
+    "campaignId": "route65.missing_context",
+    "titleEn": "Route to 6.5: The Missing Context",
+    "titleVi": "Route to 6.5: Phần ngữ cảnh bị thiếu",
+    "sequence": 1,
+    "status": "draft"
+  },
+  "characters": ["ato", "mira"],
+  "episodes": [
+    {
+      "episodeId": "prologue.first_route",
+      "order": 1,
+      "titleEn": "The First Route",
+      "titleVi": "Tuyến đường đầu tiên",
+      "missionIds": ["prologue.first_route.m1"]
+    }
+  ],
+  "missions": [
+    {
+      "missionId": "prologue.first_route.m1",
+      "missionVersion": "0.1.0",
+      "episodeId": "prologue.first_route",
+      "order": 1,
+      "titleEn": "Two Different Summaries",
+      "titleVi": "Hai bản tóm tắt khác nhau",
+      "ieltsTopics": ["education"],
+      "primaryObjective": "Identify meaning changes caused by quantifiers",
+      "supportingObjective": "Use cautious claims",
+      "languageFunctions": ["compare", "qualify"],
+      "targetLanguage": ["all", "most", "some"],
+      "transferSkill": "Reading claim-evidence control",
+      "activeCharacterIds": ["ato", "mira"],
+      "setup": {
+        "en": "Mira found two summaries of the same survey. Check which one matches the evidence.",
+        "vi": "Mira tìm thấy hai bản tóm tắt của cùng một khảo sát. Hãy kiểm tra bản nào khớp với bằng chứng."
+      },
+      "exerciseSlots": [
+        {
+          "slotId": "claim_1",
+          "slotVersion": "0.1.0",
+          "allowedLearningNodeIds": ["grammar.nouns.countability"],
+          "allowedExerciseTypes": ["single_choice"],
+          "progressChannel": "mastery"
+        },
+        {
+          "slotId": "claim_2",
+          "slotVersion": "0.1.0",
+          "allowedLearningNodeIds": ["vocabulary.paraphrase"],
+          "allowedExerciseTypes": ["single_choice"],
+          "progressChannel": "mastery"
+        },
+        {
+          "slotId": "claim_3",
+          "slotVersion": "0.1.0",
+          "allowedLearningNodeIds": ["vocabulary.paraphrase"],
+          "allowedExerciseTypes": ["error_correction"],
+          "progressChannel": "practice"
+        }
+      ],
+      "storyBeat": {
+        "en": "One summary says all students agree, but the survey only supports some students.",
+        "vi": "Một bản nói tất cả sinh viên đồng ý, nhưng khảo sát chỉ cho thấy một số sinh viên."
+      },
+      "checkpointCopy": {
+        "en": "The evidence supports a cautious conclusion. The team will check why the stronger word appeared.",
+        "vi": "Bằng chứng chỉ hỗ trợ một kết luận thận trọng. Nhóm sẽ kiểm tra vì sao từ mạnh hơn xuất hiện."
+      },
+      "skipSummary": {
+        "en": "A summary used all where the evidence only supported some.",
+        "vi": "Một bản tóm tắt dùng “tất cả” trong khi bằng chứng chỉ hỗ trợ “một số”."
+      },
+      "unlock": { "mode": "immediate" },
+      "reward": { "rewardId": "prologue_first_clue", "firstCompletionOnly": true }
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "languageReviewer": "pending",
+    "ieltsReviewer": "pending",
+    "narrativeReviewer": "pending",
+    "reviewedAt": "2026-09-20T00:00:00Z"
+  },
+  "contentHash": "0000000000000000000000000000000000000000000000000000000000000000"
+}

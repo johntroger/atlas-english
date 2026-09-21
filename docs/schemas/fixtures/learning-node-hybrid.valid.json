@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 4,
+  "learningNodeId": "pronunciation.chunking",
+  "skill": "pronunciation",
+  "domain": "delivery",
+  "objective": "Identify phrase-group boundaries and practice them in a recorded response.",
+  "priority": "P0",
+  "assessmentMode": "hybrid",
+  "progressChannels": ["mastery", "practice"],
+  "completionContract": {
+    "channel": "mastery",
+    "ruleCode": "mastery.threshold",
+    "target": 85,
+    "minimumEvidence": 3
+  },
+  "exerciseTypes": ["mark_boundaries", "record_self_review"],
+  "commonErrors": ["pause_inside_phrase", "no_phrase_boundary"],
+  "transferTask": "Record a short Part 1 answer with planned phrase groups.",
+  "minimumVariants": 8,
+  "sourceRefs": ["curriculum.pronunciation.chunking"],
+  "reviewStatus": "draft"
+}

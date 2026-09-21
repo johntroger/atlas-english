@@ -1,0 +1,18 @@
+{
+  "exerciseId": "slice.invalid.ambiguous.001",
+  "exerciseVersion": "0.1.0",
+  "learningNodeId": "grammar.nouns.countability",
+  "skill": "grammar",
+  "level": 5,
+  "exerciseType": "single_choice",
+  "evidenceEligibility": "mastery",
+  "prompt": "Forty-eight of 120 students preferred fully online study. Choose the accurate claim.",
+  "options": [
+    { "id": "a", "text": "Some students preferred fully online study." },
+    { "id": "b", "text": "A number of students preferred fully online study." },
+    { "id": "c", "text": "All students preferred fully online study." }
+  ],
+  "scoring": { "mode": "selected_options", "acceptedAnswers": ["a"], "partialCreditPolicy": "none" },
+  "explanationVi": "Fixture phải bị từ chối vì A và B đều hợp lý nhưng chỉ A được chấm đúng.",
+  "mistakeTags": ["invalid_ambiguity"]
+}

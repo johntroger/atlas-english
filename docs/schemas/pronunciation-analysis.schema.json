@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://game-english.local/schemas/pronunciation-analysis.schema.json",
+  "title": "Pronunciation Analysis",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["analysisId", "attemptId", "targetText", "sources", "signalMetrics", "observations", "createdAt", "schemaVersion"],
+  "properties": {
+    "analysisId": { "type": "string", "format": "uuid" },
+    "attemptId": { "type": "string", "format": "uuid" },
+    "targetText": { "type": "string", "minLength": 1, "maxLength": 500 },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "enum": ["local_signal", "self_review"] }
+    },
+    "signalMetrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["durationMs", "speechRatio", "clippingDetected", "nearSilenceDetected"],
+      "properties": {
+        "durationMs": { "type": "integer", "minimum": 0 },
+        "speechRatio": { "type": "number", "minimum": 0, "maximum": 1 },
+        "delayedStartMs": { "type": "integer", "minimum": 0 },
+        "longPauseCount": { "type": "integer", "minimum": 0 },
+        "paceRatioToReference": { "type": "number", "minimum": 0 },
+        "clippingDetected": { "type": "boolean" },
+        "nearSilenceDetected": { "type": "boolean" }
+      }
+    },
+    "selfReview": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["clarity", "paceComfort", "retryChosen"],
+      "properties": {
+        "clarity": { "enum": ["unclear", "partly_clear", "clear", "not_sure"] },
+        "paceComfort": { "enum": ["too_slow", "comfortable", "too_fast", "not_sure"] },
+        "retryChosen": { "type": "boolean" },
+        "retryTarget": { "type": "string", "maxLength": 200 }
+      }
+    },
+    "observations": {
+      "type": "array",
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["category", "evidenceLevel", "message"],
+        "properties": {
+          "category": { "enum": ["recording_quality", "start_timing", "pauses", "pace", "rhythm_proxy", "clarity_self_review"] },
+          "evidenceLevel": { "enum": ["measured", "heuristic", "self_report"] },
+          "confidence": { "enum": ["low", "medium", "high", "not_reported"] },
+          "message": { "type": "string", "minLength": 1, "maxLength": 500 },
+          "retryTarget": { "type": "string", "maxLength": 200 }
+        }
+      }
+    },
+    "algorithmVersion": { "type": "string", "minLength": 1, "maxLength": 50 },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "schemaVersion": { "const": 2 }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "sources": { "contains": { "const": "self_review" } }
+        },
+        "required": ["sources"]
+      },
+      "then": {
+        "required": ["selfReview"],
+        "properties": {
+          "observations": {
+            "contains": {
+              "type": "object",
+              "properties": { "evidenceLevel": { "const": "self_report" } },
+              "required": ["evidenceLevel"]
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "sources": { "contains": { "const": "local_signal" } }
+        },
+        "required": ["sources"]
+      },
+      "then": {
+        "required": ["algorithmVersion"]
+      }
+    },
+    {
+      "if": {
+        "anyOf": [
+          { "required": ["selfReview"] }
+        ]
+      },
+      "then": {
+        "properties": {
+          "sources": { "contains": { "const": "self_review" } }
+        }
+      }
+    }
+  ]
+}

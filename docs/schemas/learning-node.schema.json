@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://game-english.local/schemas/learning-node.schema.json",
+  "title": "IELTS Game Learning Node",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "learningNodeId", "skill", "domain", "objective", "priority", "assessmentMode", "progressChannels", "completionContract", "exerciseTypes", "commonErrors", "reviewStatus"],
+  "properties": {
+    "schemaVersion": { "const": 4 },
+    "learningNodeId": { "type": "string", "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$" },
+    "skill": { "enum": ["grammar", "vocabulary", "spelling", "pronunciation", "transfer", "performance"] },
+    "domain": { "type": "string", "minLength": 1 },
+    "objective": { "type": "string", "minLength": 1 },
+    "priority": { "enum": ["P0", "P1", "P2"] },
+    "assessmentMode": { "enum": ["auto_scored", "controlled_production", "self_review_only", "external_review_required", "hybrid"] },
+    "progressChannels": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "enum": ["mastery", "practice", "external"] }
+    },
+    "completionContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["channel", "ruleCode", "target", "minimumEvidence"],
+      "properties": {
+        "channel": { "enum": ["mastery", "practice", "external"] },
+        "ruleCode": { "type": "string", "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$" },
+        "target": { "type": "number", "minimum": 0 },
+        "minimumEvidence": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "prerequisiteIds": { "type": "array", "items": { "type": "string" }, "uniqueItems": true, "default": [] },
+    "exerciseTypes": { "type": "array", "minItems": 2, "uniqueItems": true, "items": { "type": "string" } },
+    "commonErrors": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "transferTask": { "type": "string" },
+    "minimumVariants": { "type": "integer", "minimum": 1 },
+    "sourceRefs": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "reviewStatus": { "enum": ["draft", "codex_pre_reviewed", "reviewed", "approved", "retired"] },
+    "reviewer": { "type": "string" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "assessmentMode": { "const": "self_review_only" } }, "required": ["assessmentMode"] },
+      "then": {
+        "properties": {
+          "progressChannels": {
+            "contains": { "const": "practice" },
+            "not": { "contains": { "const": "mastery" } }
+          },
+          "completionContract": { "properties": { "channel": { "const": "practice" } } }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "assessmentMode": { "const": "external_review_required" } }, "required": ["assessmentMode"] },
+      "then": {
+        "properties": {
+          "progressChannels": {
+            "allOf": [
+              { "contains": { "const": "practice" } },
+              { "contains": { "const": "external" } },
+              { "not": { "contains": { "const": "mastery" } } }
+            ]
+          },
+          "completionContract": { "properties": { "channel": { "const": "external" } } }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "assessmentMode": { "enum": ["auto_scored", "controlled_production"] } }, "required": ["assessmentMode"] },
+      "then": {
+        "properties": {
+          "progressChannels": { "contains": { "const": "mastery" } },
+          "completionContract": { "properties": { "channel": { "const": "mastery" } } }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "assessmentMode": { "const": "hybrid" } }, "required": ["assessmentMode"] },
+      "then": {
+        "properties": {
+          "progressChannels": {
+            "allOf": [
+              { "contains": { "const": "mastery" } },
+              { "contains": { "const": "practice" } }
+            ]
+          },
+          "completionContract": { "properties": { "channel": { "const": "mastery" } } }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 4,
+  "learningNodeId": "grammar.sentence.boundaries",
+  "skill": "grammar",
+  "domain": "sentence_structure",
+  "objective": "Avoid fragments, run-ons and comma splices while preserving the intended relationship between ideas.",
+  "priority": "P0",
+  "assessmentMode": "hybrid",
+  "progressChannels": ["mastery", "practice"],
+  "completionContract": { "channel": "mastery", "ruleCode": "mastery.threshold", "target": 85, "minimumEvidence": 6 },
+  "prerequisiteIds": [],
+  "exerciseTypes": ["single_choice", "reorder", "error_correction"],
+  "commonErrors": ["run_on", "comma_splice", "dependent_clause_fragment", "meaning_change"],
+  "transferTask": "Repair sentence boundaries in a short academic survey summary without changing its claims.",
+  "minimumVariants": 10,
+  "sourceRefs": ["curriculum.grammar.sentence.boundaries", "p031.proof-pack.m1"],
+  "reviewStatus": "codex_pre_reviewed",
+  "reviewer": "Codex pre-review only; independent human review pending"
+}

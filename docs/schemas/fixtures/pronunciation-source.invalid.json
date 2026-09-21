@@ -1,0 +1,15 @@
+{
+  "analysisId": "55555555-5555-4555-8555-555555555555",
+  "attemptId": "66666666-6666-4666-8666-666666666666",
+  "targetText": "The number of students has increased.",
+  "sources": ["gemini"],
+  "signalMetrics": {
+    "durationMs": 3200,
+    "speechRatio": 0.78,
+    "clippingDetected": false,
+    "nearSilenceDetected": false
+  },
+  "observations": [],
+  "createdAt": "2026-09-19T00:10:00Z",
+  "schemaVersion": 2
+}

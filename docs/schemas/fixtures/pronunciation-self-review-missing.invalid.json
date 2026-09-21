@@ -1,0 +1,16 @@
+{
+  "analysisId": "77777777-7777-4777-8777-777777777777",
+  "attemptId": "88888888-8888-4888-8888-888888888888",
+  "targetText": "The number of students has increased.",
+  "sources": ["local_signal", "self_review"],
+  "signalMetrics": {
+    "durationMs": 3200,
+    "speechRatio": 0.78,
+    "clippingDetected": false,
+    "nearSilenceDetected": false
+  },
+  "observations": [],
+  "algorithmVersion": "pronunciation-local-v1",
+  "createdAt": "2026-09-19T00:15:00Z",
+  "schemaVersion": 2
+}

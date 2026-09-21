@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://game-english.local/schemas/sync-operation.schema.json",
+  "title": "IELTS Game Sync Operation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["operationId", "entityType", "entityId", "operationType", "state", "payloadVersion", "payload", "createdAt", "attemptCount"],
+  "properties": {
+    "operationId": { "type": "string", "format": "uuid" },
+    "entityType": { "enum": ["profile", "goal", "device", "session", "attempt", "streak_event", "mastery_state", "review_schedule", "achievement"] },
+    "entityId": { "type": "string", "minLength": 1 },
+    "operationType": { "enum": ["create", "upsert", "delete"] },
+    "state": { "enum": ["queued", "syncing", "synced", "failed_retryable", "failed_permanent"] },
+    "payloadVersion": { "type": "integer", "minimum": 1 },
+    "payload": { "type": "object" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "attemptCount": { "type": "integer", "minimum": 0 },
+    "lastAttemptAt": { "type": "string", "format": "date-time" },
+    "nextRetryAt": { "type": "string", "format": "date-time" },
+    "lastErrorCode": { "type": "string", "pattern": "^[A-Z]+_[A-Z0-9_]+$" },
+    "leaseExpiresAt": { "type": "string", "format": "date-time" }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "exerciseId": "pronunciation.chunking.self-review.001",
+  "learningNodeId": "pronunciation.chunking",
+  "skill": "pronunciation",
+  "level": 5,
+  "exerciseType": "self_review",
+  "evidenceEligibility": "practice",
+  "prompt": "Listen to your recording and choose one retry target.",
+  "scoring": {
+    "mode": "self_review"
+  },
+  "explanationVi": "Hoạt động này ghi nhận luyện tập và không cập nhật mastery.",
+  "mistakeTags": ["chunking_self_review"]
+}

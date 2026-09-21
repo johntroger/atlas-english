@@ -1,0 +1,38 @@
+{
+  "analysisId": "33333333-3333-4333-8333-333333333333",
+  "attemptId": "44444444-4444-4444-8444-444444444444",
+  "targetText": "The number of students has increased.",
+  "sources": ["local_signal", "self_review"],
+  "signalMetrics": {
+    "durationMs": 3400,
+    "speechRatio": 0.72,
+    "delayedStartMs": 620,
+    "longPauseCount": 1,
+    "paceRatioToReference": 0.94,
+    "clippingDetected": false,
+    "nearSilenceDetected": false
+  },
+  "selfReview": {
+    "clarity": "partly_clear",
+    "paceComfort": "comfortable",
+    "retryChosen": true,
+    "retryTarget": "Use shorter pauses between phrase groups."
+  },
+  "observations": [
+    {
+      "category": "pauses",
+      "evidenceLevel": "measured",
+      "confidence": "high",
+      "message": "One pause exceeded the calibrated duration threshold."
+    },
+    {
+      "category": "clarity_self_review",
+      "evidenceLevel": "self_report",
+      "confidence": "not_reported",
+      "message": "The learner marked the recording as partly clear."
+    }
+  ],
+  "algorithmVersion": "pronunciation-local-v1",
+  "createdAt": "2026-09-19T00:05:00Z",
+  "schemaVersion": 2
+}

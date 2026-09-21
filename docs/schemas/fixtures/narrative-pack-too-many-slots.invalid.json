@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 2,
+  "packId": "invalid.too_many_slots",
+  "packVersion": "0.1.0",
+  "minimumAppVersion": "0.1.0",
+  "campaign": {
+    "campaignId": "route65.missing_context",
+    "titleEn": "Invalid",
+    "titleVi": "Không hợp lệ",
+    "sequence": 1,
+    "status": "draft"
+  },
+  "episodes": [{ "episodeId": "e1", "order": 1, "titleEn": "E1", "titleVi": "E1", "missionIds": ["m1"] }],
+  "missions": [
+    {
+      "missionId": "m1",
+      "missionVersion": "0.1.0",
+      "episodeId": "e1",
+      "order": 1,
+      "titleEn": "Too many slots",
+      "titleVi": "Quá nhiều câu",
+      "ieltsTopics": ["education"],
+      "primaryObjective": "Test the limit",
+      "languageFunctions": ["compare"],
+      "targetLanguage": ["some"],
+      "activeCharacterIds": ["ato"],
+      "setup": { "en": "Test.", "vi": "Kiểm tra." },
+      "exerciseSlots": [
+        { "slotId": "s1", "slotVersion": "0.1.0", "allowedLearningNodeIds": ["n1"], "allowedExerciseTypes": ["single_choice"], "progressChannel": "mastery" },
+        { "slotId": "s2", "slotVersion": "0.1.0", "allowedLearningNodeIds": ["n1"], "allowedExerciseTypes": ["single_choice"], "progressChannel": "mastery" },
+        { "slotId": "s3", "slotVersion": "0.1.0", "allowedLearningNodeIds": ["n1"], "allowedExerciseTypes": ["single_choice"], "progressChannel": "mastery" },
+        { "slotId": "s4", "slotVersion": "0.1.0", "allowedLearningNodeIds": ["n1"], "allowedExerciseTypes": ["single_choice"], "progressChannel": "mastery" },
+        { "slotId": "s5", "slotVersion": "0.1.0", "allowedLearningNodeIds": ["n1"], "allowedExerciseTypes": ["single_choice"], "progressChannel": "mastery" },
+        { "slotId": "s6", "slotVersion": "0.1.0", "allowedLearningNodeIds": ["n1"], "allowedExerciseTypes": ["single_choice"], "progressChannel": "mastery" }
+      ],
+      "storyBeat": { "en": "Test.", "vi": "Kiểm tra." },
+      "checkpointCopy": { "en": "Test.", "vi": "Kiểm tra." },
+      "skipSummary": { "en": "Test.", "vi": "Kiểm tra." },
+      "unlock": { "mode": "immediate" },
+      "reward": { "rewardId": "invalid", "firstCompletionOnly": true }
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "languageReviewer": "pending",
+    "ieltsReviewer": "pending",
+    "narrativeReviewer": "pending",
+    "reviewedAt": "2026-09-20T00:00:00Z"
+  },
+  "contentHash": "0000000000000000000000000000000000000000000000000000000000000000"
+}

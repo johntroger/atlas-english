@@ -1,0 +1,187 @@
+{
+  "packId": "route65.slice.vocabulary.proof",
+  "packVersion": "0.1.0",
+  "schemaVersion": 2,
+  "minimumAppVersion": "0.1.0",
+  "curriculumVersion": "0.1.0",
+  "language": "en",
+  "explanationLanguage": "vi",
+  "skill": "vocabulary",
+  "levelRange": { "minimum": 5, "maximum": 6.5 },
+  "contentHash": "2c0acd6415de509eee6fb456159fee84d9fc31788b3bc5a30d2abb17894de338",
+  "releasedAt": "2026-09-21T00:00:00Z",
+  "reviewStatus": "codex_pre_reviewed",
+  "provenanceRef": "docs/content/vertical-slice/P031-PROOF-PACK.md#provenance",
+  "reviewer": "Codex pre-review only; independent human review pending",
+  "reviewedAt": "2026-09-21T00:00:00Z",
+  "rollbackTarget": { "mode": "deactivate", "reason": "Initial proof version has no earlier active pack; deactivate it if validation or content review fails." },
+  "exercises": [
+    {
+      "exerciseId": "slice.m3.cause-effect.001",
+      "exerciseVersion": "0.1.0",
+      "learningNodeId": "vocabulary.cause_effect",
+      "skill": "vocabulary",
+      "level": 5,
+      "exerciseType": "single_choice",
+      "evidenceEligibility": "mastery",
+      "prompt": "The survey found a relationship, not proof of cause. Choose the accurate claim.",
+      "context": "Students who used flexible schedules also reported higher satisfaction.",
+      "options": [
+        { "id": "a", "text": "Flexible schedules caused higher satisfaction." },
+        { "id": "b", "text": "Flexible schedules were associated with higher satisfaction." },
+        { "id": "c", "text": "Higher satisfaction prevented flexible schedules." }
+      ],
+      "scoring": { "mode": "selected_options", "acceptedAnswers": ["b"], "partialCreditPolicy": "none" },
+      "explanationVi": "“Was associated with” mô tả mối liên hệ mà không khẳng định quan hệ nhân quả chưa được chứng minh.",
+      "additionalExample": "Regular attendance was associated with stronger course completion.",
+      "ieltsRelevance": "Careful claim strength supports accurate interpretation in Reading and Writing.",
+      "mistakeTags": ["causation_overclaim", "association"],
+      "authoring": {
+        "construct": "Distinguish association language from an unsupported causal claim.",
+        "observableBehavior": "Selects the association phrase when evidence only reports co-occurrence.",
+        "contentRole": "core_mastery",
+        "correctAnswerRationale": "Was associated with states a relationship without asserting that one variable caused the other.",
+        "distractorRationales": [
+          { "response": "a", "errorModel": "causation_overclaim", "rationale": "Caused is stronger than the survey evidence permits." },
+          { "response": "c", "errorModel": "reversed_and_unsupported_cause", "rationale": "Prevented reverses the direction and invents causation." }
+        ],
+        "detailedExplanationVi": "Khảo sát quan sát được mối liên hệ nhưng không kiểm soát nguyên nhân. Vì vậy dùng “was associated with”, không dùng “caused”.",
+        "sourceBasis": "Original synthetic survey context; wording reflects standard research-claim distinctions, not an external empirical claim.",
+        "provenanceRef": "p031.synthetic.m3.001",
+        "license": "CC-BY-NC-SA-4.0",
+        "reviewStatus": "codex_pre_reviewed",
+        "copyBudgetStatus": "pass",
+        "fairnessReview": "pass"
+      }
+    },
+    {
+      "exerciseId": "slice.m3.cause-effect.002",
+      "exerciseVersion": "0.1.0",
+      "learningNodeId": "vocabulary.cause_effect",
+      "skill": "vocabulary",
+      "level": 5.5,
+      "exerciseType": "multiple_choice",
+      "evidenceEligibility": "mastery",
+      "prompt": "Select both claims that do not present causation as proven.",
+      "context": "The survey found that flexible access and higher satisfaction occurred together. It did not test causation.",
+      "options": [
+        { "id": "a", "text": "Flexible access may contribute to higher satisfaction." },
+        { "id": "b", "text": "Flexible access guarantees higher satisfaction." },
+        { "id": "c", "text": "Higher satisfaction was associated with flexible access." },
+        { "id": "d", "text": "Flexible access was the only cause of higher satisfaction." }
+      ],
+      "scoring": { "mode": "selected_options", "acceptedAnswers": ["a", "c"], "partialCreditPolicy": "subset_no_incorrect" },
+      "explanationVi": "A chỉ nêu khả năng và C chỉ nêu mối liên hệ; “guarantees” và “the only cause” trình bày nhân quả như điều đã chắc chắn.",
+      "additionalExample": "Access to support may contribute to persistence, but other factors may also matter.",
+      "ieltsRelevance": "Selecting cautious causal language supports precise academic argumentation.",
+      "mistakeTags": ["absolute_claim", "single_cause_claim", "hedging"],
+      "authoring": {
+        "construct": "Recognise two evidence-aligned cause/effect formulations among absolute overclaims.",
+        "observableBehavior": "Selects both cautious options and no absolute option.",
+        "contentRole": "core_mastery",
+        "correctAnswerRationale": "May contribute to marks uncertainty, while was associated with makes no causal assertion.",
+        "distractorRationales": [
+          { "response": "b", "errorModel": "absolute_claim", "rationale": "Guarantees asserts certainty unsupported by an observational survey." },
+          { "response": "d", "errorModel": "single_cause_claim", "rationale": "The only cause excludes alternatives without evidence." }
+        ],
+        "detailedExplanationVi": "Ngôn ngữ học thuật cần phản ánh đúng lực của bằng chứng. “May contribute to” là khả năng; “was associated with” chỉ mối liên hệ; hai lựa chọn còn lại là tuyệt đối hóa.",
+        "sourceBasis": "Original synthetic survey context; no external empirical claim.",
+        "provenanceRef": "p031.synthetic.m3.002",
+        "license": "CC-BY-NC-SA-4.0",
+        "reviewStatus": "codex_pre_reviewed",
+        "copyBudgetStatus": "pass",
+        "fairnessReview": "pass"
+      }
+    },
+    {
+      "exerciseId": "slice.m3.cause-effect.003",
+      "exerciseVersion": "0.1.0",
+      "learningNodeId": "vocabulary.cause_effect",
+      "skill": "vocabulary",
+      "level": 5.5,
+      "exerciseType": "error_correction",
+      "evidenceEligibility": "practice",
+      "prompt": "Rewrite the claim so it reports association rather than proven cause.",
+      "context": "Online study led to higher grades.",
+      "hint": { "copyVi": "Dữ liệu chỉ cho thấy hai yếu tố xuất hiện cùng nhau; dùng cụm “was associated with”.", "changesAttemptToPracticeOnly": true },
+      "scoring": {
+        "mode": "normalized_text",
+        "acceptedAnswers": ["Online study was associated with higher grades."],
+        "partialCreditPolicy": "none",
+        "caseSensitive": false,
+        "punctuationSensitive": true,
+        "unicodeForm": "NFC",
+        "trimWhitespace": true,
+        "collapseWhitespace": true,
+        "hyphenSensitive": true,
+        "declaredVariantsOnly": true,
+        "fuzzyMatching": false
+      },
+      "explanationVi": "“Led to” khẳng định nguyên nhân; “was associated with” chỉ báo mối liên hệ phù hợp dữ liệu.",
+      "additionalExample": "Library use was associated with higher course completion.",
+      "ieltsRelevance": "This avoids overstating evidence when paraphrasing a source.",
+      "mistakeTags": ["causation_overclaim", "hint_used"],
+      "authoring": {
+        "construct": "Replace an unsupported causal verb with an association collocation.",
+        "observableBehavior": "Produces the declared cautious sentence after a targeted hint.",
+        "contentRole": "hinted_practice",
+        "correctAnswerRationale": "Was associated with accurately reports a relationship without claiming causal proof.",
+        "distractorRationales": [
+          { "response": "Online study led to higher grades.", "errorModel": "causation_overclaim", "rationale": "Led to still presents cause as established." },
+          { "response": "Higher grades led to online study.", "errorModel": "reversed_cause", "rationale": "The rewrite reverses the direction but remains an unsupported causal claim." }
+        ],
+        "detailedExplanationVi": "Khi nguồn chỉ nêu tương quan, hãy dùng cụm trung tính như “be associated with”. Không đổi hướng nhân quả để né lỗi; cần giảm lực của chính tuyên bố.",
+        "sourceBasis": "Original synthetic sentence created for this project.",
+        "provenanceRef": "p031.synthetic.m3.003",
+        "license": "CC-BY-NC-SA-4.0",
+        "reviewStatus": "codex_pre_reviewed",
+        "copyBudgetStatus": "pass",
+        "fairnessReview": "pass"
+      }
+    },
+    {
+      "exerciseId": "slice.m3.cause-effect.004",
+      "exerciseVersion": "0.1.0",
+      "learningNodeId": "vocabulary.cause_effect",
+      "skill": "vocabulary",
+      "level": 6,
+      "exerciseType": "text_input",
+      "evidenceEligibility": "mastery",
+      "prompt": "Use the two-word phrase meaning ‘be one factor in’: Flexibility may ___ higher satisfaction.",
+      "scoring": {
+        "mode": "normalized_text",
+        "acceptedAnswers": ["contribute to"],
+        "partialCreditPolicy": "none",
+        "caseSensitive": false,
+        "punctuationSensitive": false,
+        "unicodeForm": "NFC",
+        "trimWhitespace": true,
+        "collapseWhitespace": true,
+        "hyphenSensitive": true,
+        "declaredVariantsOnly": true,
+        "fuzzyMatching": false
+      },
+      "explanationVi": "Cụm “may contribute to” nêu một yếu tố có thể góp phần mà không coi đó là nguyên nhân duy nhất.",
+      "additionalExample": "Regular feedback may contribute to learner confidence.",
+      "ieltsRelevance": "Cause/effect collocations with hedging support precise Task 2 claims.",
+      "mistakeTags": ["cause_effect_collocation", "hedging"],
+      "authoring": {
+        "construct": "Produce the cause/effect collocation contribute to under a cautious modal.",
+        "observableBehavior": "Types the exact collocation that completes the evidence-aligned claim.",
+        "contentRole": "independent_review_transfer",
+        "correctAnswerRationale": "Contribute to collocates with the noun phrase and allows other factors to remain possible.",
+        "distractorRationales": [
+          { "response": "cause", "errorModel": "task_constraint", "rationale": "Cause is one word and does not match the supplied meaning ‘be one factor in’." },
+          { "response": "result", "errorModel": "collocation_error", "rationale": "Result requires result in, while the prompt already supplies no preposition after the blank." }
+        ],
+        "detailedExplanationVi": "“Contribute to + noun” nghĩa là góp phần tạo nên kết quả. Kết hợp với “may”, câu giữ đúng mức thận trọng và không loại trừ các yếu tố khác.",
+        "sourceBasis": "Original project-authored collocation task based on standard academic English usage.",
+        "provenanceRef": "p031.original.m3.004",
+        "license": "CC-BY-NC-SA-4.0",
+        "reviewStatus": "codex_pre_reviewed",
+        "copyBudgetStatus": "pass",
+        "fairnessReview": "pass"
+      }
+    }
+  ]
+}

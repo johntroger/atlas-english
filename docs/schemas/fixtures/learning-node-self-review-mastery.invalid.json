@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 4,
+  "learningNodeId": "performance.speaking.part2",
+  "skill": "performance",
+  "domain": "speaking",
+  "objective": "Practice a timed Part 2 response from brief notes.",
+  "priority": "P0",
+  "assessmentMode": "self_review_only",
+  "progressChannels": ["mastery", "practice"],
+  "completionContract": {
+    "channel": "practice",
+    "ruleCode": "practice.self_review_completed",
+    "target": 1,
+    "minimumEvidence": 2
+  },
+  "exerciseTypes": ["plan", "record_self_review"],
+  "commonErrors": ["short_response", "unclear_structure"],
+  "reviewStatus": "draft"
+}

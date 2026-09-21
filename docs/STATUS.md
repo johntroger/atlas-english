@@ -1,0 +1,315 @@
+# Project status
+
+> **Phase:** Vertical Slice implementation — VS-01  
+> **Plan status:** APPROVED — VERTICAL SLICE ONLY; only VS-01 is open  
+> **Updated:** 2026-09-21
+
+## Current outcome
+
+On 2026-09-21 the Project Owner explicitly requested `bắt đầu code VS-01`. PLAN 2.2 is now `APPROVED — VERTICAL SLICE ONLY; CURRENT STEP: VS-01`. Only the repository/framework/lockfile/baseline-check foundation in VS-01 is open. VS-02–VS-09, Supabase, Vercel/deployment, gameplay and every later phase remain blocked until the required tested completion report and named approval. The active decision set now includes:
+
+- responsive website only, Internet required; no PWA/native app/offline learning;
+- Supabase-authoritative accounts and short-lived browser recovery only;
+- public guest Quick Start and open self-service registration;
+- verified account required for long-term history/mastery/assessment;
+- deterministic/versioned MVP, no runtime AI or hosted speech recognition;
+- deferred Gemini BYOK coach recorded but not authorized for implementation;
+- public practice content and private assessment bank separated;
+- short 3–5-minute clusters with a checkpoint after at most 5 questions;
+- evidence-gated IELTS claims and session-only pronunciation audio;
+- data lifecycle, privacy, operations, open-beta and quota fallback contracts;
+- unresolved age/consent/legal review remains an explicit release blocker.
+- a grounded real-world story: The Atlas Initiative, a light `Missing Context` mystery and IELTS-aligned missions;
+- a bounded MVP narrative: Prologue, Season 1 `Campus Connections` and one independent Expedition preview.
+- a long-term Campaign model with real endings, ongoing Field Cases/Dispatch/Expeditions and immutable Narrative Packs;
+- continuity ledgers and anti-padding/non-FOMO rules so later content can grow without weakening IELTS alignment.
+- a vertical-slice-only first approval boundary with 3 selected nodes, a 30-item blueprint and a three-mission mini-episode; Codex-pre-reviewed drafts are allowed during implementation, while human approval is deferred to the public-release gate;
+- one authoritative learning evidence contract: hints, recordings/self-review and open Writing are practice-only; Speaking MVP is pronunciation only;
+- server-verified evaluation, a slice physical/RLS/state-machine draft and a machine-readable Narrative Pack contract.
+- five low-fidelity responsive pre-code wireframes/state maps—Landing, Question, Feedback, Checkpoint/safe stop and Sign-in/guest import—with no separate clickable/high-fidelity prototype; the coded Owner Alpha is the first interactive prototype.
+- one repository-native Markdown artifact for those wireframes, using text diagrams, Mermaid state maps and inline responsive/accessibility notes without an external design-tool dependency.
+- sequential design/review in flow order, beginning with Landing and clearing each wireframe's P0/P1 findings before the next wireframe opens.
+- a versioned standards baseline covering official IELTS alignment, learning evidence, ethical game design, WCAG 2.2, Core Web Vitals, OWASP ASVS 5.0 and Supabase RLS.
+- autonomous Codex sign-off for routine planning/design choices; owner input is reserved for material scope, cost, legal, data or claim decisions and remains welcome at any time.
+
+## Completed planning items
+
+- P-001 through P-015 remain historical completed documentation work.
+- P-013 established the deterministic/no-runtime-AI MVP.
+- P-014 refined mastery/practice/external evidence and learning UX.
+- P-015 established the earlier multi-user direction; its invite/offline decisions are superseded by P-016/ADR-013.
+- P-016 consolidated the owner's final sequential decisions into PLAN 2.0, ADR-013/014/015 and active docs.
+- P-017 added the narrative bible, recurring cast, six-season arc, mission contract and IELTS vocabulary guardrails.
+- P-018 grouped the first saga as Campaign 1 and added the post-ending roles, Campaign frames, evergreen modes, Narrative Pack contract and continuity governance.
+- P-019 implemented the pre-code review recommendations, accepted ADR-016 and added the slice/learning/prototype/checklist contracts.
+- P-020 remains the active Public Preview release-control/legal completion group.
+- P-021 simplified the pre-code UX artifact while preserving Codex heuristic, responsive-state and accessibility review.
+- P-022 selected the Markdown wireframe format and created `WIREFRAMES.md` as an explicitly incomplete artifact skeleton.
+- P-023 selected sequential per-wireframe review and opened Landing as the first design decision without marking its artifact complete.
+- P-024 completed the multidisciplinary review, fixed source contradictions and added industry-standard quality/security/content gates.
+- P-025 completed WF-01 Landing without unresolved P0/P1 and opened WF-02 Question as the next wireframe.
+- P-026 completed WF-02 Question without unresolved P0/P1 and opened WF-03 Feedback as the next wireframe.
+- P-027 completed WF-03 Feedback without unresolved P0/P1 and opened WF-04 Checkpoint/safe stop as the next wireframe.
+- P-028 completed WF-04 Checkpoint/safe stop without unresolved P0/P1 and opened WF-05 Sign-in/guest import as the final wireframe.
+- P-029 completed WF-05 Sign-in/guest import, closed the cross-flow review and accepted the five-flow pre-code wireframe artifact.
+- P-030 completed the post-wireframe multidisciplinary readiness review, added observable IELTS-driven dossier changes for all three missions and ordered the remaining closure work as P-031 through P-033.
+- P-031 completed the 12-item first-run proof pack, provisional Prologue/three missions, selected-node fixtures and recorded schema/semantic validation evidence.
+- P-032 completed the data trust-boundary review, closing the physical database, RLS/grant, state-machine and scoring/idempotency specification gates.
+- P-033 completed the backup/isolated-restore runbook and final pre-code audit, closing the ninth and final P0 without creating an environment or granting implementation approval.
+- P-034 completed the post-audit consistency corrections and verification rerun without changing the approval state or product scope.
+- P-035 converted the implementation sequence into owner-gated `VS-01`–`VS-09` code-test-report-approve steps without starting implementation.
+
+## Active task
+
+VS-01 is in progress. The local Git repository, minimum Next.js/TypeScript modular-monolith foundation, exact npm lockfile, immutable-SHA CI workflow and baseline build/type/lint/test/secret checks are ready and passing. Browser smoke passes at 1280×720 and 390×844 with no console warning/error or horizontal overflow. The owner supplied the GitHub commit identity `johntroger` with a private noreply address; completion is waiting only for the initial commit, public `atlas-english` remote push and remote CI result. No Supabase or Vercel connection is authorized in this step.
+
+The owner has approved the Vertical Slice learning/story contract, public safeguards, quota thresholds and daily encrypted R2 backups, plus isolated restore drills before release, monthly for three months and quarterly thereafter. Privacy and Terms drafts specify a Vietnam-adult Preview, an individual operator before incorporation, a dedicated project mailbox, two unchecked signup confirmations with guest fallback, Vietnamese law with non-exclusive negotiation, safe reacceptance/refusal behavior, seven-day planned material-change notice, immutable date-based policy versions and Vietnamese as the sole authoritative policy language. Exact restore commands/evidence are now specified in `BACKUP-RESTORE-RUNBOOK.md`; live execution remains a later environment gate. The exact operator/contact, actual provider regions/transfers and legal review remain pre-public-release blockers, not blockers for code or owner-restricted Alpha. No code may begin until the user separately approves `APPROVED — VERTICAL SLICE ONLY`.
+
+Codex may draft and pre-review the 30 items and learner-facing English during planning, prototype, implementation and Owner Alpha; no specialist review is needed yet. Before Public Preview reaches anyone outside the project owner, one qualified human reviewer independent of the author must approve all of that material against exact Content/Narrative Pack hashes. Product Owner story/tone approval and accessibility evidence remain separate.
+
+Validation is owner-first: the project owner will be the only initial Alpha user and will report issues to Codex for iterative fixes. No 3–5-person test is required before implementation or Owner Alpha. Access beyond the owner, Public Preview and broader user testing are later explicit decisions and cannot be inferred from a successful owner session.
+
+Owner Alpha will be online for phone/desktop use behind an outer access gate. Hosting protection is preferred if actually available; otherwise a server-side secret/cookie/rate-limit gate is required. An unlisted URL is explicitly insufficient, and the gate remains separate from the product's guest/account flows.
+
+Owner Alpha uses a dedicated Supabase Preview project that is never promoted or cloned into Public/Production. Alpha history remains there by default; an owner-requested transfer may import only validated completed learning data through an idempotent, audited migration and rebuild projections at the destination.
+
+Encrypted daily logical backups begin when the owner account first stores real Alpha progress. Alpha backup objects and credentials use a distinct environment scope; a successful isolated restore remains mandatory before Public Preview.
+
+Owner Alpha data is preserved through migration or projection rebuild where practical. A breaking reset is Alpha-only and requires a verified backup, exact impact preview and separate owner confirmation every time; no such permission carries into Public/Production.
+
+Owner Alpha findings now use a documented P0–P3 severity and fix/retest lifecycle. The owner can report issues conversationally; Codex creates the reproducible record and verification evidence. No finding exists yet because Alpha has not started.
+
+Passing Alpha changes may auto-deploy to the owner-restricted website, but activation waits for an acknowledged answer/checkpoint/safe stop. P0 can block an unsafe feature immediately without recording a wrong attempt; failed checks or health regressions retain/restore the last known-good Alpha. Public/Production release remains separately approved.
+
+## Next implementation gate
+
+1. Complete and test VS-01 only.
+2. Present the VS-01 completion report and stop.
+3. Ask the owner whether to open `VS-02`; do not infer approval from the current request.
+
+## Blockers
+
+### Global
+
+- Only VS-01 is open; VS-02–VS-09 remain blocked.
+- Production deployment always requires a separate explicit request.
+
+Terms/Privacy suitability, operator/contact facts and cross-border transfer remain non-owner release-review items. Minor-account support remains blocked beyond the approved 18+ Preview policy and requires separate legal review.
+
+### Learning/content
+
+- Learning Contract v0.1 is approved only for the Vertical Slice; later-module learning contracts remain unapproved.
+- The 12-item first-run proof pack, provisional Prologue/three missions and selected-node fixtures exist and pass the recorded planning-level schema/semantic checks.
+- These artifacts remain `codex_pre_reviewed`; the remaining 18 items and qualified-human review of all 30 items plus learner-facing English are still pre-public-release work, not pre-code blockers.
+- Product Owner story/tone approval and accessibility review remain bound to a future exact release hash.
+
+Pronunciation thresholds, Writing mechanics, assessment bank and calibration data are later-phase blockers, not vertical-slice scope.
+
+### Technical/UX
+
+- The VS-01 Next.js/TypeScript application foundation is initialized locally; no database is initialized.
+- Slice physical database/RLS/state-machine/scoring contracts are approved at specification level; executable migrations, grants/RLS and concurrency/failure tests remain blocked until implementation approval.
+- All five required pre-code wireframes/state maps have been accepted with no unresolved P0/P1. Interactive/browser verification remains an implementation check; a separate clickable/high-fidelity prototype is intentionally not required.
+- The local Git repository is initialized; its public GitHub remote and remote CI result are still pending.
+
+### Operations
+
+- Exact backup/restore commands and evidence fields exist at specification level; tool checksums/source-compatible PostgreSQL pin, live backup, isolated restore, release/rollback and incident rehearsal remain later executable checks.
+- Public beta quota email, rate limits and emergency switches are not implemented; no full alerting platform is required for the slice.
+
+## Verification for P-016
+
+- Documentation-only: no application code, dependency, database or deployment was created.
+- ADR-013 supersedes ADR-002, ADR-009 and ADR-012 without rewriting their historical rationale.
+- ADR-011 remains the MVP AI boundary; ADR-014 is deferred and not an implementation authorization.
+- Progress export no longer requires an IndexedDB schema version.
+- Active documents were updated for online-only, guest/open registration and private assessment separation.
+- All 17 JSON files parse successfully.
+- All 52 Markdown files pass the local-link scan and contain no merge-conflict markers.
+- The active-document stale-decision scan found no positive requirement for invite-only access, IndexedDB-primary storage, offline packs or PWA; remaining matches are explicit exclusions/supersession history.
+- Schema fixture validation was not rerun because the available bundled Python/Node runtimes do not include a JSON Schema validator; no dependency was installed while the plan is DRAFT.
+- A context-isolated reader review of the narrative correctly recovered the premise/ending and identified five risks; the document was revised to limit lore, enforce one primary objective per mission, stage character introductions, define convergent choice state, clarify guest persistence and add a mystery evidence ledger.
+
+## Current versions
+
+| Artifact | Version |
+|---|---|
+| Plan | 2.2 — approved for VS-01 only |
+| Application | 0.1.0 foundation (local) |
+| Database | Not created |
+| Content-pack schema | Draft 2 |
+| Narrative-pack schema | Draft 2 |
+| Learning-node schema | Draft 4 |
+| Pronunciation-analysis schema | Draft 2 |
+| Content packs | None |
+| Production | Not deployed |
+
+## Verification for P-017
+
+- All 17 JSON files still parse successfully.
+- All 53 Markdown files pass the local-link scan and contain no merge-conflict markers.
+- Narrative guard checks confirm the 3–5-minute structure, 3–5 interactions, one-primary-objective rule, 24-hour guest expiry and no-runtime-generation boundary are present.
+- No application code, dependency, database or deployment was created.
+
+## Verification for P-018
+
+- An independent context-isolated reader recovered the post-Campaign activities, MVP boundary and IELTS/no-generation/non-FOMO constraints.
+- Reader findings were resolved: preview naming is consistent; an evergreen fallback and all-caught-up state exist; replay/reward/unlock semantics are explicit; attempt snapshots preserve Narrative Pack/item reproducibility; post-beta expansion requires a pre-registered go/no-go rubric.
+- JSON parsing, Markdown links, conflict markers and long-term narrative boundary phrases were rechecked after the update.
+- Documentation only; PLAN remains DRAFT and no implementation was started.
+
+## Verification for P-019
+
+- A fresh context-isolated reader recovered the exact coding gate, vertical-slice boundary, mastery eligibility and pronunciation-only Speaking scope.
+- Reader findings were resolved: approval is now a final action after the pre-approval checklist; the first migration table set is explicit; account and guest idempotency use separate partial unique constraints; attempt snapshots include evaluation/scoring versions; and every node has a channel-specific completion contract.
+- All 20 JSON files parse successfully and all 58 Markdown files pass the relative-link scan.
+- PowerShell JSON Schema validation accepts both intended valid Narrative Pack fixtures/learning-node fixtures and rejects the too-many-slots and forbidden-mastery fixtures as expected.
+- Narrative fixture reference checks pass for mission, episode and character IDs; conflict-marker and stale-scope scans pass.
+- Documentation/schema only; no application code, dependency, database, deployment or user data was created.
+
+## Verification for P-021
+
+- Active UX planning sources agree on the same five pre-code wireframes: Landing, Question, Feedback, Checkpoint/safe stop and Sign-in/guest import.
+- No active Vertical Slice gate still requires a separate clickable/high-fidelity prototype; historical changelog wording remains historical context only.
+- All JSON files parse successfully, all local Markdown links resolve and no merge-conflict markers were found.
+- Documentation only; no application code, dependency, database, deployment or user data was created.
+
+## Verification for P-022
+
+- `WIREFRAMES.md` is indexed from the documentation map and links back to the prototype, UX, visual, Alpha-feedback and pre-code sources.
+- The artifact explicitly marks all five wireframes incomplete and defines evidence required before changing status.
+- Active UX sources specify Markdown/text diagrams/Mermaid consistently and do not require Figma or binary exports.
+- Documentation only; no application code, dependency, database, deployment or user data was created.
+
+## Verification for P-023
+
+- PLAN, prototype plan, pre-code checklist, backlog and wireframe artifact use the same five-step review order.
+- `WIREFRAMES.md` identifies WF-01 Landing as active while every completion cell remains `Chưa làm`.
+- The per-wireframe gate requires P0/P1 resolution and recorded Codex rationale but does not grant implementation approval.
+- Documentation only; no application code, dependency, database, deployment or user data was created.
+
+## Verification for P-024
+
+- Added `STANDARDS-BASELINE.md` and an objective dated review using official IELTS, W3C, OWASP, Supabase and web performance sources plus primary learning-science references.
+- Resolved the stale age-policy, formula-status, Public-Slice analytics, restore-cadence, provisional-content and Ato/mascot contradictions found in active sources.
+- Legal/operator/provider completion is now consistently a non-owner release gate; exact restore procedure remains correctly pre-code because Owner Alpha stores real progress.
+- Added content construct/fairness/copy-budget/transfer gates, WCAG focus/target/status requirements, ASVS/RLS grant-view tests, pinned CI actions, SBOM and architecture fitness checks.
+- Closed the active source-of-truth and learning-channel consistency checklist items; remaining unchecked P0 entries require new artifacts or technical review rather than another product preference.
+- All Markdown local links resolve, all JSON files parse and no merge-conflict markers remain after this documentation-only review.
+- No application code, dependency, database, deployment or user data was created.
+
+## Verification for P-025
+
+- `WIREFRAMES.md` contains the WF-01 phone hierarchy, desktop adaptation, complete transition map and state/accessibility contracts.
+- The privacy handoff occurs before guest creation and links to the authoritative Privacy Notice instead of duplicating legal policy.
+- Six heuristic findings were resolved and retested; WF-01 has no open P0/P1.
+- WF-02–WF-05 remain explicitly incomplete, so the artifact does not overstate pre-code readiness.
+- All JSON files parse, all local Markdown links resolve and no merge-conflict markers remain after the documentation-only update.
+- No application code, dependency, database, deployment or user data was created.
+
+## Verification for P-026
+
+- `WIREFRAMES.md` contains the WF-02 phone hierarchy, desktop adaptation, state map and format-independent accessibility contract.
+- Hint warning makes practice-only consequences explicit before reveal; skip and technical failure cannot create a wrong/mastery event.
+- Submit waits for server acknowledgement, preserves current answer on recoverable failure and retries with the same idempotency key.
+- Seven heuristic findings were resolved and retested; WF-02 has no open P0/P1.
+- WF-03–WF-05 remain explicitly incomplete, so the artifact does not overstate pre-code readiness.
+- All JSON files parse, all local Markdown links resolve and no merge-conflict markers remain after the documentation-only update.
+- No application code, dependency, database, deployment or user data was created.
+
+## Verification for P-027
+
+- `WIREFRAMES.md` contains the WF-03 phone hierarchy, desktop adaptation, result/state map and accessibility contract.
+- Correct, incorrect, partial, practice-only and non-evidentiary results remain distinct without relying on color, score inflation or band claims.
+- Feedback renders only reviewed snapshot content; retry cannot resubmit or duplicate the acknowledged attempt.
+- Eight heuristic findings were resolved and retested; WF-03 has no open P0/P1.
+- WF-04–WF-05 remain explicitly incomplete, so the artifact does not overstate pre-code readiness.
+- All JSON files parse, all local Markdown links resolve and no merge-conflict markers remain after the documentation-only update.
+- No application code, dependency, database, deployment or user data was created.
+
+## Verification for P-028
+
+- `WIREFRAMES.md` contains the WF-04 interim phone hierarchy, final/replay variants, desktop adaptation, state map and accessibility contract.
+- Continue and safe stop remain explicit; guest sign-in is secondary and does not create an account or import data.
+- First-completion reward waits for an idempotent server grant; replay and retry cannot duplicate it.
+- Nine heuristic findings were resolved and retested; WF-04 has no open P0/P1.
+- WF-05 remains explicitly incomplete, so the artifact does not overstate pre-code readiness.
+- All JSON files parse, all local Markdown links resolve and no merge-conflict markers remain after the documentation-only update.
+- No application code, dependency, database, deployment or user data was created.
+
+## Verification for P-029
+
+- `WIREFRAMES.md` contains all five responsive flows with phone hierarchy, desktop adaptation, state maps, critical failure/interruption states and accessibility contracts.
+- WF-05 separates sign-in, account eligibility/policy decisions and guest-import consent; generic auth responses and guest fallback remain available.
+- Guest import previews only completed compatible results and uses a transactional/idempotent retry contract with no partial commit.
+- Twelve WF-05 findings and all earlier flow findings are resolved; the five-flow artifact has no open P0/P1.
+- `VISUAL-DIRECTION.md` now records measured token contrast ratios and forbids normal text pairings that miss 4.5:1.
+- The four remaining P0 UX checklist entries are closed by artifact evidence without claiming browser implementation conformance.
+- All JSON files parse, all local Markdown links resolve and no merge-conflict markers remain after the documentation-only update.
+- No application code, dependency, database, deployment or user data was created.
+
+## Verification for P-030
+
+- Re-reviewed game design, IELTS learning, architecture, UI/UX and operations after acceptance of all five wireframes.
+- Separated design maturity from executable evidence readiness and recorded the current scorecard in `PRE-CODE-REVIEW-2026-09-21.md`.
+- Enumerated exactly nine unresolved pre-code P0 items without pulling human academic, legal/provider/operator or live implementation gates forward.
+- Added a required observable dossier/Notebook change for each of the three Vertical Slice learning objectives.
+- Defined the approximately 12-item first-run proof pack as a subset of the existing 30-item blueprint, not additional scope.
+- Added P-031 through P-033 as the ordered closure sequence; PLAN remains DRAFT and no implementation approval was inferred.
+- Documentation only; no application code, dependency, database, deployment or user data was created.
+
+## Verification for P-031
+
+- Added 12 original/synthetic first-run items: four per selected node, at least three formats per node, with two core mastery, one hinted practice-only and one independent review/transfer item per node.
+- Added provisional Prologue and three mission copy; each checkpoint shows the required observable dossier change and the first run remains four items per mission.
+- Added three selected learning-node fixtures plus schema-invalid and semantic-invalid cases for fuzzy answers, hinted mastery, ambiguity, broken references, slot overflow and completion-channel misuse.
+- Extended draft schemas with optional structured authoring metadata, Prologue copy and explicit rollback targets; no production compatibility claim is made before implementation tests.
+- All new intended-valid Content/Narrative/learning-node fixtures pass their schema checks; intended schema-invalid fixtures are rejected and semantic-invalid fixtures are detected by the documented contract.
+- Semantic checks report 12 unique items, distribution 4/4/4, compatible slots/references, copy budgets, zero positive-fixture errors and seven broken references in the negative narrative fixture.
+- Canonical SHA-256 hashes match all three proof packs; provenance, CC BY-NC-SA 4.0 intent, review state and deactivate rollback are recorded.
+- P-031 evidence is in `content/vertical-slice/P031-PROOF-PACK.md` and `content/vertical-slice/P031-VALIDATION-EVIDENCE.md`.
+- Documentation/schema/content fixtures only; no application code, dependency, database, deployment or user data was created. PLAN remains DRAFT.
+
+## Verification for P-032
+
+- Reviewed the exact 11-table Vertical Slice boundary without pulling Writing, analytics, private assessment or broader lifecycle tables into the first migration.
+- Added server-computed `request_hash`, same-key/different-payload conflict behavior, guest-expiry invariants and exact account/guest idempotency indexes.
+- Changed guest import to one destination account globally and reward uniqueness to at most one `(user,reward)` grant, including concurrent retry behavior.
+- Specified typed/check/FK/delete invariants, query-backed indexes and a nine-stage dependency-safe migration order.
+- Replaced the coarse RLS summary with a deny-by-default, per-operation role matrix plus view/function hardening and positive/negative test families.
+- Approved authoritative identity, attempt, mission/reward, guest-import and release transition contracts, explicitly separating browser state from committed server state.
+- Specified the 14-step scoring flow from actor binding through deterministic evaluation, atomic attempt/evidence/projection commit and acknowledgement recovery.
+- Added traceability requirements R-038/R-039 and corresponding integration/security test expectations.
+- Re-verified the grant/RLS/default-deny/function-hardening assumptions against the current official Supabase and PostgreSQL documentation, with dated links recorded in `STANDARDS-BASELINE.md` and the P-032 review.
+- Recorded findings and residual executable checks in `P032-DATA-TRUST-BOUNDARY-REVIEW.md`; no superseding ADR was required.
+- Documentation only; no SQL migration, database, application code, dependency, credential, deployment or user data was created. PLAN remains DRAFT.
+
+## Verification for P-033
+
+- Added `BACKUP-RESTORE-RUNBOOK.md` with separated upload/read/decrypt credentials, exact environment placeholders, version checks, source/target guards, encrypted R2 object verification and an isolated restore transaction.
+- Added aggregate verification queries for all 11 slice tables, indexes, RLS/policies and the actor/idempotency/import/reward/orphan invariants, plus failure behavior and a redacted evidence record.
+- Rechecked official Supabase, Cloudflare R2, `age` and GitHub Actions guidance; floating tool/action references are prohibited and the unknown source-compatible PostgreSQL patch remains an explicit fail-closed implementation placeholder.
+- All 30 JSON documents parse; all 22 fixture/schema expected outcomes pass.
+- Semantic rerun confirms 12 unique proof items distributed 4/4/4, zero positive reference errors and seven expected errors in the negative Narrative Pack.
+- All local Markdown links resolve, no merge-conflict marker exists and the active-decision phrase scan finds only explicit exclusions or superseded history.
+- Traceability now includes R-040 and all nine P0 pre-approval items have objective evidence; later Alpha/Public/live-execution gates remain open.
+- Documentation only; no workflow, credential, backup object, Supabase project, application code, dependency, database or deployment was created. PLAN remains DRAFT pending explicit owner approval.
+
+## Verification for P-034
+
+- Corrected the active auth contract to a 60-minute one-use challenge/five failed attempts and an independent 24-hour pending account; baseline email requests are 2/email/hour while using the built-in Supabase provider.
+- Assigned the 30-minute current answer to `sessionStorage` and minimal 24-hour guest state to TTL-enforced `localStorage`, with prohibited-data and cleanup rules.
+- Removed remaining claims that open Writing submissions create mastery; only deterministic controlled mechanics can contribute to the appropriate language node.
+- Clarified that Public Vertical Slice has no analytics event pipeline; account aggregates come only from functionally required records, guest return is not inferred and undersized samples report `insufficient data`.
+- Clarified that numeric golden vectors are approved at specification level while executable golden tests remain an implementation check after approval.
+- Added a risk-ordered post-approval sequence to `VERTICAL-SLICE.md`, corrected the stale P-020 restore checkbox and appended a transparent P-033 correction note.
+- Reran checks: 30/30 JSON parse, 22/22 fixture/schema expectations, 12 unique proof items at 4/4/4, 0 positive and 7 expected negative reference errors, 70 Markdown files with no broken local links, zero conflict/stale-contract findings and zero unchecked pre-code P0. No application code, dependency, database, environment or deployment was created. PLAN remains DRAFT.
+
+## Verification for P-035
+
+- PLAN 2.2 states that initial Vertical Slice approval opens only `VS-01`.
+- `VERTICAL-SLICE.md` names `VS-01`–`VS-09` and defines the mandatory pre-step scope/test plan, post-step checks/report and explicit next-step approval.
+- `TESTING.md` makes failed checks block advancement; `AGENTS.md` enforces the same rule for future Codex work.
+- Backlog, checklist and traceability link the governance rule without altering technical scope.
+- Verification passes: 30/30 JSON parse, all 70 Markdown files have valid local links, no conflict marker, all nine VS IDs are present and the AGENTS enforcement scan passes.
+- Documentation only; no application code, dependency, database, environment or deployment was created. PLAN remains DRAFT.

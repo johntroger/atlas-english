@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 4,
+  "learningNodeId": "vocabulary.cause_effect",
+  "skill": "vocabulary",
+  "domain": "academic_claims",
+  "objective": "Use cause/effect and association language whose strength matches the available evidence.",
+  "priority": "P0",
+  "assessmentMode": "hybrid",
+  "progressChannels": ["mastery", "practice"],
+  "completionContract": { "channel": "mastery", "ruleCode": "mastery.threshold", "target": 85, "minimumEvidence": 6 },
+  "prerequisiteIds": [],
+  "exerciseTypes": ["single_choice", "multiple_choice", "error_correction", "text_input"],
+  "commonErrors": ["causation_overclaim", "absolute_claim", "reversed_cause", "collocation_error"],
+  "transferTask": "Paraphrase an observational finding without converting association into proven causation.",
+  "minimumVariants": 10,
+  "sourceRefs": ["curriculum.vocabulary.cause_effect", "p031.proof-pack.m3"],
+  "reviewStatus": "codex_pre_reviewed",
+  "reviewer": "Codex pre-review only; independent human review pending"
+}

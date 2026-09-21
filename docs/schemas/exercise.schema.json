@@ -1,0 +1,183 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://game-english.local/schemas/exercise.schema.json",
+  "title": "IELTS Game Exercise",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["exerciseId", "learningNodeId", "skill", "level", "exerciseType", "evidenceEligibility", "prompt", "scoring", "explanationVi", "mistakeTags"],
+  "properties": {
+    "exerciseId": { "type": "string", "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$" },
+    "exerciseVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "learningNodeId": { "type": "string", "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$" },
+    "skill": { "enum": ["grammar", "vocabulary", "spelling", "pronunciation", "transfer", "performance"] },
+    "level": { "type": "number", "minimum": 0, "maximum": 9, "multipleOf": 0.5 },
+    "exerciseType": { "enum": ["single_choice", "multiple_choice", "text_input", "reorder", "error_correction", "dictation", "record_and_compare", "self_review"] },
+    "evidenceEligibility": { "enum": ["mastery", "practice"] },
+    "prompt": { "type": "string", "minLength": 1 },
+    "context": { "type": "string" },
+    "hint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["copyVi", "changesAttemptToPracticeOnly"],
+      "properties": {
+        "copyVi": { "type": "string", "minLength": 1, "maxLength": 240 },
+        "changesAttemptToPracticeOnly": { "const": true }
+      }
+    },
+    "options": {
+      "type": "array",
+      "minItems": 2,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "text"],
+        "properties": { "id": { "type": "string" }, "text": { "type": "string" } }
+      }
+    },
+    "tokens": {
+      "type": "array",
+      "minItems": 2,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "scoring": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode"],
+      "properties": {
+        "mode": { "enum": ["exact", "normalized_text", "selected_options", "self_review"] },
+        "acceptedAnswers": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "partialCreditPolicy": { "enum": ["none", "subset_no_incorrect", "per_component"] },
+        "caseSensitive": { "type": "boolean", "default": false },
+        "punctuationSensitive": { "type": "boolean", "default": false },
+        "unicodeForm": { "const": "NFC" },
+        "trimWhitespace": { "const": true },
+        "collapseWhitespace": { "const": true },
+        "hyphenSensitive": { "type": "boolean", "default": true },
+        "declaredVariantsOnly": { "const": true },
+        "fuzzyMatching": { "const": false }
+      }
+    },
+    "explanationVi": { "type": "string", "minLength": 1 },
+    "additionalExample": { "type": "string" },
+    "ieltsRelevance": { "type": "string" },
+    "mistakeTags": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "authoring": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["construct", "observableBehavior", "contentRole", "correctAnswerRationale", "distractorRationales", "detailedExplanationVi", "sourceBasis", "provenanceRef", "license", "reviewStatus", "copyBudgetStatus", "fairnessReview"],
+      "properties": {
+        "construct": { "type": "string", "minLength": 1 },
+        "observableBehavior": { "type": "string", "minLength": 1 },
+        "contentRole": { "enum": ["core_mastery", "hinted_practice", "independent_review_transfer"] },
+        "correctAnswerRationale": { "type": "string", "minLength": 1 },
+        "distractorRationales": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["response", "errorModel", "rationale"],
+            "properties": {
+              "response": { "type": "string", "minLength": 1 },
+              "errorModel": { "type": "string", "minLength": 1 },
+              "rationale": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        "detailedExplanationVi": { "type": "string", "minLength": 1 },
+        "sourceBasis": { "type": "string", "minLength": 1 },
+        "provenanceRef": { "type": "string", "minLength": 1 },
+        "license": { "enum": ["CC-BY-NC-SA-4.0", "project-original-internal"] },
+        "reviewStatus": { "enum": ["draft", "codex_pre_reviewed", "reviewed", "approved"] },
+        "copyBudgetStatus": { "enum": ["pass", "exception_documented"] },
+        "fairnessReview": { "enum": ["pass", "needs_review"] }
+      }
+    },
+    "audioAsset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["assetId", "path", "transcript", "contentHash", "provenanceRef"],
+      "properties": {
+        "assetId": { "type": "string", "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$" },
+        "path": { "type": "string", "minLength": 1 },
+        "transcript": { "type": "string", "minLength": 1 },
+        "accent": { "enum": ["british", "australian", "new_zealand", "north_american", "other"] },
+        "contentHash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "provenanceRef": { "type": "string", "minLength": 1 }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "scoring": { "properties": { "mode": { "const": "normalized_text" } }, "required": ["mode"] }
+        },
+        "required": ["scoring"]
+      },
+      "then": {
+        "properties": {
+          "scoring": {
+            "required": ["acceptedAnswers", "caseSensitive", "punctuationSensitive", "unicodeForm", "trimWhitespace", "collapseWhitespace", "hyphenSensitive", "declaredVariantsOnly", "fuzzyMatching"]
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "exerciseType": { "const": "single_choice" } }, "required": ["exerciseType"] },
+      "then": {
+        "required": ["options"],
+        "properties": {
+          "scoring": {
+            "required": ["acceptedAnswers", "partialCreditPolicy"],
+            "properties": { "mode": { "const": "selected_options" }, "acceptedAnswers": { "maxItems": 1 }, "partialCreditPolicy": { "const": "none" } }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "exerciseType": { "const": "multiple_choice" } }, "required": ["exerciseType"] },
+      "then": {
+        "required": ["options"],
+        "properties": { "scoring": { "required": ["acceptedAnswers", "partialCreditPolicy"], "properties": { "mode": { "const": "selected_options" }, "partialCreditPolicy": { "enum": ["none", "subset_no_incorrect"] } } } }
+      }
+    },
+    {
+      "if": { "properties": { "exerciseType": { "enum": ["text_input", "error_correction"] } }, "required": ["exerciseType"] },
+      "then": {
+        "properties": { "scoring": { "required": ["acceptedAnswers", "partialCreditPolicy"], "properties": { "mode": { "enum": ["exact", "normalized_text"] }, "partialCreditPolicy": { "const": "none" } } } }
+      }
+    },
+    {
+      "if": { "properties": { "exerciseType": { "const": "reorder" } }, "required": ["exerciseType"] },
+      "then": {
+        "required": ["tokens"],
+        "properties": { "scoring": { "required": ["acceptedAnswers", "partialCreditPolicy"], "properties": { "mode": { "enum": ["exact", "normalized_text"] }, "partialCreditPolicy": { "const": "none" } } } }
+      }
+    },
+    {
+      "if": { "properties": { "exerciseType": { "const": "dictation" } }, "required": ["exerciseType"] },
+      "then": {
+        "required": ["audioAsset"],
+        "properties": { "scoring": { "required": ["acceptedAnswers", "partialCreditPolicy"], "properties": { "mode": { "enum": ["exact", "normalized_text"] }, "partialCreditPolicy": { "const": "none" } } } }
+      }
+    },
+    {
+      "if": { "properties": { "exerciseType": { "enum": ["record_and_compare", "self_review"] } }, "required": ["exerciseType"] },
+      "then": {
+        "properties": {
+          "evidenceEligibility": { "const": "practice" },
+          "scoring": { "properties": { "mode": { "const": "self_review" } } }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "exerciseType": { "const": "record_and_compare" } }, "required": ["exerciseType"] },
+      "then": { "required": ["audioAsset"] }
+    },
+    {
+      "if": { "properties": { "evidenceEligibility": { "const": "mastery" } }, "required": ["evidenceEligibility"] },
+      "then": { "properties": { "scoring": { "properties": { "mode": { "not": { "const": "self_review" } } } } } }
+    }
+  ]
+}

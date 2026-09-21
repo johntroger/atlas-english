@@ -1,0 +1,25 @@
+{
+  "exerciseId": "slice.invalid.fuzzy.001",
+  "exerciseVersion": "0.1.0",
+  "learningNodeId": "grammar.nouns.countability",
+  "skill": "grammar",
+  "level": 5,
+  "exerciseType": "text_input",
+  "evidenceEligibility": "mastery",
+  "prompt": "Complete the sentence.",
+  "scoring": {
+    "mode": "normalized_text",
+    "acceptedAnswers": ["some"],
+    "partialCreditPolicy": "none",
+    "caseSensitive": false,
+    "punctuationSensitive": false,
+    "unicodeForm": "NFC",
+    "trimWhitespace": true,
+    "collapseWhitespace": true,
+    "hyphenSensitive": true,
+    "declaredVariantsOnly": true,
+    "fuzzyMatching": true
+  },
+  "explanationVi": "Fixture này phải bị từ chối vì mastery không cho phép fuzzy matching.",
+  "mistakeTags": ["invalid_fuzzy_matching"]
+}

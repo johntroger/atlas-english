@@ -1,0 +1,41 @@
+{
+  "exerciseId": "slice.invalid.hinted-mastery.001",
+  "exerciseVersion": "0.1.0",
+  "learningNodeId": "grammar.sentence.boundaries",
+  "skill": "grammar",
+  "level": 5,
+  "exerciseType": "error_correction",
+  "evidenceEligibility": "mastery",
+  "prompt": "Correct the sentence.",
+  "context": "The sample was small, the response rate was high.",
+  "hint": { "copyVi": "Thêm liên từ tương phản sau dấu phẩy.", "changesAttemptToPracticeOnly": true },
+  "scoring": {
+    "mode": "normalized_text",
+    "acceptedAnswers": ["The sample was small, but the response rate was high."],
+    "partialCreditPolicy": "none",
+    "caseSensitive": false,
+    "punctuationSensitive": true,
+    "unicodeForm": "NFC",
+    "trimWhitespace": true,
+    "collapseWhitespace": true,
+    "hyphenSensitive": true,
+    "declaredVariantsOnly": true,
+    "fuzzyMatching": false
+  },
+  "explanationVi": "Fixture semantic này phải bị từ chối vì role hinted_practice lại khai mastery.",
+  "mistakeTags": ["invalid_hinted_mastery"],
+  "authoring": {
+    "construct": "Repair a comma splice after receiving a hint.",
+    "observableBehavior": "Produces the corrected sentence after the answer-changing hint.",
+    "contentRole": "hinted_practice",
+    "correctAnswerRationale": "But repairs the boundary and marks contrast.",
+    "distractorRationales": [],
+    "detailedExplanationVi": "Hint khiến attempt chỉ còn là practice-only.",
+    "sourceBasis": "Synthetic invalid fixture.",
+    "provenanceRef": "p031.invalid.hinted-mastery",
+    "license": "project-original-internal",
+    "reviewStatus": "draft",
+    "copyBudgetStatus": "pass",
+    "fairnessReview": "pass"
+  }
+}

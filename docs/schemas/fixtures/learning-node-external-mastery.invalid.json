@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 4,
+  "learningNodeId": "performance.writing.task2",
+  "skill": "performance",
+  "domain": "writing",
+  "objective": "Draft and externally review a complete Task 2 response.",
+  "priority": "P0",
+  "assessmentMode": "external_review_required",
+  "progressChannels": ["practice", "external", "mastery"],
+  "completionContract": {
+    "channel": "external",
+    "ruleCode": "external.review_recorded",
+    "target": 1,
+    "minimumEvidence": 1
+  },
+  "exerciseTypes": ["text_input", "self_review"],
+  "commonErrors": ["underdeveloped_position", "weak_support"],
+  "reviewStatus": "draft"
+}

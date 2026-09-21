@@ -1,0 +1,170 @@
+{
+  "schemaVersion": 2,
+  "packId": "route65.prologue.vertical-slice",
+  "packVersion": "0.1.0",
+  "minimumAppVersion": "0.1.0",
+  "campaign": {
+    "campaignId": "route65.missing_context",
+    "titleEn": "Route to 6.5: The Missing Context",
+    "titleVi": "Route to 6.5: Phần ngữ cảnh bị thiếu",
+    "sequence": 1,
+    "status": "draft"
+  },
+  "prologue": {
+    "titleEn": "The First Route",
+    "titleVi": "Tuyến đường đầu tiên",
+    "cards": [
+      {
+        "en": "Mira has received two summaries of the same student survey. One says online study helps every student; the other is much more cautious. Both cannot represent the evidence accurately.",
+        "vi": "Mira nhận được hai bản tóm tắt của cùng một khảo sát sinh viên. Một bản nói học online giúp mọi sinh viên; bản kia thận trọng hơn nhiều. Cả hai không thể cùng phản ánh chính xác bằng chứng."
+      },
+      {
+        "en": "Ato notices that several joins between sentences look unusual. Help restore the missing context, then record each correction in the Navigator Notebook.",
+        "vi": "Ato nhận thấy một số chỗ nối giữa các câu có dấu hiệu bất thường. Hãy khôi phục phần ngữ cảnh bị thiếu rồi ghi từng chỉnh sửa vào Navigator Notebook."
+      }
+    ],
+    "handoff": {
+      "en": "Start with the broken sentence boundaries. They may show where the summaries first separated.",
+      "vi": "Hãy bắt đầu từ các ranh giới câu bị lỗi. Chúng có thể cho biết hai bản tóm tắt bắt đầu khác nhau ở đâu."
+    }
+  },
+  "characters": ["ato", "mira"],
+  "episodes": [
+    {
+      "episodeId": "prologue.first_route",
+      "order": 1,
+      "titleEn": "Two Different Summaries",
+      "titleVi": "Hai bản tóm tắt khác nhau",
+      "missionIds": ["prologue.first_route.m1", "prologue.first_route.m2", "prologue.first_route.m3"]
+    }
+  ],
+  "missions": [
+    {
+      "missionId": "prologue.first_route.m1",
+      "missionVersion": "0.1.0",
+      "episodeId": "prologue.first_route",
+      "order": 1,
+      "titleEn": "Broken Connections",
+      "titleVi": "Những kết nối bị vỡ",
+      "ieltsTopics": ["education", "online learning"],
+      "primaryObjective": "Repair sentence fragments, run-ons and comma splices without changing the survey meaning.",
+      "languageFunctions": ["connect findings", "express contrast"],
+      "targetLanguage": ["full stop", "but", "although"],
+      "transferSkill": "Writing clear compound and complex sentences in an academic summary.",
+      "activeCharacterIds": ["ato", "mira"],
+      "setup": {
+        "en": "The later summary contains broken sentence joins. Repair four boundaries so Ato can compare complete findings rather than disconnected fragments.",
+        "vi": "Bản tóm tắt sau có các chỗ nối câu bị lỗi. Hãy sửa bốn ranh giới để Ato có thể so sánh các phát hiện hoàn chỉnh thay vì những mảnh rời."
+      },
+      "exerciseSlots": [
+        { "slotId": "m1_boundary_notice", "slotVersion": "0.1.0", "allowedLearningNodeIds": ["grammar.sentence.boundaries"], "allowedExerciseTypes": ["single_choice"], "progressChannel": "mastery" },
+        { "slotId": "m1_boundary_build", "slotVersion": "0.1.0", "allowedLearningNodeIds": ["grammar.sentence.boundaries"], "allowedExerciseTypes": ["reorder"], "progressChannel": "mastery" },
+        { "slotId": "m1_boundary_hint", "slotVersion": "0.1.0", "allowedLearningNodeIds": ["grammar.sentence.boundaries"], "allowedExerciseTypes": ["error_correction"], "progressChannel": "practice" },
+        { "slotId": "m1_boundary_transfer", "slotVersion": "0.1.0", "allowedLearningNodeIds": ["grammar.sentence.boundaries"], "allowedExerciseTypes": ["error_correction"], "progressChannel": "mastery" }
+      ],
+      "storyBeat": {
+        "en": "The repaired boundaries reveal which ideas belong together. A limitation about the sample now contrasts with the high response rate instead of appearing as a separate claim.",
+        "vi": "Các ranh giới được sửa cho thấy những ý nào thuộc về nhau. Giới hạn về mẫu giờ tương phản đúng với tỷ lệ phản hồi cao thay vì xuất hiện như một kết luận rời."
+      },
+      "checkpointCopy": {
+        "en": "Dossier updated: the logical relationship between the findings is restored. Next, check whether the summary describes the right group of students.",
+        "vi": "Hồ sơ đã cập nhật: quan hệ logic giữa các phát hiện đã được khôi phục. Tiếp theo, hãy kiểm tra bản tóm tắt có mô tả đúng nhóm sinh viên không."
+      },
+      "skipSummary": {
+        "en": "The team restored the sentence boundaries and recovered the contrast between the response rate and the limited sample.",
+        "vi": "Nhóm đã khôi phục ranh giới câu và lấy lại quan hệ tương phản giữa tỷ lệ phản hồi với giới hạn của mẫu."
+      },
+      "unlock": { "mode": "immediate" },
+      "reward": { "rewardId": "dossier_logic_restored", "firstCompletionOnly": true }
+    },
+    {
+      "missionId": "prologue.first_route.m2",
+      "missionVersion": "0.1.0",
+      "episodeId": "prologue.first_route",
+      "order": 2,
+      "titleEn": "The Missing Scope",
+      "titleVi": "Phạm vi bị thiếu",
+      "ieltsTopics": ["education", "survey data"],
+      "primaryObjective": "Use countable and uncountable nouns plus quantifiers to report the survey population accurately.",
+      "languageFunctions": ["quantify evidence", "limit a claim"],
+      "targetLanguage": ["information", "advice", "all", "most", "some"],
+      "transferSkill": "Describing proportions without overgeneralising in IELTS Writing.",
+      "activeCharacterIds": ["ato", "mira"],
+      "setup": {
+        "en": "The sentences now connect, but one summary still expands a majority into the whole student population. Check the nouns and quantifiers against the survey counts.",
+        "vi": "Các câu đã kết nối đúng, nhưng một bản vẫn biến đa số thành toàn bộ sinh viên. Hãy đối chiếu danh từ và lượng từ với số liệu khảo sát."
+      },
+      "exerciseSlots": [
+        { "slotId": "m2_countability_notice", "slotVersion": "0.1.0", "allowedLearningNodeIds": ["grammar.nouns.countability"], "allowedExerciseTypes": ["single_choice"], "progressChannel": "mastery" },
+        { "slotId": "m2_quantifier_scope", "slotVersion": "0.1.0", "allowedLearningNodeIds": ["grammar.nouns.countability"], "allowedExerciseTypes": ["single_choice"], "progressChannel": "mastery" },
+        { "slotId": "m2_countability_hint", "slotVersion": "0.1.0", "allowedLearningNodeIds": ["grammar.nouns.countability"], "allowedExerciseTypes": ["error_correction"], "progressChannel": "practice" },
+        { "slotId": "m2_quantifier_transfer", "slotVersion": "0.1.0", "allowedLearningNodeIds": ["grammar.nouns.countability"], "allowedExerciseTypes": ["text_input"], "progressChannel": "mastery" }
+      ],
+      "storyBeat": {
+        "en": "The restored figures show that 72 of 120 students used online resources weekly, while only 48 preferred fully online study. The word all cannot describe either result.",
+        "vi": "Số liệu được khôi phục cho thấy 72/120 sinh viên dùng tài nguyên online hằng tuần, còn chỉ 48 người thích học hoàn toàn online. Từ “all” không thể mô tả kết quả nào."
+      },
+      "checkpointCopy": {
+        "en": "Dossier updated: the surveyed population and claim scope now match the counts. Choose which corrected figure Ato should pin first; the investigation continues along the same route.",
+        "vi": "Hồ sơ đã cập nhật: nhóm khảo sát và phạm vi kết luận giờ khớp số liệu. Hãy chọn con số Ato nên ghim trước; cuộc điều tra vẫn tiếp tục theo cùng một tuyến."
+      },
+      "skipSummary": {
+        "en": "The team replaced all with evidence-based quantifiers and restored the exact scope of the student sample.",
+        "vi": "Nhóm đã thay “all” bằng lượng từ dựa trên bằng chứng và khôi phục đúng phạm vi của mẫu sinh viên."
+      },
+      "choices": [
+        { "choiceId": "pin_weekly_use", "labelVi": "Ghim số liệu 72/120 về mức sử dụng hằng tuần", "flag": "notebook.pin.weekly_use", "convergesBeforeEpisodeEnd": true },
+        { "choiceId": "pin_online_preference", "labelVi": "Ghim số liệu 48/120 về lựa chọn học hoàn toàn online", "flag": "notebook.pin.online_preference", "convergesBeforeEpisodeEnd": true }
+      ],
+      "unlock": { "mode": "after_mission", "prerequisiteMissionId": "prologue.first_route.m1" },
+      "reward": { "rewardId": "dossier_scope_restored", "firstCompletionOnly": true }
+    },
+    {
+      "missionId": "prologue.first_route.m3",
+      "missionVersion": "0.1.0",
+      "episodeId": "prologue.first_route",
+      "order": 3,
+      "titleEn": "A Claim Too Strong",
+      "titleVi": "Một kết luận quá mạnh",
+      "ieltsTopics": ["education", "research findings"],
+      "primaryObjective": "Choose cause/effect vocabulary whose strength matches observational survey evidence.",
+      "languageFunctions": ["report association", "hedge causation"],
+      "targetLanguage": ["be associated with", "may contribute to", "cause", "lead to"],
+      "transferSkill": "Paraphrasing evidence without turning association into proven causation.",
+      "activeCharacterIds": ["ato", "mira"],
+      "setup": {
+        "en": "The counts are accurate, yet the final sentence says flexible study caused higher satisfaction. The survey only observed that the two occurred together.",
+        "vi": "Số liệu đã chính xác, nhưng câu cuối nói học linh hoạt gây ra mức hài lòng cao hơn. Khảo sát chỉ quan sát thấy hai yếu tố xuất hiện cùng nhau."
+      },
+      "exerciseSlots": [
+        { "slotId": "m3_association_notice", "slotVersion": "0.1.0", "allowedLearningNodeIds": ["vocabulary.cause_effect"], "allowedExerciseTypes": ["single_choice"], "progressChannel": "mastery" },
+        { "slotId": "m3_claim_strength", "slotVersion": "0.1.0", "allowedLearningNodeIds": ["vocabulary.cause_effect"], "allowedExerciseTypes": ["multiple_choice"], "progressChannel": "mastery" },
+        { "slotId": "m3_association_hint", "slotVersion": "0.1.0", "allowedLearningNodeIds": ["vocabulary.cause_effect"], "allowedExerciseTypes": ["error_correction"], "progressChannel": "practice" },
+        { "slotId": "m3_collocation_transfer", "slotVersion": "0.1.0", "allowedLearningNodeIds": ["vocabulary.cause_effect"], "allowedExerciseTypes": ["text_input"], "progressChannel": "mastery" }
+      ],
+      "storyBeat": {
+        "en": "The final correction changes caused to was associated with. The cautious summary now matches the evidence, and the stronger version can be traced to a faulty merge of draft sentences.",
+        "vi": "Chỉnh sửa cuối đổi “caused” thành “was associated with”. Bản tóm tắt thận trọng giờ khớp bằng chứng, còn bản quá mạnh được truy về lỗi hợp nhất các câu nháp."
+      },
+      "checkpointCopy": {
+        "en": "Context restored: sentence logic, survey scope and claim strength now agree with the evidence. The file is complete, but Mira has found the same merge pattern in other records.",
+        "vi": "Ngữ cảnh đã được khôi phục: logic câu, phạm vi khảo sát và độ mạnh kết luận đều khớp bằng chứng. Hồ sơ này đã hoàn tất, nhưng Mira phát hiện cùng kiểu lỗi hợp nhất ở các hồ sơ khác."
+      },
+      "skipSummary": {
+        "en": "The team replaced unsupported causal language with an evidence-aligned association claim and identified the faulty draft merge.",
+        "vi": "Nhóm đã thay ngôn ngữ nhân quả thiếu căn cứ bằng kết luận về mối liên hệ phù hợp bằng chứng và xác định lỗi hợp nhất bản nháp."
+      },
+      "unlock": { "mode": "after_mission", "prerequisiteMissionId": "prologue.first_route.m2" },
+      "reward": { "rewardId": "context_restored_stamp", "firstCompletionOnly": true }
+    }
+  ],
+  "review": {
+    "status": "codex_pre_reviewed",
+    "languageReviewer": "Codex pre-review only; human reviewer pending",
+    "ieltsReviewer": "Codex pre-review only; human reviewer pending",
+    "narrativeReviewer": "Codex pre-review only; Product Owner approval pending",
+    "reviewedAt": "2026-09-21T00:00:00Z"
+  },
+  "contentHash": "2a02f2978003df567695c52c46be0909c0ae7ed18e91fe333443a22812da322b",
+  "rollbackTarget": { "mode": "deactivate", "reason": "Initial proof version has no earlier active Narrative Pack; deactivate it if validation or review fails." }
+}

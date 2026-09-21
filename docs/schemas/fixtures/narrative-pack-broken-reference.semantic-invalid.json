@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 2,
+  "packId": "route65.invalid.broken-reference",
+  "packVersion": "0.1.0",
+  "minimumAppVersion": "0.1.0",
+  "campaign": { "campaignId": "route65.missing_context", "titleEn": "Invalid fixture", "titleVi": "Fixture lỗi", "sequence": 1, "status": "draft" },
+  "characters": ["ato", "mira"],
+  "episodes": [
+    { "episodeId": "prologue.first_route", "order": 1, "titleEn": "Invalid fixture", "titleVi": "Fixture lỗi", "missionIds": ["missing.mission"] }
+  ],
+  "missions": [
+    {
+      "missionId": "prologue.first_route.m1",
+      "missionVersion": "0.1.0",
+      "episodeId": "missing.episode",
+      "order": 1,
+      "titleEn": "Broken references",
+      "titleVi": "Tham chiếu bị gãy",
+      "ieltsTopics": ["education"],
+      "primaryObjective": "Demonstrate invalid references.",
+      "languageFunctions": ["test"],
+      "targetLanguage": ["test"],
+      "activeCharacterIds": ["ato", "unknown.character"],
+      "setup": { "en": "This schema-valid fixture contains broken references.", "vi": "Fixture hợp lệ theo schema này chứa tham chiếu bị gãy." },
+      "exerciseSlots": [
+        { "slotId": "invalid_1", "slotVersion": "0.1.0", "allowedLearningNodeIds": ["missing.node"], "allowedExerciseTypes": ["single_choice"], "progressChannel": "mastery" },
+        { "slotId": "invalid_2", "slotVersion": "0.1.0", "allowedLearningNodeIds": ["missing.node"], "allowedExerciseTypes": ["single_choice"], "progressChannel": "mastery" },
+        { "slotId": "invalid_3", "slotVersion": "0.1.0", "allowedLearningNodeIds": ["missing.node"], "allowedExerciseTypes": ["single_choice"], "progressChannel": "mastery" }
+      ],
+      "storyBeat": { "en": "References should fail semantic validation.", "vi": "Các tham chiếu phải trượt kiểm tra semantic." },
+      "checkpointCopy": { "en": "Do not publish this fixture.", "vi": "Không phát hành fixture này." },
+      "skipSummary": { "en": "Invalid fixture.", "vi": "Fixture lỗi." },
+      "unlock": { "mode": "after_mission", "prerequisiteMissionId": "missing.prerequisite" },
+      "reward": { "rewardId": "invalid_reward", "firstCompletionOnly": true }
+    }
+  ],
+  "review": { "status": "draft", "languageReviewer": "pending", "ieltsReviewer": "pending", "narrativeReviewer": "pending", "reviewedAt": "2026-09-21T00:00:00Z" },
+  "contentHash": "0000000000000000000000000000000000000000000000000000000000000000"
+}
