@@ -75,6 +75,7 @@ Sau mỗi bước, completion report phải ghi command/check class, phạm vi, 
 
 ## Content/academic tests
 
+- Run `npm run content:validate` for the repository fixture matrix and P-031 cross-artifact contract; this command must remain part of `npm run check` and CI.
 - JSON Schema validation and fixture expectations;
 - referential integrity, stable IDs, hashes, provenance/licenses;
 - answer/explanation correctness and British/American acceptance;

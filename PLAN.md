@@ -2,7 +2,7 @@
 
 > Phiên bản: 2.2  
 > Cập nhật: 2026-09-21  
-> Trạng thái: **APPROVED — VERTICAL SLICE ONLY; VS-02 COMPLETE; VS-03 AWAITING APPROVAL**
+> Trạng thái: **APPROVED — VERTICAL SLICE ONLY; VS-03 COMPLETE; VS-04 AWAITING APPROVAL**
 
 ## 1. Mục đích tài liệu
 
@@ -326,6 +326,12 @@ Approval record:
 - prohibited scope: `VS-02`–`VS-09`, Supabase, Vercel/deployment, gameplay, Beta MVP, Public Preview và Production cho đến các approval riêng tương ứng;
 - accepted residual risks: GitHub authentication/remote chưa có, executable implementation checks chưa chạy, human academic/legal/provider/live-restore gates vẫn để đúng mốc sau;
 - next-step rule: hoàn thành và báo cáo kiểm thử `VS-01`, sau đó dừng để xin phép mở riêng `VS-02`.
+
+Subsequent step approvals:
+
+- `VS-02`: Project Owner approved the named step after the VS-01 completion report on 2026-09-22; completed and verified separately.
+- `VS-03`: Project Owner selected explicit option A after the VS-02 completion report on 2026-09-22; completed and verified separately.
+- `VS-04`: not approved; gameplay/UI work remains locked.
 
 ### Gate 1 — Hợp đồng triển khai
 

@@ -1,12 +1,12 @@
 # Project status
 
-> **Phase:** Vertical Slice implementation gate — VS-02 complete; VS-03 awaiting approval
+> **Phase:** Vertical Slice implementation gate — VS-03 complete; VS-04 awaiting approval
 > **Plan status:** APPROVED — VERTICAL SLICE ONLY; no later step is open
 > **Updated:** 2026-09-22
 
 ## Current outcome
 
-On 2026-09-21 the Project Owner explicitly requested `bắt đầu code VS-01`. PLAN 2.2 is now `APPROVED — VERTICAL SLICE ONLY; CURRENT STEP: VS-01`. Only the repository/framework/lockfile/baseline-check foundation in VS-01 is open. VS-02–VS-09, Supabase, Vercel/deployment, gameplay and every later phase remain blocked until the required tested completion report and named approval. The active decision set now includes:
+On 2026-09-21 the Project Owner explicitly requested `bắt đầu code VS-01`. VS-01 and VS-02 were subsequently completed, reported and approved through their named gates. On 2026-09-22 the owner selected explicit option A to open VS-03; its executable content validation is now complete. VS-04–VS-09, Supabase, Vercel/deployment and every later phase remain blocked until the required tested completion report and named approval. The active decision set now includes:
 
 - responsive website only, Internet required; no PWA/native app/offline learning;
 - Supabase-authoritative accounts and short-lived browser recovery only;
@@ -61,9 +61,11 @@ On 2026-09-21 the Project Owner explicitly requested `bắt đầu code VS-01`. 
 
 ## Active task
 
-VS-02 is complete after explicit owner approval on 2026-09-22. The framework-independent domain evaluator implements declared text/option answer contracts, auditable mastery eligibility, versioned `mastery-v0.1` updates, technical/self-review no-op behavior and pure `new`/`replay`/`conflict` idempotency classification. Executable tests cover every approved numeric vector and the relevant Learning Contract gates. Content/schema validation, UI/gameplay, persistence, authentication, Supabase and deployment remain in later locked steps. VS-03 remains locked until the owner explicitly approves it after the VS-02 completion report.
+VS-02 is complete after explicit owner approval on 2026-09-22. The framework-independent domain evaluator implements declared text/option answer contracts, auditable mastery eligibility, versioned `mastery-v0.1` updates, technical/self-review no-op behavior and pure `new`/`replay`/`conflict` idempotency classification. Executable tests cover every approved numeric vector and the relevant Learning Contract gates.
 
-The owner has approved the Vertical Slice learning/story contract, public safeguards, quota thresholds and daily encrypted R2 backups, plus isolated restore drills before release, monthly for three months and quarterly thereafter. Privacy and Terms drafts specify a Vietnam-adult Preview, an individual operator before incorporation, a dedicated project mailbox, two unchecked signup confirmations with guest fallback, Vietnamese law with non-exclusive negotiation, safe reacceptance/refusal behavior, seven-day planned material-change notice, immutable date-based policy versions and Vietnamese as the sole authoritative policy language. Exact restore commands/evidence are now specified in `BACKUP-RESTORE-RUNBOOK.md`; live execution remains a later environment gate. The exact operator/contact, actual provider regions/transfers and legal review remain pre-public-release blockers, not blockers for code or owner-restricted Alpha. The user approved `APPROVED — VERTICAL SLICE ONLY`; only VS-01 is currently open.
+The owner explicitly approved option A to begin VS-03 on 2026-09-22. VS-03 now provides executable Draft 2020-12 JSON Schema and semantic validation for Content Packs, Narrative Packs, learning-node fixtures and their embedded/standalone exercise contracts. Natural-language ambiguity is routed to a declared manual-review class rather than a falsely automated judgment. UI/gameplay, persistence, authentication, Supabase, deployment and VS-04–VS-09 remain locked.
+
+The owner has approved the Vertical Slice learning/story contract, public safeguards, quota thresholds and daily encrypted R2 backups, plus isolated restore drills before release, monthly for three months and quarterly thereafter. Privacy and Terms drafts specify a Vietnam-adult Preview, an individual operator before incorporation, a dedicated project mailbox, two unchecked signup confirmations with guest fallback, Vietnamese law with non-exclusive negotiation, safe reacceptance/refusal behavior, seven-day planned material-change notice, immutable date-based policy versions and Vietnamese as the sole authoritative policy language. Exact restore commands/evidence are now specified in `BACKUP-RESTORE-RUNBOOK.md`; live execution remains a later environment gate. The exact operator/contact, actual provider regions/transfers and legal review remain pre-public-release blockers, not blockers for code or owner-restricted Alpha. The user approved `APPROVED — VERTICAL SLICE ONLY`; VS-04 is the next named gate and is not open yet.
 
 Codex may draft and pre-review the 30 items and learner-facing English during planning, prototype, implementation and Owner Alpha; no specialist review is needed yet. Before Public Preview reaches anyone outside the project owner, one qualified human reviewer independent of the author must approve all of that material against exact Content/Narrative Pack hashes. Product Owner story/tone approval and accessibility evidence remain separate.
 
@@ -83,15 +85,15 @@ Passing Alpha changes may auto-deploy to the owner-restricted website, but activ
 
 ## Next implementation gate
 
-1. Present the VS-02 completion report and stop.
-2. Ask the owner whether to open `VS-03`; do not infer approval from the VS-02 approval.
-3. If approved, begin only the VS-03 Content Pack, Narrative Pack and learning-node fixture validator scope.
+1. Present the VS-03 completion report and stop.
+2. Ask the owner whether to open `VS-04`; do not infer approval from the VS-03 approval.
+3. If approved, begin only one four-item mission running end to end on mobile/desktop with temporary data; do not open VS-05 or persistence/authentication work.
 
 ## Blockers
 
 ### Global
 
-- VS-01 and VS-02 are complete; VS-03–VS-09 remain blocked pending the named next-step approval.
+- VS-01 through VS-03 are complete; VS-04–VS-09 remain blocked pending the named next-step approval.
 - Production deployment always requires a separate explicit request.
 
 Terms/Privacy suitability, operator/contact facts and cross-border transfer remain non-owner release-review items. Minor-account support remains blocked beyond the approved 18+ Preview policy and requires separate legal review.
@@ -134,7 +136,7 @@ Pronunciation thresholds, Writing mechanics, assessment bank and calibration dat
 
 | Artifact | Version |
 |---|---|
-| Plan | 2.2 — approved for VS-01 only |
+| Plan | 2.2 — VS-03 complete; VS-04 awaiting approval |
 | Application | 0.1.0 foundation (public repository; not deployed) |
 | Database | Not created |
 | Content-pack schema | Draft 2 |
@@ -167,7 +169,18 @@ Pronunciation thresholds, Writing mechanics, assessment bank and calibration dat
 - GitHub Actions CI run 4 completed successfully for commit `5e13213`: `https://github.com/johntroger/atlas-english/actions/runs/35677602612`.
 - Content/schema regression remains green at 22/22 expected fixture outcomes; VS-02 does not implement the runtime validator reserved for VS-03.
 - No migration or compatibility impact beyond declaring the existing Node/Next.js package as an ES module. No database, external service, user data or deployment is involved.
-- Residual risk: content/schema enforcement is not executable until VS-03, and durable server-side attempt/idempotency enforcement remains deferred to VS-06.
+- The content/schema enforcement gap recorded at VS-02 completion is now closed by VS-03; durable server-side attempt/idempotency enforcement remains deferred to VS-06.
+
+## Verification for VS-03
+
+- Added an AJV Draft 2020-12 schema layer for Content Pack, Narrative Pack, learning-node and embedded/standalone exercise contracts, with exact dev-only versions recorded in the lockfile.
+- Added deterministic semantic checks for exercise IDs, learning-node/skill references, answer option IDs, hinted-practice evidence, declared text variants, Narrative Pack references, slot compatibility, proof role/format coverage, copy budgets, rollback targets and canonical SHA-256 hashes.
+- Natural-language ambiguity is not guessed: a declared ambiguity produces the stable `manual_review` finding `exercise.ambiguity.manual_review_required`.
+- `npm run content:validate` passes 18 schema expectations and four semantic groups; the positive proof summary is 2 packs, 12 exercises, 3 learning nodes and 3 missions, while the broken-reference fixture yields the expected seven reference failures.
+- The complete suite passes 31/31 tests, including mutation checks for an unknown answer option, duplicate exercise ID, incompatible mission slot, missing role coverage, generic checkpoint copy and a tampered content hash.
+- Formatting, lint, architecture boundary, TypeScript, content validation, unit/golden tests, secret scan and optimized Next.js build all pass. `npm audit --audit-level=moderate` reports zero vulnerabilities.
+- Detailed evidence: `content/vertical-slice/VS03-VALIDATION-EVIDENCE.md`.
+- No migration, database, external service, user data, UI or deployment impact. Residual risks remain the human academic/story review, the 18 unbuilt blueprint items and runtime gameplay integration beginning no earlier than separately approved VS-04.
 
 ## Verification for P-017
 

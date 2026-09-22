@@ -438,7 +438,7 @@ The historical 24-hour challenge choice above was corrected by P-034: the pendin
 - [x] Prohibit parallel, anticipatory or bundled implementation across unopened steps.
 - [x] Add the enforcement rule to project instructions and keep PLAN in DRAFT.
 
-## Implementation backlog — step-gated; VS-02 complete, VS-03 awaiting approval
+## Implementation backlog — step-gated; VS-03 complete, VS-04 awaiting approval
 
 ### I-001 Project foundation — VS-01 complete
 
@@ -447,6 +447,10 @@ Begins only as `VS-01` after initial approval. Reproducible Next.js/TypeScript m
 ### I-001A Pure learning evaluator — VS-02 complete
 
 Implement only the framework-independent evaluator and executable Learning Contract v0.1 golden tests: deterministic closed-answer scoring, mastery eligibility, versioned mastery updates and pure replay/conflict classification. Schema/content validation, UI, persistence and server transactions remain deferred to their named later steps.
+
+### I-001B Content contract validator — VS-03 complete
+
+Executable Draft 2020-12 schema validation and deterministic semantic/cross-reference checks for the P-031 Content Packs, Narrative Pack, selected learning nodes and exercise contracts. Natural-language ambiguity is explicitly routed to manual review. UI/gameplay, persistence and server transactions remain deferred to their named later steps.
 
 ### I-002 Online vertical slice
 

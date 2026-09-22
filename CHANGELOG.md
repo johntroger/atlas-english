@@ -8,6 +8,7 @@ All notable project changes are recorded here.
 
 ## Unreleased
 
+- Completed owner-approved VS-03: added executable Draft 2020-12 schema validation, deterministic semantic/cross-reference checks, canonical hash verification, stable findings, explicit manual-review routing for natural-language ambiguity and regression tests for Content Packs, Narrative Packs, learning nodes and exercise contracts. VS-04 and later implementation remain locked.
 - Completed VS-02 after explicit owner approval: added a framework-independent deterministic answer evaluator, auditable Learning Contract v0.1 eligibility gates, exact versioned mastery updates, technical/self-review no-op behavior, pure idempotency classification and executable golden/edge tests. VS-03 and later implementation remain blocked.
 - Completed VS-01: initialized the local Git repository and minimum Next.js/TypeScript modular-monolith foundation, generated an exact npm lockfile, added immutable-SHA CI plus formatting, lint, architecture-boundary, type, unit, secret and production-build checks, verified desktop/mobile rendering, and published `main` to the public `johntroger/atlas-english` repository. Supabase and Vercel are not connected.
 - Fixed the first Windows CI run's CRLF conversion failure by adding repository-level LF normalization and a regression test; a clean clone passes the full check/audit sequence and GitHub Actions CI run 2 succeeds on commit `7c721ab`.
