@@ -1,8 +1,8 @@
 # Project status
 
-> **Phase:** Vertical Slice implementation — VS-01  
-> **Plan status:** APPROVED — VERTICAL SLICE ONLY; only VS-01 is open  
-> **Updated:** 2026-09-21
+> **Phase:** Vertical Slice implementation gate — VS-01 complete; VS-02 awaiting approval
+> **Plan status:** APPROVED — VERTICAL SLICE ONLY; no later step is open
+> **Updated:** 2026-09-22
 
 ## Current outcome
 
@@ -61,7 +61,7 @@ On 2026-09-21 the Project Owner explicitly requested `bắt đầu code VS-01`. 
 
 ## Active task
 
-VS-01 is in progress. The local Git repository, minimum Next.js/TypeScript modular-monolith foundation, exact npm lockfile, immutable-SHA CI workflow and baseline build/type/lint/test/secret checks are ready and passing. Browser smoke passes at 1280×720 and 390×844 with no console warning/error or horizontal overflow. Initial commit `1abf10e` is published to the public `johntroger/atlas-english` repository. Remote CI run 1 exposed a Windows checkout line-ending mismatch in `format:check`; the approved fix adds repository-level LF normalization and a regression test. Completion is waiting for clean-clone verification and a passing remote CI rerun. No Supabase or Vercel connection is authorized in this step.
+VS-01 is complete. The public `johntroger/atlas-english` repository tracks the local `main` branch and contains the minimum Next.js/TypeScript modular-monolith foundation, exact npm lockfile, immutable-SHA CI workflow and baseline validation commands. Browser smoke passes at 1280×720 and 390×844 with no console warning/error or horizontal overflow. Remote CI run 1 exposed a Windows checkout line-ending mismatch in `format:check`; commit `7c721ab` added repository-level LF normalization and a regression test. A clean clone passed the full check/audit sequence and remote CI run 2 completed successfully. No database, Supabase connection, Vercel connection or deployment was created. VS-02 remains locked until the owner explicitly approves it after the VS-01 completion report.
 
 The owner has approved the Vertical Slice learning/story contract, public safeguards, quota thresholds and daily encrypted R2 backups, plus isolated restore drills before release, monthly for three months and quarterly thereafter. Privacy and Terms drafts specify a Vietnam-adult Preview, an individual operator before incorporation, a dedicated project mailbox, two unchecked signup confirmations with guest fallback, Vietnamese law with non-exclusive negotiation, safe reacceptance/refusal behavior, seven-day planned material-change notice, immutable date-based policy versions and Vietnamese as the sole authoritative policy language. Exact restore commands/evidence are now specified in `BACKUP-RESTORE-RUNBOOK.md`; live execution remains a later environment gate. The exact operator/contact, actual provider regions/transfers and legal review remain pre-public-release blockers, not blockers for code or owner-restricted Alpha. The user approved `APPROVED — VERTICAL SLICE ONLY`; only VS-01 is currently open.
 
@@ -83,15 +83,15 @@ Passing Alpha changes may auto-deploy to the owner-restricted website, but activ
 
 ## Next implementation gate
 
-1. Complete and test VS-01 only.
-2. Present the VS-01 completion report and stop.
-3. Ask the owner whether to open `VS-02`; do not infer approval from the current request.
+1. Present the VS-01 completion report and stop.
+2. Ask the owner whether to open `VS-02`; do not infer approval from any earlier request.
+3. If approved, begin only the VS-02 domain evaluator and executable golden-test scope.
 
 ## Blockers
 
 ### Global
 
-- Only VS-01 is open; VS-02–VS-09 remain blocked.
+- VS-01 is complete; VS-02–VS-09 remain blocked pending the named next-step approval.
 - Production deployment always requires a separate explicit request.
 
 Terms/Privacy suitability, operator/contact facts and cross-border transfer remain non-owner release-review items. Minor-account support remains blocked beyond the approved 18+ Preview policy and requires separate legal review.
@@ -110,7 +110,7 @@ Pronunciation thresholds, Writing mechanics, assessment bank and calibration dat
 - The VS-01 Next.js/TypeScript application foundation is initialized locally; no database is initialized.
 - Slice physical database/RLS/state-machine/scoring contracts are approved at specification level; executable migrations, grants/RLS and concurrency/failure tests remain blocked until implementation approval.
 - All five required pre-code wireframes/state maps have been accepted with no unresolved P0/P1. Interactive/browser verification remains an implementation check; a separate clickable/high-fidelity prototype is intentionally not required.
-- The local Git repository tracks the public `johntroger/atlas-english` remote; a passing CI rerun after the LF-normalization fix is still pending.
+- The local Git repository tracks the public `johntroger/atlas-english` remote and CI run 2 passes on commit `7c721ab`.
 
 ### Operations
 
@@ -135,7 +135,7 @@ Pronunciation thresholds, Writing mechanics, assessment bank and calibration dat
 | Artifact | Version |
 |---|---|
 | Plan | 2.2 — approved for VS-01 only |
-| Application | 0.1.0 foundation (local) |
+| Application | 0.1.0 foundation (public repository; not deployed) |
 | Database | Not created |
 | Content-pack schema | Draft 2 |
 | Narrative-pack schema | Draft 2 |
@@ -143,6 +143,17 @@ Pronunciation thresholds, Writing mechanics, assessment bank and calibration dat
 | Pronunciation-analysis schema | Draft 2 |
 | Content packs | None |
 | Production | Not deployed |
+
+## Verification for VS-01
+
+- Public repository: `https://github.com/johntroger/atlas-english`; `main` tracks `origin/main`.
+- Commits: `1abf10e` created the foundation; `7c721ab` fixed cross-platform checkout line endings.
+- Local and clean-clone checks pass: formatting, lint, architecture boundary, TypeScript, 6/6 unit tests, secret scan and optimized Next.js build.
+- Dependency installation is reproducible from `package-lock.json`; `npm audit --audit-level=high` reports zero vulnerabilities.
+- GitHub Actions CI run 2 completed successfully for `7c721ab`: `https://github.com/johntroger/atlas-english/actions/runs/35675689890`.
+- Desktop 1280×720 and mobile 390×844 smoke reviews pass with correct Vietnamese document language, no console warning/error and no horizontal overflow.
+- No migration or user-data compatibility impact; no database, Supabase project, Vercel project or deployment exists.
+- Residual risk: VS-01 proves only the project/repository foundation. Learning evaluation, content validators, gameplay, persistence, authentication and release controls remain in VS-02–VS-09 and are not implemented.
 
 ## Verification for P-017
 

@@ -438,9 +438,9 @@ The historical 24-hour challenge choice above was corrected by P-034: the pendin
 - [x] Prohibit parallel, anticipatory or bundled implementation across unopened steps.
 - [x] Add the enforcement rule to project instructions and keep PLAN in DRAFT.
 
-## Implementation backlog — step-gated; only VS-01 is open
+## Implementation backlog — step-gated; VS-01 complete, VS-02 awaiting approval
 
-### I-001 Project foundation — VS-01 in progress
+### I-001 Project foundation — VS-01 complete
 
 Begins only as `VS-01` after initial approval. Reproducible Next.js/TypeScript modular monolith foundation, lockfile, validation commands and repository safeguards; later adapters/environments remain in their named VS step.
 
