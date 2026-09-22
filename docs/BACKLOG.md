@@ -438,7 +438,7 @@ The historical 24-hour challenge choice above was corrected by P-034: the pendin
 - [x] Prohibit parallel, anticipatory or bundled implementation across unopened steps.
 - [x] Add the enforcement rule to project instructions and keep PLAN in DRAFT.
 
-## Implementation backlog — step-gated; VS-03 complete, VS-04 awaiting approval
+## Implementation backlog — step-gated; VS-04 complete; VS-05 awaits approval
 
 ### I-001 Project foundation — VS-01 complete
 
@@ -451,6 +451,10 @@ Implement only the framework-independent evaluator and executable Learning Contr
 ### I-001B Content contract validator — VS-03 complete
 
 Executable Draft 2020-12 schema validation and deterministic semantic/cross-reference checks for the P-031 Content Packs, Narrative Pack, selected learning nodes and exercise contracts. Natural-language ambiguity is explicitly routed to manual review. UI/gameplay, persistence and server transactions remain deferred to their named later steps.
+
+### I-001C Temporary four-item mission — VS-04 complete
+
+One local-only mission now renders a Vietnamese interface with four short English exercises: single choice, reorder, and two controlled text corrections. It uses the VS-02 pure evaluator, explicit hinted-attempt practice-only feedback, keyboard-accessible hint confirmation, responsive layouts, and no storage/network/database behavior. Three-mission content, checkpoint/reward, persistence, authentication and deployment remain deferred to their named later steps.
 
 ### I-002 Online vertical slice
 

@@ -1,8 +1,8 @@
 # Atlas English — Kế hoạch sản phẩm và kỹ thuật
 
-> Phiên bản: 2.2  
-> Cập nhật: 2026-09-21  
-> Trạng thái: **APPROVED — VERTICAL SLICE ONLY; VS-03 COMPLETE; VS-04 AWAITING APPROVAL**
+> Phiên bản: 2.3
+> Cập nhật: 2026-09-22
+> Trạng thái: **APPROVED — VERTICAL SLICE ONLY; VS-04 COMPLETE; VS-05 AWAITING EXPLICIT APPROVAL**
 
 ## 1. Mục đích tài liệu
 
@@ -331,7 +331,8 @@ Subsequent step approvals:
 
 - `VS-02`: Project Owner approved the named step after the VS-01 completion report on 2026-09-22; completed and verified separately.
 - `VS-03`: Project Owner selected explicit option A after the VS-02 completion report on 2026-09-22; completed and verified separately.
-- `VS-04`: not approved; gameplay/UI work remains locked.
+- `VS-04`: Project Owner explicitly approved the named step on 2026-09-22; only one four-item temporary-data mission is open.
+- `VS-04` completion: one four-item temporary-data mission was implemented and verified on 2026-09-22. `VS-05` is not open until a new explicit owner approval.
 
 ### Gate 1 — Hợp đồng triển khai
 

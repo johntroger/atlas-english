@@ -1,5 +1,5 @@
-import { FoundationScreen } from "@/ui/foundation/FoundationScreen";
+import { MissionOne } from "@/ui/mission/MissionOne";
 
 export default function HomePage() {
-  return <FoundationScreen />;
+  return <MissionOne />;
 }

@@ -1,6 +1,6 @@
 # Project status
 
-> **Phase:** Vertical Slice implementation gate — VS-03 complete; VS-04 awaiting approval
+> **Phase:** Vertical Slice implementation gate — VS-04 complete; VS-05 awaits explicit approval
 > **Plan status:** APPROVED — VERTICAL SLICE ONLY; no later step is open
 > **Updated:** 2026-09-22
 
@@ -63,9 +63,11 @@ On 2026-09-21 the Project Owner explicitly requested `bắt đầu code VS-01`. 
 
 VS-02 is complete after explicit owner approval on 2026-09-22. The framework-independent domain evaluator implements declared text/option answer contracts, auditable mastery eligibility, versioned `mastery-v0.1` updates, technical/self-review no-op behavior and pure `new`/`replay`/`conflict` idempotency classification. Executable tests cover every approved numeric vector and the relevant Learning Contract gates.
 
-The owner explicitly approved option A to begin VS-03 on 2026-09-22. VS-03 now provides executable Draft 2020-12 JSON Schema and semantic validation for Content Packs, Narrative Packs, learning-node fixtures and their embedded/standalone exercise contracts. Natural-language ambiguity is routed to a declared manual-review class rather than a falsely automated judgment. UI/gameplay, persistence, authentication, Supabase, deployment and VS-04–VS-09 remain locked.
+The owner explicitly approved option A to begin VS-03 on 2026-09-22. VS-03 now provides executable Draft 2020-12 JSON Schema and semantic validation for Content Packs, Narrative Packs, learning-node fixtures and their embedded/standalone exercise contracts. Natural-language ambiguity is routed to a declared manual-review class rather than a falsely automated judgment.
 
-The owner has approved the Vertical Slice learning/story contract, public safeguards, quota thresholds and daily encrypted R2 backups, plus isolated restore drills before release, monthly for three months and quarterly thereafter. Privacy and Terms drafts specify a Vietnam-adult Preview, an individual operator before incorporation, a dedicated project mailbox, two unchecked signup confirmations with guest fallback, Vietnamese law with non-exclusive negotiation, safe reacceptance/refusal behavior, seven-day planned material-change notice, immutable date-based policy versions and Vietnamese as the sole authoritative policy language. Exact restore commands/evidence are now specified in `BACKUP-RESTORE-RUNBOOK.md`; live execution remains a later environment gate. The exact operator/contact, actual provider regions/transfers and legal review remain pre-public-release blockers, not blockers for code or owner-restricted Alpha. The user approved `APPROVED — VERTICAL SLICE ONLY`; VS-04 is the next named gate and is not open yet.
+The owner explicitly approved VS-04 on 2026-09-22. VS-04 is complete: one four-item mission now runs locally end to end on mobile and desktop with temporary data, deterministic feedback and an explicit hinted-attempt practice-only path. VS-05–VS-09, persistence, authentication, Supabase and deployment remain locked until the owner explicitly approves the named next step.
+
+The owner has approved the Vertical Slice learning/story contract, public safeguards, quota thresholds and daily encrypted R2 backups, plus isolated restore drills before release, monthly for three months and quarterly thereafter. Privacy and Terms drafts specify a Vietnam-adult Preview, an individual operator before incorporation, a dedicated project mailbox, two unchecked signup confirmations with guest fallback, Vietnamese law with non-exclusive negotiation, safe reacceptance/refusal behavior, seven-day planned material-change notice, immutable date-based policy versions and Vietnamese as the sole authoritative policy language. Exact restore commands/evidence are now specified in `BACKUP-RESTORE-RUNBOOK.md`; live execution remains a later environment gate. The exact operator/contact, actual provider regions/transfers and legal review remain pre-public-release blockers, not blockers for code or owner-restricted Alpha. The user approved `APPROVED — VERTICAL SLICE ONLY`; VS-04 is complete and VS-05 awaits its own explicit approval.
 
 Codex may draft and pre-review the 30 items and learner-facing English during planning, prototype, implementation and Owner Alpha; no specialist review is needed yet. Before Public Preview reaches anyone outside the project owner, one qualified human reviewer independent of the author must approve all of that material against exact Content/Narrative Pack hashes. Product Owner story/tone approval and accessibility evidence remain separate.
 
@@ -85,15 +87,15 @@ Passing Alpha changes may auto-deploy to the owner-restricted website, but activ
 
 ## Next implementation gate
 
-1. Present the VS-03 completion report and stop.
-2. Ask the owner whether to open `VS-04`; do not infer approval from the VS-03 approval.
-3. If approved, begin only one four-item mission running end to end on mobile/desktop with temporary data; do not open VS-05 or persistence/authentication work.
+1. Present the completed VS-04 report and stop.
+2. Ask the owner whether to open `VS-05` (three missions and approximately 12 first-run items).
+3. Do not infer approval from the VS-04 approval or any unrelated request to continue.
 
 ## Blockers
 
 ### Global
 
-- VS-01 through VS-03 are complete; VS-04–VS-09 remain blocked pending the named next-step approval.
+- VS-01 through VS-04 are complete; VS-05–VS-09 remain blocked pending named approvals.
 - Production deployment always requires a separate explicit request.
 
 Terms/Privacy suitability, operator/contact facts and cross-border transfer remain non-owner release-review items. Minor-account support remains blocked beyond the approved 18+ Preview policy and requires separate legal review.
@@ -136,8 +138,8 @@ Pronunciation thresholds, Writing mechanics, assessment bank and calibration dat
 
 | Artifact | Version |
 |---|---|
-| Plan | 2.2 — VS-03 complete; VS-04 awaiting approval |
-| Application | 0.1.0 foundation (public repository; not deployed) |
+| Plan | 2.3 — VS-04 complete; VS-05 awaiting explicit approval |
+| Application | 0.1.0 local four-item mission (public repository; not deployed) |
 | Database | Not created |
 | Content-pack schema | Draft 2 |
 | Narrative-pack schema | Draft 2 |
@@ -181,6 +183,16 @@ Pronunciation thresholds, Writing mechanics, assessment bank and calibration dat
 - Formatting, lint, architecture boundary, TypeScript, content validation, unit/golden tests, secret scan and optimized Next.js build all pass. `npm audit --audit-level=moderate` reports zero vulnerabilities.
 - Detailed evidence: `content/vertical-slice/VS03-VALIDATION-EVIDENCE.md`.
 - No migration, database, external service, user data, UI or deployment impact. Residual risks remain the human academic/story review, the 18 unbuilt blueprint items and runtime gameplay integration beginning no earlier than separately approved VS-04.
+
+## Verification for VS-04
+
+- Implemented one four-item local-only mission in `src/ui/mission/MissionOne.tsx` with a Vietnamese game interface, brief English IELTS-aligned exercises, one choice interaction, one reorder interaction and two controlled text corrections.
+- The UI calls only `src/domain/vertical-slice/mission-one.ts`, which delegates declared answer evaluation to the VS-02 pure domain evaluator; it does not access storage, browser persistence, a network service, Supabase or an AI provider.
+- Hints require a confirmation dialog and make that attempt explicitly practice-only. The dialog places and traps keyboard focus, supports Escape to cancel and restores focus to the trigger.
+- `tests/mission-one.test.mjs` passes 5/5 checks for question order/count, deterministic choice/reorder/text results, correction feedback, hinted practice-only treatment and complete-response rules.
+- The full `npm run check` suite passes after the change: format, lint, dependency-boundary check, TypeScript, content validation, Node tests, secret scan and optimized production build.
+- Browser smoke review completed on 390×844 and 1280×720: all four items reach the completion state, the hint path shows the practice-only disclosure, no horizontal overflow occurs, keyboard dialog focus cycles correctly and no console errors are present.
+- No migration, compatibility impact, dependency, account, database, user-data or deployment change. VS-05 remains required for the additional missions/content; checkpoint/reward, server acknowledgement, persistence, authentication and release controls remain deferred.
 
 ## Verification for P-017
 
