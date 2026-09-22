@@ -1,6 +1,6 @@
 # Project status
 
-> **Phase:** Vertical Slice implementation gate — VS-01 complete; VS-02 awaiting approval
+> **Phase:** Vertical Slice implementation gate — VS-02 complete; VS-03 awaiting approval
 > **Plan status:** APPROVED — VERTICAL SLICE ONLY; no later step is open
 > **Updated:** 2026-09-22
 
@@ -61,7 +61,7 @@ On 2026-09-21 the Project Owner explicitly requested `bắt đầu code VS-01`. 
 
 ## Active task
 
-VS-01 is complete. The public `johntroger/atlas-english` repository tracks the local `main` branch and contains the minimum Next.js/TypeScript modular-monolith foundation, exact npm lockfile, immutable-SHA CI workflow and baseline validation commands. Browser smoke passes at 1280×720 and 390×844 with no console warning/error or horizontal overflow. Remote CI run 1 exposed a Windows checkout line-ending mismatch in `format:check`; commit `7c721ab` added repository-level LF normalization and a regression test. A clean clone passed the full check/audit sequence and remote CI run 2 completed successfully. No database, Supabase connection, Vercel connection or deployment was created. VS-02 remains locked until the owner explicitly approves it after the VS-01 completion report.
+VS-02 is complete after explicit owner approval on 2026-09-22. The framework-independent domain evaluator implements declared text/option answer contracts, auditable mastery eligibility, versioned `mastery-v0.1` updates, technical/self-review no-op behavior and pure `new`/`replay`/`conflict` idempotency classification. Executable tests cover every approved numeric vector and the relevant Learning Contract gates. Content/schema validation, UI/gameplay, persistence, authentication, Supabase and deployment remain in later locked steps. VS-03 remains locked until the owner explicitly approves it after the VS-02 completion report.
 
 The owner has approved the Vertical Slice learning/story contract, public safeguards, quota thresholds and daily encrypted R2 backups, plus isolated restore drills before release, monthly for three months and quarterly thereafter. Privacy and Terms drafts specify a Vietnam-adult Preview, an individual operator before incorporation, a dedicated project mailbox, two unchecked signup confirmations with guest fallback, Vietnamese law with non-exclusive negotiation, safe reacceptance/refusal behavior, seven-day planned material-change notice, immutable date-based policy versions and Vietnamese as the sole authoritative policy language. Exact restore commands/evidence are now specified in `BACKUP-RESTORE-RUNBOOK.md`; live execution remains a later environment gate. The exact operator/contact, actual provider regions/transfers and legal review remain pre-public-release blockers, not blockers for code or owner-restricted Alpha. The user approved `APPROVED — VERTICAL SLICE ONLY`; only VS-01 is currently open.
 
@@ -83,15 +83,15 @@ Passing Alpha changes may auto-deploy to the owner-restricted website, but activ
 
 ## Next implementation gate
 
-1. Present the VS-01 completion report and stop.
-2. Ask the owner whether to open `VS-02`; do not infer approval from any earlier request.
-3. If approved, begin only the VS-02 domain evaluator and executable golden-test scope.
+1. Present the VS-02 completion report and stop.
+2. Ask the owner whether to open `VS-03`; do not infer approval from the VS-02 approval.
+3. If approved, begin only the VS-03 Content Pack, Narrative Pack and learning-node fixture validator scope.
 
 ## Blockers
 
 ### Global
 
-- VS-01 is complete; VS-02–VS-09 remain blocked pending the named next-step approval.
+- VS-01 and VS-02 are complete; VS-03–VS-09 remain blocked pending the named next-step approval.
 - Production deployment always requires a separate explicit request.
 
 Terms/Privacy suitability, operator/contact facts and cross-border transfer remain non-owner release-review items. Minor-account support remains blocked beyond the approved 18+ Preview policy and requires separate legal review.
@@ -154,6 +154,19 @@ Pronunciation thresholds, Writing mechanics, assessment bank and calibration dat
 - Desktop 1280×720 and mobile 390×844 smoke reviews pass with correct Vietnamese document language, no console warning/error and no horizontal overflow.
 - No migration or user-data compatibility impact; no database, Supabase project, Vercel project or deployment exists.
 - Residual risk: VS-01 proves only the project/repository foundation. Learning evaluation, content validators, gameplay, persistence, authentication and release controls remain in VS-02–VS-09 and are not implemented.
+
+## Verification for VS-02
+
+- Pure domain implementation: `src/domain/learning/index.ts`; no React, Next.js, browser, storage, network or Supabase import.
+- Executable evidence: `tests/learning-evaluator.test.mjs`; the total suite passes 22/22 tests.
+- Exact mastery transitions pass: `null→24`, `24→34`, capped `34→46`, capped failure `80→65` and same-day recognition `80→81`.
+- Hint, controlled practice retry, technical/content incident, self-review, unsupported version and ineligible mode/channel paths return stable reason codes and leave mastery unchanged.
+- Text evaluation uses only declared Unicode/case/punctuation/hyphen/whitespace tolerances; no fuzzy matching or runtime generation exists. Multiple-choice subset credit becomes zero after any incorrect selection.
+- Pure idempotency classification distinguishes new request, same-hash replay and different-hash conflict; no persistence claim is made before VS-06.
+- Format, lint, architecture boundary, TypeScript, unit/golden tests, secret scan and optimized Next.js build pass; dependency audit reports zero vulnerabilities.
+- Content/schema regression remains green at 22/22 expected fixture outcomes; VS-02 does not implement the runtime validator reserved for VS-03.
+- No migration or compatibility impact beyond declaring the existing Node/Next.js package as an ES module. No database, external service, user data or deployment is involved.
+- Residual risk: content/schema enforcement is not executable until VS-03, and durable server-side attempt/idempotency enforcement remains deferred to VS-06.
 
 ## Verification for P-017
 

@@ -122,6 +122,8 @@ Không hiển thị 0–100 như IELTS score.
 
 The exact numeric vectors for initialization, controlled production, transfer, bounded failure and same-day repetition are authoritative in `LEARNING-ENGINE.md`. Owner approved the full eight-case set on 2026-09-20.
 
+VS-02 implements this boundary as a framework-independent domain module with executable evidence in [`tests/learning-evaluator.test.mjs`](../tests/learning-evaluator.test.mjs). The tests distinguish answer correctness from mastery eligibility and verify that hint, technical incident, content incident, self-review, unsupported version and practice-only retry paths cannot update mastery. Idempotency is classified purely here; durable enforcement remains in VS-06.
+
 ## 11. Change control
 
 Eligibility/scoring changes require version bump, golden-test update, shadow comparison and documented recompute impact. Historical attempt payloads are never rewritten.

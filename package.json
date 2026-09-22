@@ -1,6 +1,7 @@
 {
   "name": "atlas-english",
   "version": "0.1.0",
+  "type": "module",
   "private": true,
   "description": "Atlas English — an IELTS-focused learning game for the web.",
   "license": "MIT",

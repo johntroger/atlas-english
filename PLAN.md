@@ -2,7 +2,7 @@
 
 > Phiên bản: 2.2  
 > Cập nhật: 2026-09-21  
-> Trạng thái: **APPROVED — VERTICAL SLICE ONLY; CURRENT STEP: VS-01**
+> Trạng thái: **APPROVED — VERTICAL SLICE ONLY; VS-02 COMPLETE; VS-03 AWAITING APPROVAL**
 
 ## 1. Mục đích tài liệu
 

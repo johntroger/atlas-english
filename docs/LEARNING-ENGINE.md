@@ -107,6 +107,8 @@ Untested nodes have `mastery=null`, not zero. On the first eligible scored non-D
 
 These vectors were owner-approved on 2026-09-20 and arithmetically checked against the v0.1 formula. Implementation tests must use exact values and also assert version/replay behavior.
 
+Executable VS-02 evidence is recorded in [`tests/learning-evaluator.test.mjs`](../tests/learning-evaluator.test.mjs). It covers the five exact numeric transitions, hint/technical/self-review no-op behavior, controlled-practice versus independent eligibility, deterministic replay and pure idempotency classification. Durable attempt/evidence/reward uniqueness remains a VS-06 persistence responsibility; VS-02 does not claim a database transaction.
+
 ## Draft mastery behavior
 
 - Score range: 0–100.
