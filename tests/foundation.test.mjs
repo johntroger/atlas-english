@@ -37,6 +37,12 @@ test("Next.js type declarations remain versioned", async () => {
   await readFile(join(projectRoot, "next-env.d.ts"), "utf8");
 });
 
+test("repository text files use stable LF line endings", async () => {
+  const attributes = await readFile(join(projectRoot, ".gitattributes"), "utf8");
+
+  assert.match(attributes, /^\* text=auto eol=lf$/m);
+});
+
 test("architecture boundary directories exist", async () => {
   const sourceEntries = await readdir(join(projectRoot, "src"));
 
