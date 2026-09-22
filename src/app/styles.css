@@ -283,6 +283,13 @@ a:focus-visible {
   font-size: clamp(1rem, 2vw, 1.15rem);
   line-height: 1.65;
 }
+.checkpoint-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 1.75rem;
+}
 .dossier-mark {
   display: grid;
   width: 4.2rem;

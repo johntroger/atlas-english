@@ -1,6 +1,6 @@
 # Project status
 
-> **Phase:** Vertical Slice implementation gate — VS-07 complete; VS-08 locked
+> **Phase:** Vertical Slice implementation gate — VS-08 complete; VS-09 locked
 > **Plan status:** APPROVED — VERTICAL SLICE ONLY; no later step is open
 > **Updated:** 2026-09-22
 
@@ -65,9 +65,9 @@ VS-02 is complete after explicit owner approval on 2026-09-22. The framework-ind
 
 The owner explicitly approved option A to begin VS-03 on 2026-09-22. VS-03 now provides executable Draft 2020-12 JSON Schema and semantic validation for Content Packs, Narrative Packs, learning-node fixtures and their embedded/standalone exercise contracts. Natural-language ambiguity is routed to a declared manual-review class rather than a falsely automated judgment.
 
-The owner explicitly approved VS-04 on 2026-09-22. VS-04 is complete: one four-item mission now runs locally end to end on mobile and desktop with temporary data, deterministic feedback and an explicit hinted-attempt practice-only path. The owner explicitly approved VS-05 on 2026-09-22; VS-05 is complete: three local temporary-data missions, 12 first-run items and the deterministic 30-item selection contract now run end to end. The owner explicitly approved VS-06 on 2026-09-22; VS-06 is complete: the server acknowledges and evaluates guest attempts, an append-only Supabase ledger persists them, and request hashes/idempotency keys make retries safe. The owner explicitly approved VS-07 on 2026-09-22; VS-07 is complete: the 24-hour guest TTL, verified passwordless email account session, auditable eligibility/Terms/Privacy/import consent, one-destination idempotent guest import and account history all work against the Preview Supabase project. VS-08–VS-09, checkpoint/reward and deployment remain locked.
+The owner explicitly approved VS-04 on 2026-09-22. VS-04 is complete: one four-item mission now runs locally end to end on mobile and desktop with temporary data, deterministic feedback and an explicit hinted-attempt practice-only path. The owner explicitly approved VS-05 on 2026-09-22; VS-05 is complete: three local temporary-data missions, 12 first-run items and the deterministic 30-item selection contract now run end to end. The owner explicitly approved VS-06 on 2026-09-22; VS-06 is complete: the server acknowledges and evaluates guest attempts, an append-only Supabase ledger persists them, and request hashes/idempotency keys make retries safe. The owner explicitly approved VS-07 on 2026-09-22; VS-07 is complete: the 24-hour guest TTL, verified passwordless email account session, auditable eligibility/Terms/Privacy/import consent, one-destination idempotent guest import and account history all work against the Preview Supabase project. The owner explicitly approved VS-08 on 2026-09-22; it is complete: checkpoint/safe stop, story reward, replay/no-duplicate grant and safe-boundary behavior have been implemented and verified. VS-09 and deployment remain locked.
 
-The owner has approved the Vertical Slice learning/story contract, public safeguards, quota thresholds and daily encrypted R2 backups, plus isolated restore drills before release, monthly for three months and quarterly thereafter. Privacy and Terms drafts specify a Vietnam-adult Preview, an individual operator before incorporation, a dedicated project mailbox, two unchecked signup confirmations with guest fallback, Vietnamese law with non-exclusive negotiation, safe reacceptance/refusal behavior, seven-day planned material-change notice, immutable date-based policy versions and Vietnamese as the sole authoritative policy language. Exact restore commands/evidence are now specified in `BACKUP-RESTORE-RUNBOOK.md`; live execution remains a later environment gate. The exact operator/contact, actual provider regions/transfers and legal review remain pre-public-release blockers, not blockers for code or owner-restricted Alpha. VS-07 live verification is complete; VS-08 awaits a separate owner approval.
+The owner has approved the Vertical Slice learning/story contract, public safeguards, quota thresholds and daily encrypted R2 backups, plus isolated restore drills before release, monthly for three months and quarterly thereafter. Privacy and Terms drafts specify a Vietnam-adult Preview, an individual operator before incorporation, a dedicated project mailbox, two unchecked signup confirmations with guest fallback, Vietnamese law with non-exclusive negotiation, safe reacceptance/refusal behavior, seven-day planned material-change notice, immutable date-based policy versions and Vietnamese as the sole authoritative policy language. Exact restore commands/evidence are now specified in `BACKUP-RESTORE-RUNBOOK.md`; live execution remains a later environment gate. The exact operator/contact, actual provider regions/transfers and legal review remain pre-public-release blockers, not blockers for code or owner-restricted Alpha. VS-07 and VS-08 live verification are complete; VS-09 remains locked.
 
 Codex may draft and pre-review the 30 items and learner-facing English during planning, prototype, implementation and Owner Alpha; no specialist review is needed yet. Before Public Preview reaches anyone outside the project owner, one qualified human reviewer independent of the author must approve all of that material against exact Content/Narrative Pack hashes. Product Owner story/tone approval and accessibility evidence remain separate.
 
@@ -87,14 +87,15 @@ Passing Alpha changes may auto-deploy to the owner-restricted website, but activ
 
 ## Next implementation gate
 
-1. Present the VS-07 completion report and stop.
-2. Ask the owner whether to open `VS-08`; do not infer approval from VS-07 completion or unrelated use of “continue.”
+1. VS-08 is complete; no additional implementation is open.
+2. Present the VS-08 completion report and stop.
+3. Ask the owner whether to open `VS-09`; do not infer approval from VS-08 approval.
 
 ## Blockers
 
 ### Global
 
-- VS-01 through VS-07 are complete; VS-08–VS-09 remain blocked pending their named approvals.
+- VS-01 through VS-08 are complete; VS-09 remains blocked pending named approval.
 - Production deployment always requires a separate explicit request.
 
 Terms/Privacy suitability, operator/contact facts and cross-border transfer remain non-owner release-review items. Minor-account support remains blocked beyond the approved 18+ Preview policy and requires separate legal review.
@@ -137,9 +138,9 @@ Pronunciation thresholds, Writing mechanics, assessment bank and calibration dat
 
 | Artifact | Version |
 |---|---|
-| Plan | 2.5 — VS-07 complete; VS-08 awaiting explicit approval |
-| Application | 0.1.0 server-acknowledged three-mission mini-episode with verified account history/import (public repository; not deployed) |
-| Database | Supabase Preview environment: append-only `attempts`, `profiles`, `consent_events` and `guest_imports` created; no deployment |
+| Plan | 2.7 — VS-08 complete; VS-09 awaiting explicit approval |
+| Application | 0.1.0 server-acknowledged three-mission mini-episode with account/guest checkpoint, safe stop and story reward (public repository; not deployed) |
+| Database | Supabase Preview environment: append-only `attempts`, account/import records, `story_progress` and `reward_grants` created; no deployment |
 | Content-pack schema | Draft 2 |
 | Narrative-pack schema | Draft 2 |
 | Learning-node schema | Draft 4 |
@@ -214,6 +215,17 @@ Pronunciation thresholds, Writing mechanics, assessment bank and calibration dat
 - Owner visual feedback found that the original serif heading stack did not render Vietnamese naturally on Windows. It was replaced with the system UI stack (which resolves to Segoe UI on Windows), and Vietnamese heading line-height was increased to preserve diacritics. The refreshed 390×844 local review is legible with no clipping or horizontal overflow.
 - Migration impact: this is additive and creates the first owner-environment table. The harmless schema and endpoint smoke records are append-only test data in that owner environment; there is no account history, migration of existing learner data, production deployment or Vercel configuration.
 - Residual risks: local HTTP cannot resend the deliberately `Secure` production cookie; the same retry contract was verified with a signed production-style cookie, and a real HTTPS deployment is still required before public use. Guest expiry cleanup, verified accounts/import, mastery/history, checkpoint/reward, broader RLS role tests, operational recovery and deployment remain locked in later approved steps.
+
+## Verification for VS-08
+
+- Added the pure checkpoint release-boundary contract and a server `POST /api/checkpoint` route. The route recognizes an update only at a checkpoint, creates/reuses the signed guest actor binding, and keeps guest final completion in a signed 24-hour HTTP-only marker.
+- Added account `story_progress` and `reward_grants` through the additive `202609220003_vs08_story_rewards.sql` migration. `202609220004_vs08_completion_concurrency.sql` supersedes the completion function implementation to make concurrent account completion requests converge on one first-completion record and one reward grant; both migrations were applied successfully in the Preview Supabase environment.
+- Account completion requires four server-acknowledged attempts for its mission. The third mission also requires the first two recorded mission completions. The fixed `Context Restored` reward is constrained to one `(user_id, reward_id)` and replay returns a non-duplicating completion state.
+- Added the explicit safe-stop acknowledgement screen. It preserves the learner's checkpoint context in-session, states that acknowledged answers remain on the server, and moves keyboard focus to the new status heading. The 390×844 mobile review shows the Vietnamese UI without horizontal overflow; browser console reported no errors.
+- Added checkpoint and guest-story signature tests. The complete suite passes 51/51: formatting, lint, architecture boundary, TypeScript, content validation, Node tests, secret scan and optimized Next.js build.
+- Live verification passed: a guest completed the first checkpoint and reached the safe-stop view; an authenticated owner completed all three missions and saw `Đã khôi phục ngữ cảnh` / `Context Restored`. A read-only Supabase verification returned exactly one `reward_grants` row.
+- Migration impact: two additive Preview-only migrations create the story/reward tables and replace the completion function. No existing learner row was rewritten, no dependency/deployment was added, and no production environment was touched.
+- Residual risks: the local verification environment is HTTP while production session cookies require HTTPS; access gating, full accessibility/interruption/security review, release controls and deployment remain exclusively in VS-09 or later approved phases.
 
 ## Verification for P-017
 

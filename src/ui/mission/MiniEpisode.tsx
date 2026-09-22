@@ -10,7 +10,12 @@ import {
 } from "@/domain/vertical-slice/mission-catalog";
 import type { AttemptCommand, AttemptReceipt } from "@/application/attempts/submit-attempt";
 
-type Screen = "intro" | "question" | "feedback" | "intermission" | "complete";
+type Screen = "intro" | "question" | "feedback" | "checkpoint" | "safe_stopped";
+type Checkpoint = Readonly<{
+  state: "interim_ready" | "final_first_completion" | "final_replay";
+  updatePending: boolean;
+  guest: boolean;
+}>;
 
 export function MiniEpisode() {
   const [screen, setScreen] = useState<Screen>("intro");
@@ -27,8 +32,12 @@ export function MiniEpisode() {
   const [pendingCommand, setPendingCommand] = useState<AttemptCommand>();
   const [submitState, setSubmitState] = useState<"idle" | "submitting" | "error">("idle");
   const feedbackHeading = useRef<HTMLHeadingElement>(null);
+  const checkpointHeading = useRef<HTMLHeadingElement>(null);
   const hintDialog = useRef<HTMLElement>(null);
   const hintTrigger = useRef<HTMLButtonElement>(null);
+  const checkpointKey = useRef<string | undefined>(undefined);
+  const [checkpoint, setCheckpoint] = useState<Checkpoint>();
+  const [checkpointError, setCheckpointError] = useState(false);
 
   const mission = FIRST_RUN_MISSIONS[missionIndex];
   const question = mission.questions[questionIndex];
@@ -38,6 +47,10 @@ export function MiniEpisode() {
 
   useEffect(() => {
     if (screen === "feedback") feedbackHeading.current?.focus();
+  }, [screen]);
+
+  useEffect(() => {
+    if (screen === "checkpoint" || screen === "safe_stopped") checkpointHeading.current?.focus();
   }, [screen]);
 
   useEffect(() => {
@@ -97,7 +110,36 @@ export function MiniEpisode() {
       setScreen("question");
       return;
     }
-    setScreen(missionIndex === FIRST_RUN_MISSIONS.length - 1 ? "complete" : "intermission");
+    void openCheckpoint();
+  }
+
+  async function openCheckpoint() {
+    checkpointKey.current ??= crypto.randomUUID();
+    setCheckpoint(undefined);
+    setCheckpointError(false);
+    setScreen("checkpoint");
+    try {
+      const result = await fetch("/api/checkpoint", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          missionId: mission.id,
+          idempotencyKey: checkpointKey.current,
+          clientRelease: "vs-08.1",
+        }),
+      });
+      const payload = (await result.json()) as Checkpoint;
+      if (!result.ok || !payload.state) throw new Error("Checkpoint unavailable");
+      setCheckpoint(payload);
+    } catch {
+      setCheckpointError(true);
+    }
+  }
+
+  function continueFromCheckpoint() {
+    checkpointKey.current = undefined;
+    if (missionIndex < FIRST_RUN_MISSIONS.length - 1) startMission(missionIndex + 1);
+    else startMission(0);
   }
 
   function moveToken(fromIndex: number, direction: -1 | 1) {
@@ -386,42 +428,103 @@ export function MiniEpisode() {
           </section>
         ) : null}
 
-        {screen === "intermission" ? (
-          <section className="mission-complete" aria-labelledby="transition-title">
+        {screen === "checkpoint" ? (
+          <section className="mission-complete checkpoint-card" aria-labelledby="checkpoint-title">
             <div className="dossier-mark" aria-hidden="true">
-              <span>↗</span>
+              <span>{checkpoint?.state === "final_first_completion" ? "⌁" : "↗"}</span>
             </div>
-            <p className="route-label">Dữ liệu đã rõ hơn</p>
-            <h2 id="transition-title">{FIRST_RUN_MISSIONS[missionIndex + 1].titleVi}</h2>
+            <p className="route-label">Checkpoint · Chặng {missionIndex + 1}/3 hoàn tất</p>
+            <h2 id="checkpoint-title" ref={checkpointHeading} tabIndex={-1}>
+              {checkpoint?.state === "final_first_completion"
+                ? "Đã khôi phục ngữ cảnh"
+                : checkpoint?.state === "final_replay"
+                  ? "Hồ sơ đã hoàn thành trước đó"
+                  : "Dữ liệu đã rõ hơn"}
+            </h2>
             <p>{mission.transitionVi}</p>
-            <button
-              className="button-primary"
-              onClick={() => startMission(missionIndex + 1)}
-              type="button"
-            >
-              Mở hồ sơ tiếp theo
-            </button>
+            {checkpoint?.state === "final_first_completion" ? (
+              <p className="story-result">
+                Sổ hành trình: <strong>Context Restored</strong> · Một đoạn bản đồ mới đã mở.
+              </p>
+            ) : null}
+            {checkpoint?.guest ? (
+              <p className="evidence-note">
+                Bạn đang chơi với tư cách khách; kết quả này giữ tối đa 24 giờ.
+              </p>
+            ) : null}
+            {checkpoint?.updatePending ? (
+              <button
+                className="button-secondary"
+                onClick={() => window.location.reload()}
+                type="button"
+              >
+                Tải phiên bản mới
+              </button>
+            ) : null}
+            {checkpointError ? (
+              <p className="submit-error" role="alert">
+                Checkpoint chưa tải được; các câu đã gửi vẫn an toàn.
+              </p>
+            ) : null}
+            <div className="checkpoint-actions">
+              <button
+                className="button-primary"
+                disabled={!checkpoint}
+                onClick={continueFromCheckpoint}
+                type="button"
+              >
+                {missionIndex === FIRST_RUN_MISSIONS.length - 1
+                  ? "Làm lại mini-episode"
+                  : "Tiếp tục nhiệm vụ"}
+              </button>
+              <button
+                className="button-secondary"
+                onClick={() => setScreen("safe_stopped")}
+                type="button"
+              >
+                Dừng tại đây
+              </button>
+              {checkpointError ? (
+                <button
+                  className="details-toggle"
+                  onClick={() => void openCheckpoint()}
+                  type="button"
+                >
+                  Thử lại checkpoint
+                </button>
+              ) : null}
+            </div>
           </section>
         ) : null}
 
-        {screen === "complete" ? (
-          <section className="mission-complete" aria-labelledby="complete-title">
+        {screen === "safe_stopped" ? (
+          <section className="mission-complete checkpoint-card" aria-labelledby="safe-stop-title">
             <div className="dossier-mark" aria-hidden="true">
-              <span>⌁</span>
+              <span>□</span>
             </div>
-            <p className="route-label">Ngữ cảnh đã khớp</p>
-            <h2 id="complete-title">Ba lớp hồ sơ đã được ghép lại</h2>
+            <p className="route-label">Điểm dừng an toàn</p>
+            <h2 id="safe-stop-title" ref={checkpointHeading} tabIndex={-1}>
+              Các câu đã gửi vẫn được giữ
+            </h2>
             <p>
-              {mission.transitionVi} Các lượt làm được lưu an toàn; phần thưởng, checkpoint và
-              mastery sẽ được mở ở bước sau.
+              Bạn có thể quay lại bất cứ lúc nào. Lượt làm đã được máy chủ xác nhận không bị mất vì
+              bạn dừng ở đây.
             </p>
-            <p className="story-result" lang="en">
-              The final summary now distinguishes sentence logic, survey scope and cautious claim
-              strength.
-            </p>
-            <button className="button-primary" onClick={() => startMission(0)} type="button">
-              Làm lại mini-episode
-            </button>
+            {checkpoint?.guest ? (
+              <p className="evidence-note">
+                Với tư cách khách, tiến độ tạm thời còn hiệu lực tối đa 24 giờ trên trình duyệt này.
+              </p>
+            ) : null}
+            <div className="checkpoint-actions">
+              <button className="button-primary" onClick={continueFromCheckpoint} type="button">
+                {missionIndex === FIRST_RUN_MISSIONS.length - 1
+                  ? "Làm lại mini-episode"
+                  : "Tiếp tục nhiệm vụ"}
+              </button>
+              <button className="button-secondary" onClick={() => setScreen("intro")} type="button">
+                Về hồ sơ đầu
+              </button>
+            </div>
           </section>
         ) : null}
       </section>

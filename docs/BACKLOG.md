@@ -438,7 +438,7 @@ The historical 24-hour challenge choice above was corrected by P-034: the pendin
 - [x] Prohibit parallel, anticipatory or bundled implementation across unopened steps.
 - [x] Add the enforcement rule to project instructions and keep PLAN in DRAFT.
 
-## Implementation backlog — step-gated; VS-07 complete; VS-08 locked pending explicit approval
+## Implementation backlog — step-gated; VS-08 complete; VS-09 locked pending explicit approval
 
 ### I-001 Project foundation — VS-01 complete
 
@@ -463,6 +463,10 @@ The local-only episode now has three four-item missions covering sentence bounda
 ### I-001E Server-acknowledged attempt ledger — VS-06 complete
 
 The guest mini-episode now submits a client-generated attempt UUID and idempotency key to a server route. The server resolves the immutable item contract, evaluates the response, computes the request hash, then persists an append-only practice attempt in Supabase. Same guest/key/hash replays the original receipt; a changed payload conflicts without another write. Account lifecycle, guest import, checkpoint/reward and deployment remain deferred to their named steps.
+
+### I-001G Checkpoint and story reward — VS-08 complete
+
+Every four-question mission now ends at a server-backed checkpoint. Account completion requires four acknowledged attempts per mission, records first completion exactly once and grants the fixed `Context Restored` reward only for the first completed third mission; replay returns a non-duplicating state. Guest completion uses a signed 24-hour marker. The interface offers a true safe stop, places focus on its acknowledgement and waits for a checkpoint boundary before offering a content update. VS-09, deployment and all later work remain locked.
 
 ### I-002 Online vertical slice
 
