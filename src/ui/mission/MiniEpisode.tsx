@@ -3,12 +3,12 @@
 import { type KeyboardEvent, useEffect, useRef, useState } from "react";
 
 import {
-  evaluateMissionAnswer,
   FIRST_RUN_MISSIONS,
   initialResponse,
   isResponseComplete,
   type MissionResponse,
 } from "@/domain/vertical-slice/mission-catalog";
+import type { AttemptCommand, AttemptReceipt } from "@/application/attempts/submit-attempt";
 
 type Screen = "intro" | "question" | "feedback" | "intermission" | "complete";
 
@@ -23,14 +23,16 @@ export function MiniEpisode() {
   const [showHintWarning, setShowHintWarning] = useState(false);
   const [detailsOpen, setDetailsOpen] = useState(false);
   const [reorderTouched, setReorderTouched] = useState(false);
+  const [receipt, setReceipt] = useState<AttemptReceipt>();
+  const [pendingCommand, setPendingCommand] = useState<AttemptCommand>();
+  const [submitState, setSubmitState] = useState<"idle" | "submitting" | "error">("idle");
   const feedbackHeading = useRef<HTMLHeadingElement>(null);
   const hintDialog = useRef<HTMLElement>(null);
   const hintTrigger = useRef<HTMLButtonElement>(null);
 
   const mission = FIRST_RUN_MISSIONS[missionIndex];
   const question = mission.questions[questionIndex];
-  const outcome =
-    screen === "feedback" ? evaluateMissionAnswer(question, response, hintUsed) : undefined;
+  const outcome = screen === "feedback" ? receipt?.outcome : undefined;
   const responseIsComplete =
     isResponseComplete(question, response) && (question.type !== "reorder" || reorderTouched);
 
@@ -50,11 +52,38 @@ export function MiniEpisode() {
     setHintUsed(false);
     setDetailsOpen(false);
     setReorderTouched(false);
+    setReceipt(undefined);
+    setPendingCommand(undefined);
+    setSubmitState("idle");
     setScreen("question");
   }
 
-  function submitAnswer() {
-    if (responseIsComplete) setScreen("feedback");
+  async function submitAnswer() {
+    if (!responseIsComplete || submitState === "submitting") return;
+    const command = pendingCommand ?? {
+      attemptId: crypto.randomUUID(),
+      idempotencyKey: crypto.randomUUID(),
+      itemId: question.id,
+      response,
+      hintUsed,
+    };
+    setPendingCommand(command);
+    setSubmitState("submitting");
+    try {
+      const result = await fetch("/api/attempts", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(command),
+      });
+      const payload = (await result.json()) as { receipt?: AttemptReceipt };
+      if (!result.ok || !payload.receipt) throw new Error("Attempt acknowledgement failed");
+      setReceipt(payload.receipt);
+      setPendingCommand(undefined);
+      setSubmitState("idle");
+      setScreen("feedback");
+    } catch {
+      setSubmitState("error");
+    }
   }
 
   function nextQuestion() {
@@ -285,13 +314,18 @@ export function MiniEpisode() {
                 )}
                 <button
                   className="button-primary"
-                  disabled={!responseIsComplete}
+                  disabled={!responseIsComplete || submitState === "submitting"}
                   onClick={submitAnswer}
                   type="button"
                 >
-                  Kiểm tra
+                  {submitState === "submitting" ? "Đang kiểm tra…" : "Kiểm tra"}
                 </button>
               </div>
+              {submitState === "error" ? (
+                <p className="submit-error" role="alert">
+                  Chưa thể lưu lượt làm. Kiểm tra Internet rồi nhấn Kiểm tra để thử lại.
+                </p>
+              ) : null}
             </div>
           </section>
         ) : null}

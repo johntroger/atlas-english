@@ -376,6 +376,11 @@ textarea:focus-visible {
   gap: 1rem;
   margin-top: 2rem;
 }
+.submit-error {
+  margin: 0.85rem 0 0;
+  color: #9b2c2c;
+  font-weight: 700;
+}
 .feedback-layout {
   display: grid;
   grid-template-columns: minmax(140px, 0.4fr) minmax(0, 1fr);

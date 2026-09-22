@@ -438,7 +438,7 @@ The historical 24-hour challenge choice above was corrected by P-034: the pendin
 - [x] Prohibit parallel, anticipatory or bundled implementation across unopened steps.
 - [x] Add the enforcement rule to project instructions and keep PLAN in DRAFT.
 
-## Implementation backlog — step-gated; VS-05 complete; VS-06 awaits approval
+## Implementation backlog — step-gated; VS-06 complete; VS-07 locked pending explicit approval
 
 ### I-001 Project foundation — VS-01 complete
 
@@ -458,7 +458,11 @@ One local-only mission now renders a Vietnamese interface with four short Englis
 
 ### I-001D Three-mission first-run episode — VS-05 complete
 
-The local-only episode now has three four-item missions covering sentence boundaries, countability/quantifier scope and cautious cause/effect language. A deterministic 30-item selection contract records 10 item slots per selected node (6 core, 2 hinted-practice, 2 independent-review); exactly the 12 proof-pack items are first-run. It has no checkpoint/reward, persistence, server acknowledgement, authentication or deployment behavior.
+The local-only episode now has three four-item missions covering sentence boundaries, countability/quantifier scope and cautious cause/effect language. A deterministic 30-item selection contract records 10 item slots per selected node (6 core, 2 hinted-practice, 2 independent-review); exactly the 12 proof-pack items are first-run. VS-06 adds server acknowledgement and append-only practice persistence; checkpoint/reward, authentication and deployment remain deferred.
+
+### I-001E Server-acknowledged attempt ledger — VS-06 complete
+
+The guest mini-episode now submits a client-generated attempt UUID and idempotency key to a server route. The server resolves the immutable item contract, evaluates the response, computes the request hash, then persists an append-only practice attempt in Supabase. Same guest/key/hash replays the original receipt; a changed payload conflicts without another write. Account lifecycle, guest import, checkpoint/reward and deployment remain deferred to their named steps.
 
 ### I-002 Online vertical slice
 

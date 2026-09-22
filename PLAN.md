@@ -2,7 +2,7 @@
 
 > Phiên bản: 2.4
 > Cập nhật: 2026-09-22
-> Trạng thái: **APPROVED — VERTICAL SLICE ONLY; VS-05 COMPLETE; VS-06 AWAITING EXPLICIT APPROVAL**
+> Trạng thái: **APPROVED — VERTICAL SLICE ONLY; VS-06 COMPLETE; VS-07 REQUIRES EXPLICIT APPROVAL**
 
 ## 1. Mục đích tài liệu
 
@@ -335,6 +335,8 @@ Subsequent step approvals:
 - `VS-04` completion: one four-item temporary-data mission was implemented and verified on 2026-09-22. `VS-05` is not open until a new explicit owner approval.
 - `VS-05`: Project Owner explicitly approved the named step on 2026-09-22; only three local temporary-data missions, approximately 12 first-run items and the 30-item selection contract are open.
 - `VS-05` completion: three local temporary-data missions, 12 first-run items and the 30-item selection contract were implemented and verified on 2026-09-22. `VS-06` is not open until a new explicit owner approval.
+- `VS-06`: Project Owner explicitly approved the named step on 2026-09-22; only server acknowledgement, append-only attempts, request hashing, idempotent retry and persistence are open.
+- `VS-06` completion: server acknowledgement, append-only guest attempts, server-computed request hashes, idempotent retry and Supabase persistence were implemented and verified on 2026-09-22. `VS-07` is not open until a new explicit owner approval.
 
 ### Gate 1 — Hợp đồng triển khai
 

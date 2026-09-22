@@ -389,6 +389,16 @@ const MISSION_THREE: Mission = {
 
 export const FIRST_RUN_MISSIONS = [MISSION_ONE, MISSION_TWO, MISSION_THREE] as const;
 
+export function findFirstRunQuestion(
+  itemId: string,
+): { mission: Mission; question: MissionQuestion } | undefined {
+  for (const mission of FIRST_RUN_MISSIONS) {
+    const question = mission.questions.find((candidate) => candidate.id === itemId);
+    if (question) return { mission, question };
+  }
+  return undefined;
+}
+
 const nodeContracts = (
   missionId: Mission["id"],
   nodeId: SelectionContractItem["learningNodeId"],
