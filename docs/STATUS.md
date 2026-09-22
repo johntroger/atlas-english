@@ -164,6 +164,7 @@ Pronunciation thresholds, Writing mechanics, assessment bank and calibration dat
 - Text evaluation uses only declared Unicode/case/punctuation/hyphen/whitespace tolerances; no fuzzy matching or runtime generation exists. Multiple-choice subset credit becomes zero after any incorrect selection.
 - Pure idempotency classification distinguishes new request, same-hash replay and different-hash conflict; no persistence claim is made before VS-06.
 - Format, lint, architecture boundary, TypeScript, unit/golden tests, secret scan and optimized Next.js build pass; dependency audit reports zero vulnerabilities.
+- GitHub Actions CI run 4 completed successfully for commit `5e13213`: `https://github.com/johntroger/atlas-english/actions/runs/35677602612`.
 - Content/schema regression remains green at 22/22 expected fixture outcomes; VS-02 does not implement the runtime validator reserved for VS-03.
 - No migration or compatibility impact beyond declaring the existing Node/Next.js package as an ES module. No database, external service, user data or deployment is involved.
 - Residual risk: content/schema enforcement is not executable until VS-03, and durable server-side attempt/idempotency enforcement remains deferred to VS-06.
