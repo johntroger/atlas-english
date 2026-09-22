@@ -17,7 +17,8 @@ body {
   margin: 0;
 }
 button,
-textarea {
+textarea,
+input {
   font: inherit;
 }
 button {
@@ -30,7 +31,9 @@ button:disabled {
   opacity: 0.5;
 }
 button:focus-visible,
-textarea:focus-visible {
+textarea:focus-visible,
+input:focus-visible,
+a:focus-visible {
   outline: 3px solid #102a43;
   outline-offset: 3px;
 }
@@ -50,6 +53,152 @@ textarea:focus-visible {
   overflow: hidden;
   padding: clamp(1rem, 3vw, 2.25rem);
   background: #f3f7fa;
+}
+.account-nav {
+  position: fixed;
+  z-index: 4;
+  top: 1rem;
+  right: clamp(1rem, 3vw, 2.25rem);
+  display: flex;
+  gap: 0.85rem;
+}
+.account-nav a {
+  padding: 0.45rem 0.7rem;
+  border-radius: 999px;
+  color: #315a70;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+.account-nav a:hover {
+  background: #e0edf1;
+}
+.account-shell {
+  display: grid;
+  min-height: 100vh;
+  padding: clamp(1rem, 5vw, 4rem);
+  place-items: center;
+  background: radial-gradient(circle at 8% 90%, #d8eaec 0 1%, transparent 35%), #f3f7fa;
+}
+.policy-shell {
+  min-height: 100vh;
+  padding: clamp(1rem, 5vw, 4rem);
+  background: #f3f7fa;
+}
+.policy-card {
+  width: min(100%, 760px);
+  margin: 0 auto;
+  padding: clamp(1.35rem, 5vw, 3rem);
+  border: 1px solid #b8cbd4;
+  border-radius: 1.25rem 1.25rem 0.5rem 0.5rem;
+  background: #fff;
+  line-height: 1.65;
+}
+.policy-card h1 {
+  margin-top: 0;
+  font-size: clamp(2rem, 6vw, 3.3rem);
+  line-height: 1.1;
+}
+.policy-card h2 {
+  margin-top: 2rem;
+  font-size: 1.3rem;
+}
+.policy-card a,
+.consent-check a {
+  color: #0e6678;
+  font-weight: 700;
+}
+.account-card {
+  width: min(100%, 620px);
+  padding: clamp(1.35rem, 5vw, 3rem);
+  border: 1px solid #b8cbd4;
+  border-radius: 1.25rem 1.25rem 0.5rem 0.5rem;
+  background: rgb(255 255 255 / 88%);
+  box-shadow: 0 18px 50px rgb(16 42 67 / 11%);
+}
+.account-card h1 {
+  margin: 0;
+  font-size: clamp(2rem, 6vw, 3.3rem);
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+}
+.account-card > p:not(.route-label, .submit-error) {
+  max-width: 57ch;
+  line-height: 1.65;
+}
+.sign-in-form {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.6rem;
+}
+.sign-in-form > label:first-child {
+  display: grid;
+  gap: 0.45rem;
+  color: #315a70;
+  font-weight: 700;
+}
+.sign-in-form input[type="email"] {
+  width: 100%;
+  min-height: 46px;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid #7897a5;
+  border-radius: 0.7rem;
+  background: #fff;
+  color: #102a43;
+}
+.consent-check {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.7rem;
+  align-items: start;
+  color: #315a70;
+  font-size: 0.93rem;
+  line-height: 1.45;
+}
+.consent-check input {
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-top: 0.1rem;
+  accent-color: #147d92;
+}
+.import-preview {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  border-left: 3px solid #147d92;
+  background: #e7f1f4;
+  line-height: 1.55;
+}
+.import-preview p {
+  margin-top: 0;
+}
+.history-list {
+  display: grid;
+  gap: 0.65rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.history-list li {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.8rem;
+  align-items: center;
+  padding: 0.85rem;
+  border: 1px solid #d3e2e8;
+  border-radius: 0.7rem;
+  background: #fff;
+}
+.history-status {
+  padding: 0.2rem 0.45rem;
+  border-radius: 999px;
+  background: #e7f1f4;
+  color: #315a70;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+.history-list time {
+  color: #315a70;
+  font-size: 0.82rem;
 }
 .contour-field {
   position: fixed;
@@ -515,6 +664,11 @@ textarea:focus-visible {
   margin-top: 1.5rem;
 }
 @media (max-width: 720px) {
+  .account-nav {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+  }
   .mission-shell {
     padding: 0;
   }
@@ -562,6 +716,12 @@ textarea:focus-visible {
   }
   .dialog-actions {
     grid-template-columns: 1fr;
+  }
+  .history-list li {
+    grid-template-columns: auto 1fr;
+  }
+  .history-list time {
+    grid-column: 2;
   }
 }
 @media (prefers-reduced-motion: reduce) {

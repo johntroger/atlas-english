@@ -438,7 +438,7 @@ The historical 24-hour challenge choice above was corrected by P-034: the pendin
 - [x] Prohibit parallel, anticipatory or bundled implementation across unopened steps.
 - [x] Add the enforcement rule to project instructions and keep PLAN in DRAFT.
 
-## Implementation backlog — step-gated; VS-06 complete; VS-07 locked pending explicit approval
+## Implementation backlog — step-gated; VS-07 complete; VS-08 locked pending explicit approval
 
 ### I-001 Project foundation — VS-01 complete
 

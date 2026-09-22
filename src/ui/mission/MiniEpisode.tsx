@@ -169,7 +169,7 @@ export function MiniEpisode() {
         </header>
 
         <p className="temporary-notice" role="status">
-          Bản thử nghiệm nội bộ — tiến độ chỉ tồn tại trong trang này.
+          Bạn có thể chơi ngay. Đăng nhập email để lưu và xem lại lịch sử dài hạn.
         </p>
 
         {screen === "intro" ? (
@@ -412,8 +412,8 @@ export function MiniEpisode() {
             <p className="route-label">Ngữ cảnh đã khớp</p>
             <h2 id="complete-title">Ba lớp hồ sơ đã được ghép lại</h2>
             <p>
-              {mission.transitionVi} Hệ thống chưa lưu tiến độ, phần thưởng hay mastery ở bước hiện
-              tại.
+              {mission.transitionVi} Các lượt làm được lưu an toàn; phần thưởng, checkpoint và
+              mastery sẽ được mở ở bước sau.
             </p>
             <p className="story-result" lang="en">
               The final summary now distinguishes sentence logic, survey scope and cautious claim

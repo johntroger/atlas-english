@@ -3,7 +3,7 @@ import test from "node:test";
 
 process.env.ATLAS_GUEST_COOKIE_SECRET = "test-secret-only-not-production";
 
-const { getGuestActor } = await import("../src/infrastructure/http/guest-actor.ts");
+const { findGuestActor, getGuestActor } = await import("../src/infrastructure/http/guest-actor.ts");
 
 test("a guest binding is signed, HTTP-only-ready and remains stable before expiry", () => {
   const now = new Date("2026-09-22T01:00:00.000Z");
@@ -22,5 +22,16 @@ test("a tampered or expired guest binding is replaced", () => {
   assert.notEqual(
     getGuestActor(created.cookieValue, new Date("2026-09-23T01:00:01.000Z")).id,
     created.id,
+  );
+});
+
+test("guest-history lookup refuses to revive an expired or tampered binding", () => {
+  const now = new Date("2026-09-22T01:00:00.000Z");
+  const created = getGuestActor(undefined, now);
+  assert.equal(findGuestActor(created.cookieValue, now)?.id, created.id);
+  assert.equal(findGuestActor(`${created.cookieValue}x`, now), undefined);
+  assert.equal(
+    findGuestActor(created.cookieValue, new Date("2026-09-23T01:00:01.000Z")),
+    undefined,
   );
 });

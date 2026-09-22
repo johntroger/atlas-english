@@ -43,6 +43,15 @@ export function getGuestActor(cookieValue: string | undefined, now = new Date())
   return { id, cookieValue: `${payload}.${signature(payload)}` };
 }
 
+/** Returns only a still-valid guest binding and never creates a replacement. */
+export function findGuestActor(
+  cookieValue: string | undefined,
+  now = new Date(),
+): GuestActor | undefined {
+  const id = cookieValue ? verify(cookieValue, now) : undefined;
+  return id ? { id } : undefined;
+}
+
 export const guestActorCookieOptions = {
   httpOnly: true,
   maxAge: DAY_SECONDS,

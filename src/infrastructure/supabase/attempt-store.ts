@@ -1,6 +1,10 @@
-import { createClient } from "@supabase/supabase-js";
-
 import type { AttemptReceipt, AttemptStore } from "@/application/attempts/submit-attempt";
+import { createSupabaseServerClient } from "@/infrastructure/supabase/server-client";
+
+export type StoredAttemptActor = Readonly<{
+  kind: "account" | "guest";
+  id: string;
+}>;
 
 type AttemptRow = Readonly<{
   id: string;
@@ -20,24 +24,15 @@ function receiptFrom(row: AttemptRow): AttemptReceipt {
   };
 }
 
-function createServerClient() {
-  const url = process.env.SUPABASE_URL;
-  const secretKey = process.env.SUPABASE_SECRET_KEY;
-  if (!url || !secretKey) throw new Error("Supabase server configuration is missing.");
-  return createClient(url, secretKey, {
-    auth: { autoRefreshToken: false, persistSession: false },
-  });
-}
-
-export function createSupabaseAttemptStore(): AttemptStore {
-  const client = createServerClient();
+export function createSupabaseAttemptStore(actor: StoredAttemptActor): AttemptStore {
+  const client = createSupabaseServerClient();
   const findByActorAndKey = async (actorId: string, idempotencyKey: string) => {
-    const { data, error } = await client
+    let query = client
       .from("attempts")
       .select("id, idempotency_key, request_hash, server_outcome, submitted_at")
-      .eq("guest_provenance_id", actorId)
-      .eq("idempotency_key", idempotencyKey)
-      .maybeSingle<AttemptRow>();
+      .eq("idempotency_key", idempotencyKey);
+    query = query.eq(actor.kind === "account" ? "actor_user_id" : "guest_provenance_id", actorId);
+    const { data, error } = await query.maybeSingle<AttemptRow>();
     if (error) throw new Error("Could not read the attempt receipt.");
     return data ? receiptFrom(data) : undefined;
   };
@@ -47,7 +42,8 @@ export function createSupabaseAttemptStore(): AttemptStore {
     async persistOrReadExisting(actorId, receipt, command) {
       const { error } = await client.from("attempts").insert({
         id: receipt.attemptId,
-        guest_provenance_id: actorId,
+        actor_user_id: actor.kind === "account" ? actorId : null,
+        guest_provenance_id: actor.kind === "guest" ? actorId : null,
         idempotency_key: receipt.idempotencyKey,
         request_hash: receipt.requestHash,
         item_id: command.itemId,
@@ -65,7 +61,8 @@ export function createSupabaseAttemptStore(): AttemptStore {
         ineligibility_reason: "vertical_slice_no_mastery_projection",
         technical_status: "ok",
         submitted_at: receipt.submittedAt,
-        guest_expires_at: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
+        guest_expires_at:
+          actor.kind === "guest" ? new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString() : null,
       });
       if (!error) return { receipt, inserted: true };
       if (error.code !== "23505") throw new Error("Could not store the attempt.");

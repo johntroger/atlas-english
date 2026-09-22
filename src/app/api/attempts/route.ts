@@ -7,6 +7,7 @@ import {
   getGuestActor,
   guestActorCookieOptions,
 } from "@/infrastructure/http/guest-actor";
+import { getCurrentAccount } from "@/infrastructure/http/current-account";
 import { createSupabaseAttemptStore } from "@/infrastructure/supabase/attempt-store";
 
 export const runtime = "nodejs";
@@ -74,9 +75,16 @@ export async function POST(request: Request) {
   }
 
   const cookieStore = await cookies();
-  const guest = getGuestActor(cookieStore.get(GUEST_ACTOR_COOKIE)?.value);
+  const account = await getCurrentAccount(cookieStore.get("atlas_account_session")?.value);
+  const guest = account ? undefined : getGuestActor(cookieStore.get(GUEST_ACTOR_COOKIE)?.value);
+  const actor = account
+    ? account
+    : {
+        kind: "guest" as const,
+        id: guest?.id ?? "",
+      };
   try {
-    const result = await submitAttempt(guest.id, command, createSupabaseAttemptStore());
+    const result = await submitAttempt(actor.id, command, createSupabaseAttemptStore(actor));
     if (result.kind === "invalid") {
       return NextResponse.json({ error: "unknown_item" }, { status: 422 });
     }
@@ -84,7 +92,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "idempotency_conflict" }, { status: 409 });
     }
     const response = NextResponse.json({ kind: result.kind, receipt: result.receipt });
-    if (guest.cookieValue)
+    if (guest?.cookieValue)
       response.cookies.set(GUEST_ACTOR_COOKIE, guest.cookieValue, guestActorCookieOptions);
     return response;
   } catch (error) {
