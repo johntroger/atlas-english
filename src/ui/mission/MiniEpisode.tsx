@@ -3,23 +3,22 @@
 import { type KeyboardEvent, useEffect, useRef, useState } from "react";
 
 import {
-  evaluateMissionOneAnswer,
-  isMissionOneResponseComplete,
-  MISSION_ONE,
-  type MissionOneResponse,
-} from "@/domain/vertical-slice/mission-one";
+  evaluateMissionAnswer,
+  FIRST_RUN_MISSIONS,
+  initialResponse,
+  isResponseComplete,
+  type MissionResponse,
+} from "@/domain/vertical-slice/mission-catalog";
 
-type Screen = "intro" | "question" | "feedback" | "complete";
+type Screen = "intro" | "question" | "feedback" | "intermission" | "complete";
 
-function initialResponse(questionIndex: number): MissionOneResponse {
-  const question = MISSION_ONE.questions[questionIndex];
-  return question.type === "reorder" ? question.tokens.map((_, index) => index) : "";
-}
-
-export function MissionOne() {
+export function MiniEpisode() {
   const [screen, setScreen] = useState<Screen>("intro");
+  const [missionIndex, setMissionIndex] = useState(0);
   const [questionIndex, setQuestionIndex] = useState(0);
-  const [response, setResponse] = useState<MissionOneResponse>(() => initialResponse(0));
+  const [response, setResponse] = useState<MissionResponse>(() =>
+    initialResponse(FIRST_RUN_MISSIONS[0].questions[0]),
+  );
   const [hintUsed, setHintUsed] = useState(false);
   const [showHintWarning, setShowHintWarning] = useState(false);
   const [detailsOpen, setDetailsOpen] = useState(false);
@@ -28,67 +27,71 @@ export function MissionOne() {
   const hintDialog = useRef<HTMLElement>(null);
   const hintTrigger = useRef<HTMLButtonElement>(null);
 
-  const question = MISSION_ONE.questions[questionIndex];
+  const mission = FIRST_RUN_MISSIONS[missionIndex];
+  const question = mission.questions[questionIndex];
   const outcome =
-    screen === "feedback" ? evaluateMissionOneAnswer(question, response, hintUsed) : undefined;
+    screen === "feedback" ? evaluateMissionAnswer(question, response, hintUsed) : undefined;
   const responseIsComplete =
-    isMissionOneResponseComplete(question, response) &&
-    (question.type !== "reorder" || reorderTouched);
+    isResponseComplete(question, response) && (question.type !== "reorder" || reorderTouched);
 
   useEffect(() => {
-    if (screen === "feedback") {
-      feedbackHeading.current?.focus();
-    }
+    if (screen === "feedback") feedbackHeading.current?.focus();
   }, [screen]);
 
   useEffect(() => {
-    if (showHintWarning) {
-      hintDialog.current?.querySelector<HTMLButtonElement>("button")?.focus();
-    }
+    if (showHintWarning) hintDialog.current?.querySelector<HTMLButtonElement>("button")?.focus();
   }, [showHintWarning]);
 
-  function beginMission() {
-    setScreen("question");
+  function startMission(index: number) {
+    const firstQuestion = FIRST_RUN_MISSIONS[index].questions[0];
+    setMissionIndex(index);
     setQuestionIndex(0);
-    setResponse(initialResponse(0));
+    setResponse(initialResponse(firstQuestion));
     setHintUsed(false);
     setDetailsOpen(false);
     setReorderTouched(false);
+    setScreen("question");
   }
 
   function submitAnswer() {
-    if (!responseIsComplete) {
-      return;
-    }
-    setScreen("feedback");
+    if (responseIsComplete) setScreen("feedback");
   }
 
   function nextQuestion() {
-    if (questionIndex === MISSION_ONE.questions.length - 1) {
-      setScreen("complete");
+    if (questionIndex < mission.questions.length - 1) {
+      const nextQuestion = mission.questions[questionIndex + 1];
+      setQuestionIndex((index) => index + 1);
+      setResponse(initialResponse(nextQuestion));
+      setHintUsed(false);
+      setDetailsOpen(false);
+      setReorderTouched(false);
+      setScreen("question");
       return;
     }
-    const nextIndex = questionIndex + 1;
-    setQuestionIndex(nextIndex);
-    setResponse(initialResponse(nextIndex));
-    setHintUsed(false);
-    setDetailsOpen(false);
-    setReorderTouched(false);
-    setScreen("question");
+    setScreen(missionIndex === FIRST_RUN_MISSIONS.length - 1 ? "complete" : "intermission");
   }
 
   function moveToken(fromIndex: number, direction: -1 | 1) {
-    if (!Array.isArray(response)) {
-      return;
-    }
+    if (!Array.isArray(response)) return;
     const toIndex = fromIndex + direction;
-    if (toIndex < 0 || toIndex >= response.length) {
-      return;
-    }
+    if (toIndex < 0 || toIndex >= response.length) return;
     const next = [...response];
     [next[fromIndex], next[toIndex]] = [next[toIndex], next[fromIndex]];
     setResponse(next);
     setReorderTouched(true);
+  }
+
+  function toggleOption(optionId: string) {
+    if (question.type === "choice") {
+      setResponse([optionId]);
+      return;
+    }
+    if (!Array.isArray(response)) return;
+    setResponse(
+      response.includes(optionId)
+        ? response.filter((id) => id !== optionId)
+        : [...response, optionId],
+    );
   }
 
   function closeHintWarning() {
@@ -102,17 +105,13 @@ export function MissionOne() {
       closeHintWarning();
       return;
     }
-    if (event.key !== "Tab") {
-      return;
-    }
+    if (event.key !== "Tab") return;
     const focusable = Array.from(
       hintDialog.current?.querySelectorAll<HTMLButtonElement>("button") ?? [],
     );
     const first = focusable[0];
     const last = focusable.at(-1);
-    if (!first || !last) {
-      return;
-    }
+    if (!first || !last) return;
     if (event.shiftKey && document.activeElement === first) {
       event.preventDefault();
       last.focus();
@@ -129,7 +128,7 @@ export function MissionOne() {
         <header className="mission-header">
           <div>
             <p className="route-label">Atlas English · Route to 6.5</p>
-            <h1 id="mission-title">{MISSION_ONE.titleVi}</h1>
+            <h1 id="mission-title">Hồ sơ ngữ cảnh</h1>
           </div>
           {screen === "question" || screen === "feedback" ? (
             <p className="mission-progress">
@@ -141,7 +140,7 @@ export function MissionOne() {
         </header>
 
         <p className="temporary-notice" role="status">
-          {MISSION_ONE.temporaryNoticeVi}
+          Bản thử nghiệm nội bộ — tiến độ chỉ tồn tại trong trang này.
         </p>
 
         {screen === "intro" ? (
@@ -149,24 +148,24 @@ export function MissionOne() {
             <div className="dossier-mark" aria-hidden="true">
               <span>↗</span>
             </div>
-            <p className="route-label">Hồ sơ 01</p>
-            <h2 id="intro-title">Hai bản tóm tắt, một ngữ cảnh bị mất</h2>
+            <p className="route-label">The Atlas Initiative · Prologue</p>
+            <h2 id="intro-title">Một hồ sơ, ba lớp ngữ cảnh bị thiếu</h2>
             <p>
-              Ato và Mira đang đối chiếu hai bản tóm tắt của cùng một khảo sát. Bốn câu ngắn sẽ giúp
-              bạn nối lại logic giữa các phát hiện.
+              Hai bản tóm tắt về việc học online không khớp nhau. Cùng Ato và Mira sửa logic câu,
+              phạm vi số liệu và độ mạnh của kết luận.
             </p>
             <dl className="mission-brief">
               <div>
-                <dt>Mục tiêu</dt>
-                <dd>{MISSION_ONE.dossierGoalVi}</dd>
+                <dt>Lộ trình</dt>
+                <dd>3 hồ sơ ngắn · 12 câu</dd>
               </div>
               <div>
-                <dt>Thời lượng</dt>
-                <dd>Khoảng 3 phút · 4 câu</dd>
+                <dt>Mục tiêu</dt>
+                <dd>Luyện grammar và vocabulary phục vụ IELTS Academic.</dd>
               </div>
             </dl>
-            <button className="button-primary" type="button" onClick={beginMission}>
-              Bắt đầu nhiệm vụ
+            <button className="button-primary" type="button" onClick={() => startMission(0)}>
+              Mở hồ sơ đầu tiên
             </button>
           </section>
         ) : null}
@@ -174,22 +173,26 @@ export function MissionOne() {
         {screen === "question" ? (
           <section className="question-layout" aria-labelledby="question-title">
             <aside className="context-panel" aria-label="Ngữ cảnh nhiệm vụ">
-              <p className="route-label">Mảnh hồ sơ {questionIndex + 1}</p>
-              <p>{MISSION_ONE.shortContextVi}</p>
+              <p className="route-label">{mission.dossierLabel}</p>
+              <p>{mission.setupVi}</p>
               <div className="context-line" aria-hidden="true" />
-              <p>{MISSION_ONE.dossierGoalVi}</p>
+              <p>{mission.objectiveVi}</p>
+              <p className="episode-position">
+                Hồ sơ {missionIndex + 1}/3 · Câu {questionIndex + 1}/4
+              </p>
             </aside>
             <div className="question-panel">
               <div className="progress-track" aria-hidden="true">
                 <span style={{ width: `${((questionIndex + 1) / 4) * 100}%` }} />
               </div>
-              <p className="question-context" lang="en">
-                {question.context}
-              </p>
+              {question.context ? (
+                <p className="question-context" lang="en">
+                  {question.context}
+                </p>
+              ) : null}
               <h2 id="question-title" lang="en">
                 {question.prompt}
               </h2>
-
               {hintUsed && question.hint ? (
                 <aside className="hint-note" lang="en">
                   <strong>Lượt luyện tập</strong>
@@ -197,24 +200,31 @@ export function MissionOne() {
                 </aside>
               ) : null}
 
-              {question.type === "choice" ? (
+              {question.type === "choice" || question.type === "multiple_choice" ? (
                 <fieldset className="answer-list">
-                  <legend className="sr-only">Chọn một đáp án</legend>
-                  {question.options.map((option) => (
-                    <label className="answer-option" key={option.id}>
-                      <input
-                        checked={response === option.id}
-                        name={question.id}
-                        onChange={() => setResponse(option.id)}
-                        type="radio"
-                        value={option.id}
-                      />
-                      <span className="option-key" aria-hidden="true">
-                        {option.id.toUpperCase()}
-                      </span>
-                      <span lang="en">{option.text}</span>
-                    </label>
-                  ))}
+                  <legend className="sr-only">
+                    {question.type === "multiple_choice"
+                      ? "Chọn các đáp án phù hợp"
+                      : "Chọn một đáp án"}
+                  </legend>
+                  {question.options.map((option) => {
+                    const selected = Array.isArray(response) && response.includes(option.id);
+                    return (
+                      <label className="answer-option" key={option.id}>
+                        <input
+                          checked={selected}
+                          name={question.id}
+                          onChange={() => toggleOption(option.id)}
+                          type={question.type === "multiple_choice" ? "checkbox" : "radio"}
+                          value={option.id}
+                        />
+                        <span className="option-key" aria-hidden="true">
+                          {option.id.toUpperCase()}
+                        </span>
+                        <span lang="en">{option.text}</span>
+                      </label>
+                    );
+                  })}
                 </fieldset>
               ) : null}
 
@@ -248,12 +258,12 @@ export function MissionOne() {
 
               {question.type === "text" ? (
                 <label className="text-answer" htmlFor="mission-answer">
-                  <span>Viết câu đã sửa</span>
+                  <span>Viết câu trả lời</span>
                   <textarea
                     id="mission-answer"
                     lang="en"
                     onChange={(event) => setResponse(event.target.value)}
-                    placeholder="Write your corrected sentence here."
+                    placeholder="Write your answer here."
                     rows={4}
                     value={typeof response === "string" ? response : ""}
                   />
@@ -310,7 +320,7 @@ export function MissionOne() {
                 aria-controls="feedback-details"
                 aria-expanded={detailsOpen}
                 className="details-toggle"
-                onClick={() => setDetailsOpen((isOpen) => !isOpen)}
+                onClick={() => setDetailsOpen((open) => !open)}
                 type="button"
               >
                 {detailsOpen ? "Thu gọn" : "Xem chi tiết"}
@@ -332,11 +342,31 @@ export function MissionOne() {
                 </div>
               ) : null}
               <button className="button-primary" onClick={nextQuestion} type="button">
-                {questionIndex === MISSION_ONE.questions.length - 1
-                  ? "Xem kết quả nhiệm vụ"
+                {questionIndex === mission.questions.length - 1
+                  ? missionIndex === FIRST_RUN_MISSIONS.length - 1
+                    ? "Xem kết quả mini-episode"
+                    : "Xem hồ sơ tiếp theo"
                   : "Tiếp tục"}
               </button>
             </div>
+          </section>
+        ) : null}
+
+        {screen === "intermission" ? (
+          <section className="mission-complete" aria-labelledby="transition-title">
+            <div className="dossier-mark" aria-hidden="true">
+              <span>↗</span>
+            </div>
+            <p className="route-label">Dữ liệu đã rõ hơn</p>
+            <h2 id="transition-title">{FIRST_RUN_MISSIONS[missionIndex + 1].titleVi}</h2>
+            <p>{mission.transitionVi}</p>
+            <button
+              className="button-primary"
+              onClick={() => startMission(missionIndex + 1)}
+              type="button"
+            >
+              Mở hồ sơ tiếp theo
+            </button>
           </section>
         ) : null}
 
@@ -345,18 +375,18 @@ export function MissionOne() {
             <div className="dossier-mark" aria-hidden="true">
               <span>⌁</span>
             </div>
-            <p className="route-label">Hồ sơ đã rõ hơn</p>
-            <h2 id="complete-title">Bốn mảnh logic đã được ghép lại</h2>
+            <p className="route-label">Ngữ cảnh đã khớp</p>
+            <h2 id="complete-title">Ba lớp hồ sơ đã được ghép lại</h2>
             <p>
-              Bạn đã hoàn tất bản thử nghiệm của nhiệm vụ này. Hệ thống chưa lưu tiến độ, phần
-              thưởng hay mastery ở bước hiện tại.
+              {mission.transitionVi} Hệ thống chưa lưu tiến độ, phần thưởng hay mastery ở bước hiện
+              tại.
             </p>
             <p className="story-result" lang="en">
-              The summary can now show the contrast between a high response rate and a limited
-              sample.
+              The final summary now distinguishes sentence logic, survey scope and cautious claim
+              strength.
             </p>
-            <button className="button-primary" onClick={beginMission} type="button">
-              Làm lại nhiệm vụ
+            <button className="button-primary" onClick={() => startMission(0)} type="button">
+              Làm lại mini-episode
             </button>
           </section>
         ) : null}
@@ -369,9 +399,9 @@ export function MissionOne() {
             aria-labelledby="hint-warning-title"
             aria-modal="true"
             className="hint-dialog"
-            role="dialog"
             onKeyDown={keepHintFocus}
             ref={hintDialog}
+            role="dialog"
           >
             <h2 id="hint-warning-title">Mở gợi ý?</h2>
             <p id="hint-warning-copy">

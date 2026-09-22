@@ -438,7 +438,7 @@ The historical 24-hour challenge choice above was corrected by P-034: the pendin
 - [x] Prohibit parallel, anticipatory or bundled implementation across unopened steps.
 - [x] Add the enforcement rule to project instructions and keep PLAN in DRAFT.
 
-## Implementation backlog — step-gated; VS-04 complete; VS-05 awaits approval
+## Implementation backlog — step-gated; VS-05 complete; VS-06 awaits approval
 
 ### I-001 Project foundation — VS-01 complete
 
@@ -455,6 +455,10 @@ Executable Draft 2020-12 schema validation and deterministic semantic/cross-refe
 ### I-001C Temporary four-item mission — VS-04 complete
 
 One local-only mission now renders a Vietnamese interface with four short English exercises: single choice, reorder, and two controlled text corrections. It uses the VS-02 pure evaluator, explicit hinted-attempt practice-only feedback, keyboard-accessible hint confirmation, responsive layouts, and no storage/network/database behavior. Three-mission content, checkpoint/reward, persistence, authentication and deployment remain deferred to their named later steps.
+
+### I-001D Three-mission first-run episode — VS-05 complete
+
+The local-only episode now has three four-item missions covering sentence boundaries, countability/quantifier scope and cautious cause/effect language. A deterministic 30-item selection contract records 10 item slots per selected node (6 core, 2 hinted-practice, 2 independent-review); exactly the 12 proof-pack items are first-run. It has no checkpoint/reward, persistence, server acknowledgement, authentication or deployment behavior.
 
 ### I-002 Online vertical slice
 

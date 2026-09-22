@@ -1,5 +1,5 @@
-import { MissionOne } from "@/ui/mission/MissionOne";
+import { MiniEpisode } from "@/ui/mission/MiniEpisode";
 
 export default function HomePage() {
-  return <MissionOne />;
+  return <MiniEpisode />;
 }

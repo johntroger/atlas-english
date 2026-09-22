@@ -8,6 +8,7 @@ All notable project changes are recorded here.
 
 ## Unreleased
 
+- Completed owner-approved VS-05: expanded the local-only mini-episode to three missions and twelve first-run items, added deterministic choice/multiple-choice/reorder/text flows, and recorded the 30-item selection contract. VS-06 and later work remain locked.
 - Completed owner-approved VS-04: added one responsive, local-only four-item mission with deterministic answer feedback, controlled text/reorder/choice interactions, explicit practice-only hint behavior, keyboard-accessible hint confirmation and temporary-progress disclosure. VS-05 and later work remain locked.
 - Completed owner-approved VS-03: added executable Draft 2020-12 schema validation, deterministic semantic/cross-reference checks, canonical hash verification, stable findings, explicit manual-review routing for natural-language ambiguity and regression tests for Content Packs, Narrative Packs, learning nodes and exercise contracts. VS-04 and later implementation remain locked.
 - Completed VS-02 after explicit owner approval: added a framework-independent deterministic answer evaluator, auditable Learning Contract v0.1 eligibility gates, exact versioned mastery updates, technical/self-review no-op behavior, pure idempotency classification and executable golden/edge tests. VS-03 and later implementation remain blocked.
