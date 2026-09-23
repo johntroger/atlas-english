@@ -113,3 +113,41 @@ checksRun:
 retestResult: "Verified; the owner also entered the gated environment."
 residualRisk: "The in-memory rate limit is suitable only for Owner Alpha, not public traffic."
 ```
+
+```yaml
+id: ALPHA-20260923-02
+reportedAt: 2026-09-23T10:10:00+07:00
+status: ready_for_retest
+severity: P1
+summary: "Reloading after a checkpoint returned a guest to the start instead of the next dossier"
+ownerDescription: "After continuing from Dossier 01 to Dossier 02 and reloading, the opening screen offered only a new start."
+environment:
+  appBuild: "1b81295 (affected); recovery fix pending Alpha deployment"
+  contentVersion: "vertical-slice proof pack"
+  algorithmVersion: "mastery-v0.1"
+  device: "desktop browser"
+  browser: "owner Alpha browser"
+  viewport: "desktop"
+location: "/ — Dossier 02 question 1"
+reproductionSteps:
+  - "Complete Dossier 01 and select Continue mission."
+  - "Reach Dossier 02 question 1 and reload the page."
+expected: "Resume Dossier 02 automatically without granting client-side learning credit."
+actual: "The opening screen appeared without a resume control."
+impact:
+  learningCorrectness: none
+  dataIntegrity: none
+  securityPrivacy: none
+workaround: "Previously acknowledged attempts remain on the server, but the learner had to navigate from the beginning."
+evidenceRefs:
+  - "Owner Alpha screenshot supplied 2026-09-23"
+rootCause: "The browser stored only a short-lived choice buffer; it did not persist a story checkpoint when continuing to the next dossier."
+fixRefs:
+  - "src/ui/mission/recovery.ts"
+  - "src/ui/mission/MiniEpisode.tsx"
+checksRun:
+  - "npm run check (55 tests)"
+  - "recovery parser expiry and invalid-value tests"
+retestResult: "Awaiting deployed Owner Alpha retest."
+residualRisk: "The checkpoint is a 24-hour browser convenience only; server acknowledgements remain authoritative."
+```

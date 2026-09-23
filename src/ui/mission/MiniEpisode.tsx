@@ -9,6 +9,14 @@ import {
   type MissionResponse,
 } from "@/domain/vertical-slice/mission-catalog";
 import type { AttemptCommand, AttemptReceipt } from "@/application/attempts/submit-attempt";
+import {
+  CURRENT_CHOICE_RECOVERY_KEY,
+  CURRENT_CHOICE_RECOVERY_TTL,
+  parseCurrentChoiceRecovery,
+  parseStoryCheckpointRecovery,
+  STORY_CHECKPOINT_RECOVERY_KEY,
+  STORY_CHECKPOINT_RECOVERY_TTL,
+} from "@/ui/mission/recovery";
 
 type Screen = "intro" | "question" | "feedback" | "checkpoint" | "safe_stopped";
 type Checkpoint = Readonly<{
@@ -16,16 +24,6 @@ type Checkpoint = Readonly<{
   updatePending: boolean;
   guest: boolean;
 }>;
-type Recovery = Readonly<{
-  missionIndex: number;
-  questionIndex: number;
-  response: Exclude<MissionResponse, string>;
-  hintUsed: boolean;
-  expiresAt: number;
-}>;
-const RECOVERY_KEY = "atlas_current_choice_v1";
-const RECOVERY_TTL = 30 * 60 * 1000;
-
 export function MiniEpisode() {
   const [screen, setScreen] = useState<Screen>("intro");
   const [missionIndex, setMissionIndex] = useState(0);
@@ -48,7 +46,6 @@ export function MiniEpisode() {
   const [checkpoint, setCheckpoint] = useState<Checkpoint>();
   const [checkpointError, setCheckpointError] = useState(false);
   const [online, setOnline] = useState(true);
-  const [recovery, setRecovery] = useState<Recovery>();
 
   const mission = FIRST_RUN_MISSIONS[missionIndex];
   const question = mission.questions[questionIndex];
@@ -81,38 +78,55 @@ export function MiniEpisode() {
 
   useEffect(() => {
     try {
-      const saved = JSON.parse(sessionStorage.getItem(RECOVERY_KEY) ?? "null") as Recovery | null;
-      if (
-        saved &&
-        saved.expiresAt > Date.now() &&
-        Number.isInteger(saved.missionIndex) &&
-        Number.isInteger(saved.questionIndex) &&
-        Array.isArray(saved.response)
-      )
-        setRecovery(saved);
-      else sessionStorage.removeItem(RECOVERY_KEY);
+      const current = parseCurrentChoiceRecovery(
+        sessionStorage.getItem(CURRENT_CHOICE_RECOVERY_KEY),
+        FIRST_RUN_MISSIONS.length,
+        FIRST_RUN_MISSIONS[0].questions.length,
+      );
+      const checkpoint = parseStoryCheckpointRecovery(
+        localStorage.getItem(STORY_CHECKPOINT_RECOVERY_KEY),
+        FIRST_RUN_MISSIONS.length,
+      );
+      if (current) {
+        setMissionIndex(current.missionIndex);
+        setQuestionIndex(current.questionIndex);
+        setResponse(current.response);
+        setHintUsed(current.hintUsed);
+        setReorderTouched(true);
+        setScreen("question");
+      } else if (checkpoint) {
+        const firstQuestion = FIRST_RUN_MISSIONS[checkpoint.nextMissionIndex].questions[0];
+        setMissionIndex(checkpoint.nextMissionIndex);
+        setQuestionIndex(0);
+        setResponse(initialResponse(firstQuestion));
+        setScreen("question");
+      } else {
+        sessionStorage.removeItem(CURRENT_CHOICE_RECOVERY_KEY);
+        localStorage.removeItem(STORY_CHECKPOINT_RECOVERY_KEY);
+      }
     } catch {
-      sessionStorage.removeItem(RECOVERY_KEY);
+      sessionStorage.removeItem(CURRENT_CHOICE_RECOVERY_KEY);
+      localStorage.removeItem(STORY_CHECKPOINT_RECOVERY_KEY);
     }
   }, []);
 
   useEffect(() => {
     if (screen !== "question" || typeof response === "string") return;
     sessionStorage.setItem(
-      RECOVERY_KEY,
+      CURRENT_CHOICE_RECOVERY_KEY,
       JSON.stringify({
         missionIndex,
         questionIndex,
         response,
         hintUsed,
-        expiresAt: Date.now() + RECOVERY_TTL,
+        expiresAt: Date.now() + CURRENT_CHOICE_RECOVERY_TTL,
       }),
     );
   }, [screen, missionIndex, questionIndex, response, hintUsed]);
 
-  function startMission(index: number) {
-    sessionStorage.removeItem(RECOVERY_KEY);
-    setRecovery(undefined);
+  function startMission(index: number, preserveStoryCheckpoint = false) {
+    sessionStorage.removeItem(CURRENT_CHOICE_RECOVERY_KEY);
+    if (!preserveStoryCheckpoint) localStorage.removeItem(STORY_CHECKPOINT_RECOVERY_KEY);
     const firstQuestion = FIRST_RUN_MISSIONS[index].questions[0];
     setMissionIndex(index);
     setQuestionIndex(0);
@@ -123,16 +137,6 @@ export function MiniEpisode() {
     setReceipt(undefined);
     setPendingCommand(undefined);
     setSubmitState("idle");
-    setScreen("question");
-  }
-
-  function resumeRecovery() {
-    if (!recovery) return;
-    setMissionIndex(recovery.missionIndex);
-    setQuestionIndex(recovery.questionIndex);
-    setResponse(recovery.response);
-    setHintUsed(recovery.hintUsed);
-    setReorderTouched(Array.isArray(recovery.response));
     setScreen("question");
   }
 
@@ -156,7 +160,7 @@ export function MiniEpisode() {
       const payload = (await result.json()) as { receipt?: AttemptReceipt };
       if (!result.ok || !payload.receipt) throw new Error("Attempt acknowledgement failed");
       setReceipt(payload.receipt);
-      sessionStorage.removeItem(RECOVERY_KEY);
+      sessionStorage.removeItem(CURRENT_CHOICE_RECOVERY_KEY);
       setPendingCommand(undefined);
       setSubmitState("idle");
       setScreen("feedback");
@@ -204,8 +208,16 @@ export function MiniEpisode() {
 
   function continueFromCheckpoint() {
     checkpointKey.current = undefined;
-    if (missionIndex < FIRST_RUN_MISSIONS.length - 1) startMission(missionIndex + 1);
-    else startMission(0);
+    if (missionIndex < FIRST_RUN_MISSIONS.length - 1) {
+      localStorage.setItem(
+        STORY_CHECKPOINT_RECOVERY_KEY,
+        JSON.stringify({
+          nextMissionIndex: missionIndex + 1,
+          expiresAt: Date.now() + STORY_CHECKPOINT_RECOVERY_TTL,
+        }),
+      );
+      startMission(missionIndex + 1, true);
+    } else startMission(0);
   }
 
   function moveToken(fromIndex: number, direction: -1 | 1) {
@@ -309,11 +321,6 @@ export function MiniEpisode() {
             <button className="button-primary" type="button" onClick={() => startMission(0)}>
               Mở hồ sơ đầu tiên
             </button>
-            {recovery ? (
-              <button className="button-secondary" type="button" onClick={resumeRecovery}>
-                Tiếp tục câu đang làm
-              </button>
-            ) : null}
           </section>
         ) : null}
 

@@ -91,7 +91,7 @@ Passing Alpha changes may auto-deploy to the owner-restricted website, but activ
 ## Next gate
 
 1. Owner Alpha is deployed at `https://atlas-english-five.vercel.app/` from `fa6eb4c`; unauthenticated access redirects to `/alpha-access`, and the owner has successfully entered the gated environment.
-2. Owner Alpha dogfooding, finding triage and fix/retest are now the active validation work.
+2. Owner Alpha dogfooding, finding triage and fix/retest are now the active validation work. `ALPHA-20260923-02` is ready for a deployed retest: guest checkpoint continuity now restores the next dossier for at most 24 hours without using browser state as learning evidence.
 3. Public Preview, Beta and Production remain separately blocked.
 
 ## Owner Alpha deployment finding
