@@ -84,14 +84,14 @@ Encrypted daily logical backups begin when the owner account first stores real A
 
 Owner Alpha data is preserved through migration or projection rebuild where practical. A breaking reset is Alpha-only and requires a verified backup, exact impact preview and separate owner confirmation every time; no such permission carries into Public/Production.
 
-Owner Alpha findings now use a documented P0–P3 severity and fix/retest lifecycle. The owner can report issues conversationally; Codex creates the reproducible record and verification evidence. No finding exists yet because Alpha has not started.
+Owner Alpha findings use a documented P0–P3 severity and fix/retest lifecycle. The owner can report issues conversationally; Codex creates the reproducible record and verification evidence. The initial access-gate P1 and the checkpoint-continuity P1 have both been verified; later dogfooding may open new findings.
 
 Passing Alpha changes may auto-deploy to the owner-restricted website, but activation waits for an acknowledged answer/checkpoint/safe stop. P0 can block an unsafe feature immediately without recording a wrong attempt; failed checks or health regressions retain/restore the last known-good Alpha. Public/Production release remains separately approved.
 
 ## Next gate
 
-1. Owner Alpha is deployed at `https://atlas-english-five.vercel.app/` from `fa6eb4c`; unauthenticated access redirects to `/alpha-access`, and the owner has successfully entered the gated environment.
-2. Owner Alpha dogfooding, finding triage and fix/retest are now the active validation work. `ALPHA-20260923-02` is ready for a deployed retest: guest checkpoint continuity now restores the next dossier for at most 24 hours without using browser state as learning evidence.
+1. Owner Alpha is deployed at `https://atlas-english-five.vercel.app/` from `e526157`; unauthenticated access remains redirected to `/alpha-access`, and the owner has successfully entered the gated environment.
+2. Owner Alpha dogfooding, finding triage and fix/retest are now the active validation work. `ALPHA-20260923-02` is verified: guest checkpoint continuity restores the next dossier for at most 24 hours without using browser state as learning evidence.
 3. Public Preview, Beta and Production remain separately blocked.
 
 ## Owner Alpha deployment finding

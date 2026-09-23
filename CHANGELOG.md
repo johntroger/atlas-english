@@ -8,7 +8,7 @@ All notable project changes are recorded here.
 
 ## Unreleased
 
-- Fixed the Owner Alpha checkpoint-continuity P1 pending owner retest: a 24-hour minimal browser checkpoint now restores the next dossier after reload, while server acknowledgements remain the only source for attempts, mastery and rewards. Added malformed/expired recovery regression tests.
+- Fixed and Owner Alpha-verified the checkpoint-continuity P1: a 24-hour minimal browser checkpoint now restores the next dossier after reload, while server acknowledgements remain the only source for attempts, mastery and rewards. Added malformed/expired recovery regression tests.
 
 - Deployed Owner Alpha to `https://atlas-english-five.vercel.app/` behind the application access gate. Commit `fa6eb4c` is live; a fresh unauthenticated visit redirects to `/alpha-access`, and the project owner has successfully entered the private environment. Public Preview, Beta and Production remain locked.
 

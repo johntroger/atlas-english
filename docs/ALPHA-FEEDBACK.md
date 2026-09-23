@@ -117,12 +117,12 @@ residualRisk: "The in-memory rate limit is suitable only for Owner Alpha, not pu
 ```yaml
 id: ALPHA-20260923-02
 reportedAt: 2026-09-23T10:10:00+07:00
-status: ready_for_retest
+status: verified
 severity: P1
 summary: "Reloading after a checkpoint returned a guest to the start instead of the next dossier"
 ownerDescription: "After continuing from Dossier 01 to Dossier 02 and reloading, the opening screen offered only a new start."
 environment:
-  appBuild: "1b81295 (affected); recovery fix pending Alpha deployment"
+  appBuild: "1b81295 (affected); e526157 (fixed)"
   contentVersion: "vertical-slice proof pack"
   algorithmVersion: "mastery-v0.1"
   device: "desktop browser"
@@ -148,6 +148,6 @@ fixRefs:
 checksRun:
   - "npm run check (55 tests)"
   - "recovery parser expiry and invalid-value tests"
-retestResult: "Awaiting deployed Owner Alpha retest."
+retestResult: "Verified by the owner: after entering Dossier 02, reload no longer returns to the opening screen."
 residualRisk: "The checkpoint is a 24-hour browser convenience only; server acknowledgements remain authoritative."
 ```
