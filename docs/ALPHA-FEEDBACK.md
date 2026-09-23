@@ -76,4 +76,40 @@ residualRisk: ""
 
 ## Nhật ký finding
 
-Chưa có finding. Thêm bản ghi theo mẫu khi Owner Alpha bắt đầu; không tạo issue giả để làm đầy nhật ký.
+```yaml
+id: ALPHA-20260923-01
+reportedAt: 2026-09-23T09:17:00+07:00
+status: verified
+severity: P1
+summary: "Owner Alpha gate was absent from the first Vercel deployment"
+ownerDescription: "Website opened directly instead of requiring Owner Alpha access."
+environment:
+  appBuild: "8ca36ca (affected); fa6eb4c (fixed)"
+  contentVersion: "vertical-slice proof pack"
+  algorithmVersion: "mastery-v0.1"
+  device: "Vercel Production / browser verification"
+  browser: "Codex in-app browser"
+  viewport: "default"
+location: "/"
+reproductionSteps:
+  - "Open https://atlas-english-five.vercel.app/ without an Alpha cookie."
+expected: "Redirect to /alpha-access before rendering a product route."
+actual: "The initial deployment rendered the game directly; the build log contained no Proxy entry."
+impact:
+  learningCorrectness: none
+  dataIntegrity: none
+  securityPrivacy: possible
+workaround: "Do not share the initial deployment URL."
+evidenceRefs:
+  - "Vercel build log for 8ca36ca"
+  - "Vercel deployment and unauthenticated redirect verification for fa6eb4c"
+rootCause: "Proxy file was not colocated with the src/app router."
+fixRefs:
+  - "fa6eb4c"
+checksRun:
+  - "npm run check (53 tests)"
+  - "production build reports Proxy (Middleware)"
+  - "unauthenticated Vercel visit redirects to /alpha-access"
+retestResult: "Verified; the owner also entered the gated environment."
+residualRisk: "The in-memory rate limit is suitable only for Owner Alpha, not public traffic."
+```

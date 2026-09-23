@@ -1,12 +1,12 @@
 # Project status
 
-> **Phase:** Vertical Slice implementation complete; deployment locked
+> **Phase:** Owner Alpha deployed; public release locked
 > **Plan status:** APPROVED — VERTICAL SLICE ONLY; no later step is open
 > **Updated:** 2026-09-23
 
 ## Current outcome
 
-The post-Vertical-Slice multidisciplinary review is complete at [`POST-VERTICAL-SLICE-REVIEW.md`](POST-VERTICAL-SLICE-REVIEW.md). It distinguishes the working Owner Alpha technical slice from still-unproven learning, retention, public-readiness and live-operations outcomes. It does not authorize deployment or a next implementation phase.
+The post-Vertical-Slice multidisciplinary review is complete at [`POST-VERTICAL-SLICE-REVIEW.md`](POST-VERTICAL-SLICE-REVIEW.md). It distinguishes the working Owner Alpha technical slice from still-unproven learning, retention, public-readiness and live-operations outcomes. Owner Alpha hosting was subsequently requested, deployed and verified; it does not authorize Public Preview, Beta or a broader implementation phase.
 
 On 2026-09-21 the Project Owner explicitly requested `bắt đầu code VS-01`. VS-01 through VS-09 were subsequently completed, reported and approved through their named gates. Owner Alpha hosting/deployment and every later phase remain blocked until a separate explicit request and the applicable transition gate. The active decision set now includes:
 
@@ -90,19 +90,19 @@ Passing Alpha changes may auto-deploy to the owner-restricted website, but activ
 
 ## Next gate
 
-1. Vertical Slice implementation is complete; the P-036 post-slice review is documentation-complete.
-2. Any Owner Alpha deployment/hosting configuration needs a separate explicit owner request and must follow the first transition gate in `POST-VERTICAL-SLICE-REVIEW.md`.
+1. Owner Alpha is deployed at `https://atlas-english-five.vercel.app/` from `fa6eb4c`; unauthenticated access redirects to `/alpha-access`, and the owner has successfully entered the gated environment.
+2. Owner Alpha dogfooding, finding triage and fix/retest are now the active validation work.
 3. Public Preview, Beta and Production remain separately blocked.
 
 ## Owner Alpha deployment finding
 
-- `ALPHA-20260923-01` — **P1 / reproduced**: the first Vercel Production deployment at `atlas-english-five.vercel.app` exposed the game without the required Owner Alpha redirect. The deployment build log contained no Proxy entry even though the source commit included the gate. The root cause is the Proxy file not being colocated with the `src/app` router. The deployment-scope fix moves the unchanged gate source to `src/proxy.ts`, adds a source-layout regression test, and requires a fresh Vercel deployment plus an unauthenticated redirect verification before Alpha can start.
+- `ALPHA-20260923-01` — **P1 / verified**: the first Vercel Production deployment at `atlas-english-five.vercel.app` exposed the game without the required Owner Alpha redirect. The deployment build log contained no Proxy entry even though the source commit included the gate. The Proxy was moved to `src/proxy.ts` and protected by a source-layout regression test. Commit `fa6eb4c` deployed successfully; a new unauthenticated browser session redirects to `/alpha-access`, and owner access was confirmed.
 
 ## Blockers
 
 ### Global
 
-- VS-01 through VS-09 are complete. Deployment, Owner Alpha hosting configuration, Public Preview and Beta remain blocked.
+- VS-01 through VS-09 are complete. Owner Alpha deployment is active; Public Preview and Beta remain blocked.
 - Production deployment always requires a separate explicit request.
 
 Terms/Privacy suitability, operator/contact facts and cross-border transfer remain non-owner release-review items. Minor-account support remains blocked beyond the approved 18+ Preview policy and requires separate legal review.
@@ -145,8 +145,8 @@ Pronunciation thresholds, Writing mechanics, assessment bank and calibration dat
 
 | Artifact | Version |
 |---|---|
-| Plan | 2.8 — VS-09 complete; deployment locked |
-| Application | 0.1.0 server-acknowledged three-mission mini-episode with account/guest checkpoint, safe stop, story reward and Owner Alpha gate source (public repository; not deployed) |
+| Plan | 2.9 — Owner Alpha deployed; Public Preview/Beta/Production locked |
+| Application | 0.1.0 server-acknowledged three-mission mini-episode with account/guest checkpoint, safe stop, story reward and verified Owner Alpha gate (`https://atlas-english-five.vercel.app/`) |
 | Database | Supabase Preview environment: append-only `attempts`, account/import records, `story_progress` and `reward_grants` created; no deployment |
 | Content-pack schema | Draft 2 |
 | Narrative-pack schema | Draft 2 |

@@ -1,8 +1,8 @@
 # Atlas English — Kế hoạch sản phẩm và kỹ thuật
 
-> Phiên bản: 2.8
+> Phiên bản: 2.9
 > Cập nhật: 2026-09-23
-> Trạng thái: **APPROVED — VERTICAL SLICE ONLY; VS-09 COMPLETE; DEPLOYMENT LOCKED**
+> Trạng thái: **APPROVED — VERTICAL SLICE ONLY; OWNER ALPHA DEPLOYED; PUBLIC PREVIEW/BETA/PRODUCTION LOCKED**
 
 ## 1. Mục đích tài liệu
 
@@ -316,7 +316,7 @@ Các quality gate chi tiết nằm trong `docs/TESTING.md`, `docs/ACCEPTANCE-CRI
 
 Vertical Slice `VS-01`–`VS-09` đã hoàn tất. Đánh giá đa chuyên môn sau slice được ghi tại [`docs/POST-VERTICAL-SLICE-REVIEW.md`](docs/POST-VERTICAL-SLICE-REVIEW.md). Nó xác nhận slice đủ làm nền tảng Owner Alpha, nhưng chưa là bằng chứng cho hiệu quả band 6.5, public readiness hoặc một game giữ chân dài hạn.
 
-Thứ tự khuyến nghị sau slice là: Owner Alpha hosting có khóa truy cập và backup thật → owner dogfood/fix/retest → mở rộng learning/content loop → Public Preview release gate. Đây chỉ là định hướng; mỗi bước vẫn cần yêu cầu và phê duyệt phạm vi riêng. Không nội dung nào trong mục này mở deployment hoặc implementation mới.
+Owner Alpha hosting đã được chủ dự án yêu cầu riêng, triển khai trên Vercel và xác minh bằng redirect khi chưa có session cùng phiên owner đã được cấp quyền. Thứ tự còn lại là: owner dogfood/fix/retest → mở rộng learning/content loop → Public Preview release gate. Mỗi bước vẫn cần yêu cầu và phê duyệt phạm vi riêng; Public Preview, Beta và Production không được mở bởi deployment này.
 
 ### Gate 0 — Phê duyệt kế hoạch
 

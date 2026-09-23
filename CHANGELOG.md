@@ -8,7 +8,9 @@ All notable project changes are recorded here.
 
 ## Unreleased
 
-- Fixed the Owner Alpha deployment P1: colocated Next.js Proxy with `src/app` at `src/proxy.ts` so Vercel includes the access gate, and added a regression test for the required file layout. A fresh deployment and unauthenticated redirect check remain required before Owner Alpha begins.
+- Deployed Owner Alpha to `https://atlas-english-five.vercel.app/` behind the application access gate. Commit `fa6eb4c` is live; a fresh unauthenticated visit redirects to `/alpha-access`, and the project owner has successfully entered the private environment. Public Preview, Beta and Production remain locked.
+
+- Fixed the Owner Alpha deployment P1: colocated Next.js Proxy with `src/app` at `src/proxy.ts` so Vercel includes the access gate, and added a regression test for the required file layout. A fresh deployment and unauthenticated redirect check passed before Owner Alpha began.
 
 - Completed P-036 documentation review after VS-09: recorded a separate evidence-based readiness assessment for game design, IELTS learning, architecture, UI/UX and operations. It distinguishes the validated Owner Alpha technical slice from unproven learning efficacy/public readiness, records content/retention/accessibility/hosting gaps, and specifies a non-authorizing next-stage sequence. No code, migration, deployment, secret or environment configuration changed.
 
