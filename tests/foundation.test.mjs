@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFile, readdir } from "node:fs/promises";
+import { access, readFile, readdir } from "node:fs/promises";
 import { join } from "node:path";
 import test from "node:test";
 
@@ -49,6 +49,11 @@ test("architecture boundary directories exist", async () => {
   for (const directory of ["app", "application", "domain", "infrastructure", "ui"]) {
     assert.ok(sourceEntries.includes(directory), `missing src/${directory}`);
   }
+});
+
+test("Next.js Proxy is colocated with the src app router", async () => {
+  await access(join(projectRoot, "src", "proxy.ts"));
+  await assert.rejects(access(join(projectRoot, "proxy.ts")));
 });
 
 test("GitHub Actions are pinned to immutable commits", async () => {

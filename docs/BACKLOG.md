@@ -438,6 +438,16 @@ The historical 24-hour challenge choice above was corrected by P-034: the pendin
 - [x] Prohibit parallel, anticipatory or bundled implementation across unopened steps.
 - [x] Add the enforcement rule to project instructions and keep PLAN in DRAFT.
 
+### P-036 Post-Vertical-Slice multidisciplinary readiness review — completed
+
+**Definition of Ready:** VS-01 through VS-09 are complete and the owner requested an objective review before any next phase. Scope is documentation only; no application code, dependency, migration, environment configuration, deployment or release is authorized. Verification requires an evidence-separated assessment across game design, IELTS learning, architecture, UI/UX and operations, with an explicit non-authorizing next-stage sequence.
+
+- [x] Distinguish the proven Owner Alpha Vertical Slice from unproven IELTS efficacy, retention and public readiness.
+- [x] Record learning coverage, content-review and learner-visible personalization gaps without inflating product claims.
+- [x] Record operational limits of local verification, in-memory Alpha rate limiting, backup/restore specifications and real HTTPS deployment.
+- [x] Record device/accessibility matrix gaps and an evidence-driven Owner Alpha dogfood path.
+- [x] Add the non-authorizing recommended sequence and release-transition criteria in `POST-VERTICAL-SLICE-REVIEW.md`.
+
 ## Implementation backlog — step-gated; VS-09 complete; deployment locked pending explicit request
 
 ### I-001 Project foundation — VS-01 complete

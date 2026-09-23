@@ -2,11 +2,13 @@
 
 > **Phase:** Vertical Slice implementation complete; deployment locked
 > **Plan status:** APPROVED — VERTICAL SLICE ONLY; no later step is open
-> **Updated:** 2026-09-22
+> **Updated:** 2026-09-23
 
 ## Current outcome
 
-On 2026-09-21 the Project Owner explicitly requested `bắt đầu code VS-01`. VS-01 and VS-02 were subsequently completed, reported and approved through their named gates. On 2026-09-22 the owner selected explicit option A to open VS-03; its executable content validation is now complete. VS-04–VS-09, Supabase, Vercel/deployment and every later phase remain blocked until the required tested completion report and named approval. The active decision set now includes:
+The post-Vertical-Slice multidisciplinary review is complete at [`POST-VERTICAL-SLICE-REVIEW.md`](POST-VERTICAL-SLICE-REVIEW.md). It distinguishes the working Owner Alpha technical slice from still-unproven learning, retention, public-readiness and live-operations outcomes. It does not authorize deployment or a next implementation phase.
+
+On 2026-09-21 the Project Owner explicitly requested `bắt đầu code VS-01`. VS-01 through VS-09 were subsequently completed, reported and approved through their named gates. Owner Alpha hosting/deployment and every later phase remain blocked until a separate explicit request and the applicable transition gate. The active decision set now includes:
 
 - responsive website only, Internet required; no PWA/native app/offline learning;
 - Supabase-authoritative accounts and short-lived browser recovery only;
@@ -58,16 +60,17 @@ On 2026-09-21 the Project Owner explicitly requested `bắt đầu code VS-01`. 
 - P-033 completed the backup/isolated-restore runbook and final pre-code audit, closing the ninth and final P0 without creating an environment or granting implementation approval.
 - P-034 completed the post-audit consistency corrections and verification rerun without changing the approval state or product scope.
 - P-035 converted the implementation sequence into owner-gated `VS-01`–`VS-09` code-test-report-approve steps without starting implementation.
+- P-036 completed the evidence-based post-Vertical-Slice review and recorded the non-authorizing Owner Alpha → dogfood → learning/content loop → Public Preview sequence.
 
-## Active task
+## Completed implementation state
 
 VS-02 is complete after explicit owner approval on 2026-09-22. The framework-independent domain evaluator implements declared text/option answer contracts, auditable mastery eligibility, versioned `mastery-v0.1` updates, technical/self-review no-op behavior and pure `new`/`replay`/`conflict` idempotency classification. Executable tests cover every approved numeric vector and the relevant Learning Contract gates.
 
 The owner explicitly approved option A to begin VS-03 on 2026-09-22. VS-03 now provides executable Draft 2020-12 JSON Schema and semantic validation for Content Packs, Narrative Packs, learning-node fixtures and their embedded/standalone exercise contracts. Natural-language ambiguity is routed to a declared manual-review class rather than a falsely automated judgment.
 
-The owner explicitly approved VS-04 on 2026-09-22. VS-04 is complete: one four-item mission now runs locally end to end on mobile and desktop with temporary data, deterministic feedback and an explicit hinted-attempt practice-only path. The owner explicitly approved VS-05 on 2026-09-22; VS-05 is complete: three local temporary-data missions, 12 first-run items and the deterministic 30-item selection contract now run end to end. The owner explicitly approved VS-06 on 2026-09-22; VS-06 is complete: the server acknowledges and evaluates guest attempts, an append-only Supabase ledger persists them, and request hashes/idempotency keys make retries safe. The owner explicitly approved VS-07 on 2026-09-22; VS-07 is complete: the 24-hour guest TTL, verified passwordless email account session, auditable eligibility/Terms/Privacy/import consent, one-destination idempotent guest import and account history all work against the Preview Supabase project. The owner explicitly approved VS-08 on 2026-09-22; it is complete: checkpoint/safe stop, story reward, replay/no-duplicate grant and safe-boundary behavior have been implemented and verified. The owner explicitly approved VS-09 on 2026-09-22; accessibility, responsive review, interruption/recovery, security checks and the Owner Alpha gate are now open. Deployment remains locked.
+The owner explicitly approved VS-04 on 2026-09-22. VS-04 is complete: one four-item mission now runs locally end to end on mobile and desktop with temporary data, deterministic feedback and an explicit hinted-attempt practice-only path. The owner explicitly approved VS-05 on 2026-09-22; VS-05 is complete: three local temporary-data missions, 12 first-run items and the deterministic 30-item selection contract now run end to end. The owner explicitly approved VS-06 on 2026-09-22; VS-06 is complete: the server acknowledges and evaluates guest attempts, an append-only Supabase ledger persists them, and request hashes/idempotency keys make retries safe. The owner explicitly approved VS-07 on 2026-09-22; VS-07 is complete: the 24-hour guest TTL, verified passwordless email account session, auditable eligibility/Terms/Privacy/import consent, one-destination idempotent guest import and account history all work against the Preview Supabase project. The owner explicitly approved VS-08 on 2026-09-22; it is complete: checkpoint/safe stop, story reward, replay/no-duplicate grant and safe-boundary behavior have been implemented and verified. The owner explicitly approved VS-09 on 2026-09-22; accessibility, responsive review, interruption/recovery, security checks and the Owner Alpha gate are complete. Deployment remains locked.
 
-The owner has approved the Vertical Slice learning/story contract, public safeguards, quota thresholds and daily encrypted R2 backups, plus isolated restore drills before release, monthly for three months and quarterly thereafter. Privacy and Terms drafts specify a Vietnam-adult Preview, an individual operator before incorporation, a dedicated project mailbox, two unchecked signup confirmations with guest fallback, Vietnamese law with non-exclusive negotiation, safe reacceptance/refusal behavior, seven-day planned material-change notice, immutable date-based policy versions and Vietnamese as the sole authoritative policy language. Exact restore commands/evidence are now specified in `BACKUP-RESTORE-RUNBOOK.md`; live execution remains a later environment gate. The exact operator/contact, actual provider regions/transfers and legal review remain pre-public-release blockers, not blockers for code or owner-restricted Alpha. VS-07 and VS-08 live verification are complete; VS-09 remains locked.
+The owner has approved the Vertical Slice learning/story contract, public safeguards, quota thresholds and daily encrypted R2 backups, plus isolated restore drills before release, monthly for three months and quarterly thereafter. Privacy and Terms drafts specify a Vietnam-adult Preview, an individual operator before incorporation, a dedicated project mailbox, two unchecked signup confirmations with guest fallback, Vietnamese law with non-exclusive negotiation, safe reacceptance/refusal behavior, seven-day planned material-change notice, immutable date-based policy versions and Vietnamese as the sole authoritative policy language. Exact restore commands/evidence are now specified in `BACKUP-RESTORE-RUNBOOK.md`; live execution remains a later environment gate. The exact operator/contact, actual provider regions/transfers and legal review remain pre-public-release blockers, not blockers for code or owner-restricted Alpha. VS-07 and VS-08 live verification are complete; VS-09 is complete and deployment remains locked.
 
 Codex may draft and pre-review the 30 items and learner-facing English during planning, prototype, implementation and Owner Alpha; no specialist review is needed yet. Before Public Preview reaches anyone outside the project owner, one qualified human reviewer independent of the author must approve all of that material against exact Content/Narrative Pack hashes. Product Owner story/tone approval and accessibility evidence remain separate.
 
@@ -85,11 +88,15 @@ Owner Alpha findings now use a documented P0–P3 severity and fix/retest lifecy
 
 Passing Alpha changes may auto-deploy to the owner-restricted website, but activation waits for an acknowledged answer/checkpoint/safe stop. P0 can block an unsafe feature immediately without recording a wrong attempt; failed checks or health regressions retain/restore the last known-good Alpha. Public/Production release remains separately approved.
 
-## Next implementation gate
+## Next gate
 
-1. Present the VS-09 completion report and stop.
-2. Vertical Slice implementation is complete.
-3. Any deployment, Owner Alpha hosting configuration, Public Preview or Beta work needs a separate explicit request.
+1. Vertical Slice implementation is complete; the P-036 post-slice review is documentation-complete.
+2. Any Owner Alpha deployment/hosting configuration needs a separate explicit owner request and must follow the first transition gate in `POST-VERTICAL-SLICE-REVIEW.md`.
+3. Public Preview, Beta and Production remain separately blocked.
+
+## Owner Alpha deployment finding
+
+- `ALPHA-20260923-01` — **P1 / reproduced**: the first Vercel Production deployment at `atlas-english-five.vercel.app` exposed the game without the required Owner Alpha redirect. The deployment build log contained no Proxy entry even though the source commit included the gate. The root cause is the Proxy file not being colocated with the `src/app` router. The deployment-scope fix moves the unchanged gate source to `src/proxy.ts`, adds a source-layout regression test, and requires a fresh Vercel deployment plus an unauthenticated redirect verification before Alpha can start.
 
 ## Blockers
 
@@ -138,8 +145,8 @@ Pronunciation thresholds, Writing mechanics, assessment bank and calibration dat
 
 | Artifact | Version |
 |---|---|
-| Plan | 2.7 — VS-08 complete; VS-09 awaiting explicit approval |
-| Application | 0.1.0 server-acknowledged three-mission mini-episode with account/guest checkpoint, safe stop and story reward (public repository; not deployed) |
+| Plan | 2.8 — VS-09 complete; deployment locked |
+| Application | 0.1.0 server-acknowledged three-mission mini-episode with account/guest checkpoint, safe stop, story reward and Owner Alpha gate source (public repository; not deployed) |
 | Database | Supabase Preview environment: append-only `attempts`, account/import records, `story_progress` and `reward_grants` created; no deployment |
 | Content-pack schema | Draft 2 |
 | Narrative-pack schema | Draft 2 |

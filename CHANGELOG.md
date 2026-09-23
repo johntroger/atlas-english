@@ -8,6 +8,10 @@ All notable project changes are recorded here.
 
 ## Unreleased
 
+- Fixed the Owner Alpha deployment P1: colocated Next.js Proxy with `src/app` at `src/proxy.ts` so Vercel includes the access gate, and added a regression test for the required file layout. A fresh deployment and unauthenticated redirect check remain required before Owner Alpha begins.
+
+- Completed P-036 documentation review after VS-09: recorded a separate evidence-based readiness assessment for game design, IELTS learning, architecture, UI/UX and operations. It distinguishes the validated Owner Alpha technical slice from unproven learning efficacy/public readiness, records content/retention/accessibility/hosting gaps, and specifies a non-authorizing next-stage sequence. No code, migration, deployment, secret or environment configuration changed.
+
 - Completed owner-approved VS-09: added fail-closed Owner Alpha access-gate source code, security headers/CSP, short-lived structured-answer recovery, offline-safe submit behavior, accessibility focus/status improvements and mobile browser review. Deployment and real Alpha-secret configuration remain separately locked.
 
 - Completed owner-approved VS-08: added account-backed checkpoints, a 24-hour signed guest completion marker, a fixed one-time `Context Restored` reward, replay-safe completion and a real safe-stop screen. Two additive Supabase migrations were applied; live guest and account paths were verified, including exactly one reward grant. VS-09 remains locked.
