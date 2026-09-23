@@ -8,6 +8,8 @@ All notable project changes are recorded here.
 
 ## Unreleased
 
+- Completed owner-approved VS-09: added fail-closed Owner Alpha access-gate source code, security headers/CSP, short-lived structured-answer recovery, offline-safe submit behavior, accessibility focus/status improvements and mobile browser review. Deployment and real Alpha-secret configuration remain separately locked.
+
 - Completed owner-approved VS-08: added account-backed checkpoints, a 24-hour signed guest completion marker, a fixed one-time `Context Restored` reward, replay-safe completion and a real safe-stop screen. Two additive Supabase migrations were applied; live guest and account paths were verified, including exactly one reward grant. VS-09 remains locked.
 - Completed owner-approved VS-07: added 24-hour guest TTL enforcement, verified passwordless email sessions, separately auditable eligibility/Terms/Privacy/import consent, one-destination idempotent guest import and account history. Preview Supabase migration, email verification and an exactly-one-attempt import receipt were checked live; VS-08 and later work remain locked.
 - Completed owner-approved VS-06: added server-authoritative feedback, a signed 24-hour guest binding, append-only Supabase attempts, server-computed SHA-256 request hashes and idempotent retry receipts. A real endpoint test confirmed one persisted row for an acknowledged submission plus a replay. The Vietnamese interface now uses a Windows-friendly system font and safer heading line-height; VS-07 and later work remain locked.

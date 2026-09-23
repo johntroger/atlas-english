@@ -16,6 +16,15 @@ type Checkpoint = Readonly<{
   updatePending: boolean;
   guest: boolean;
 }>;
+type Recovery = Readonly<{
+  missionIndex: number;
+  questionIndex: number;
+  response: Exclude<MissionResponse, string>;
+  hintUsed: boolean;
+  expiresAt: number;
+}>;
+const RECOVERY_KEY = "atlas_current_choice_v1";
+const RECOVERY_TTL = 30 * 60 * 1000;
 
 export function MiniEpisode() {
   const [screen, setScreen] = useState<Screen>("intro");
@@ -38,6 +47,8 @@ export function MiniEpisode() {
   const checkpointKey = useRef<string | undefined>(undefined);
   const [checkpoint, setCheckpoint] = useState<Checkpoint>();
   const [checkpointError, setCheckpointError] = useState(false);
+  const [online, setOnline] = useState(true);
+  const [recovery, setRecovery] = useState<Recovery>();
 
   const mission = FIRST_RUN_MISSIONS[missionIndex];
   const question = mission.questions[questionIndex];
@@ -57,7 +68,51 @@ export function MiniEpisode() {
     if (showHintWarning) hintDialog.current?.querySelector<HTMLButtonElement>("button")?.focus();
   }, [showHintWarning]);
 
+  useEffect(() => {
+    const update = () => setOnline(navigator.onLine);
+    update();
+    window.addEventListener("online", update);
+    window.addEventListener("offline", update);
+    return () => {
+      window.removeEventListener("online", update);
+      window.removeEventListener("offline", update);
+    };
+  }, []);
+
+  useEffect(() => {
+    try {
+      const saved = JSON.parse(sessionStorage.getItem(RECOVERY_KEY) ?? "null") as Recovery | null;
+      if (
+        saved &&
+        saved.expiresAt > Date.now() &&
+        Number.isInteger(saved.missionIndex) &&
+        Number.isInteger(saved.questionIndex) &&
+        Array.isArray(saved.response)
+      )
+        setRecovery(saved);
+      else sessionStorage.removeItem(RECOVERY_KEY);
+    } catch {
+      sessionStorage.removeItem(RECOVERY_KEY);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (screen !== "question" || typeof response === "string") return;
+    sessionStorage.setItem(
+      RECOVERY_KEY,
+      JSON.stringify({
+        missionIndex,
+        questionIndex,
+        response,
+        hintUsed,
+        expiresAt: Date.now() + RECOVERY_TTL,
+      }),
+    );
+  }, [screen, missionIndex, questionIndex, response, hintUsed]);
+
   function startMission(index: number) {
+    sessionStorage.removeItem(RECOVERY_KEY);
+    setRecovery(undefined);
     const firstQuestion = FIRST_RUN_MISSIONS[index].questions[0];
     setMissionIndex(index);
     setQuestionIndex(0);
@@ -71,8 +126,18 @@ export function MiniEpisode() {
     setScreen("question");
   }
 
+  function resumeRecovery() {
+    if (!recovery) return;
+    setMissionIndex(recovery.missionIndex);
+    setQuestionIndex(recovery.questionIndex);
+    setResponse(recovery.response);
+    setHintUsed(recovery.hintUsed);
+    setReorderTouched(Array.isArray(recovery.response));
+    setScreen("question");
+  }
+
   async function submitAnswer() {
-    if (!responseIsComplete || submitState === "submitting") return;
+    if (!responseIsComplete || submitState === "submitting" || !online) return;
     const command = pendingCommand ?? {
       attemptId: crypto.randomUUID(),
       idempotencyKey: crypto.randomUUID(),
@@ -91,6 +156,7 @@ export function MiniEpisode() {
       const payload = (await result.json()) as { receipt?: AttemptReceipt };
       if (!result.ok || !payload.receipt) throw new Error("Attempt acknowledgement failed");
       setReceipt(payload.receipt);
+      sessionStorage.removeItem(RECOVERY_KEY);
       setPendingCommand(undefined);
       setSubmitState("idle");
       setScreen("feedback");
@@ -213,6 +279,11 @@ export function MiniEpisode() {
         <p className="temporary-notice" role="status">
           Bạn có thể chơi ngay. Đăng nhập email để lưu và xem lại lịch sử dài hạn.
         </p>
+        {!online ? (
+          <p className="submit-error" role="status">
+            Mất kết nối: câu đang làm được giữ tạm; hãy kết nối lại để gửi.
+          </p>
+        ) : null}
 
         {screen === "intro" ? (
           <section className="mission-intro" aria-labelledby="intro-title">
@@ -238,6 +309,11 @@ export function MiniEpisode() {
             <button className="button-primary" type="button" onClick={() => startMission(0)}>
               Mở hồ sơ đầu tiên
             </button>
+            {recovery ? (
+              <button className="button-secondary" type="button" onClick={resumeRecovery}>
+                Tiếp tục câu đang làm
+              </button>
+            ) : null}
           </section>
         ) : null}
 
@@ -356,7 +432,7 @@ export function MiniEpisode() {
                 )}
                 <button
                   className="button-primary"
-                  disabled={!responseIsComplete || submitState === "submitting"}
+                  disabled={!responseIsComplete || submitState === "submitting" || !online}
                   onClick={submitAnswer}
                   type="button"
                 >

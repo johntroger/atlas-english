@@ -1,8 +1,8 @@
 # Atlas English — Kế hoạch sản phẩm và kỹ thuật
 
-> Phiên bản: 2.7
+> Phiên bản: 2.8
 > Cập nhật: 2026-09-22
-> Trạng thái: **APPROVED — VERTICAL SLICE ONLY; VS-08 COMPLETE; VS-09 LOCKED**
+> Trạng thái: **APPROVED — VERTICAL SLICE ONLY; VS-09 COMPLETE; DEPLOYMENT LOCKED**
 
 ## 1. Mục đích tài liệu
 
@@ -339,7 +339,7 @@ Subsequent step approvals:
 - `VS-06` completion: server acknowledgement, append-only guest attempts, server-computed request hashes, idempotent retry and Supabase persistence were implemented and verified on 2026-09-22. `VS-07` is not open until a new explicit owner approval.
 - `VS-07`: Project Owner explicitly approved the named step on 2026-09-22; only guest TTL, account verification, explicit guest-import consent and account history are open.
 - `VS-07` completion: the 24-hour guest binding, verified passwordless email account session, separately recorded eligibility/Terms/Privacy/import consent, append-only one-destination import receipt and account history were implemented and verified on 2026-09-22. `VS-08` is not open until a new explicit owner approval.
-- `VS-08` completion: checkpoint/safe stop, server-backed first-completion story reward, replay/no-duplicate grant and safe-boundary update behavior were completed and verified on 2026-09-22. `VS-09` remains locked until a new explicit owner approval.
+- `VS-08` completion: checkpoint/safe stop, server-backed first-completion story reward, replay/no-duplicate grant and safe-boundary update behavior were completed and verified on 2026-09-22. Project Owner explicitly approved `VS-09` on 2026-09-22; only accessibility, responsive review, interruption/recovery, security checks and the Owner Alpha release gate are open.
 
 ### Gate 1 — Hợp đồng triển khai
 
